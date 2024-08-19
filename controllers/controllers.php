@@ -111,7 +111,7 @@ function getFormattedPageName() {
     return $formattedName;
 }
 
-function getCurrentDateTime($format = 'Y-m-d H:i:s') {
+function getCurrentDateTime($format = 'Y-m-d') {
     // Obtenir la date et l'heure actuelles en utilisant le format spécifié
     return date($format);
 }

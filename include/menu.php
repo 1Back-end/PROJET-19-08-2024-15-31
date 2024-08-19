@@ -87,7 +87,7 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="#">
-				<h4 class="text-white">LOCATION CAR</h4>
+				<h4 class="text-white">DriveMate</h4>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>

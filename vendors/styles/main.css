@@ -40,7 +40,7 @@ body {
     font-family: "Fuzzy Bubbles", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3{
     margin: 0;
     padding: 0;
     font-weight: 700;
@@ -49,6 +49,14 @@ body {
     font-size: 32px;
   }
 
+ h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #1F4283;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 22px;
+  }
 input[type="text"], input[type="email"], input[type="date"], input[type="password"] {
     font-family: "Fuzzy Bubbles", sans-serif;
 }
@@ -103,13 +111,6 @@ input[type="file"]{
 }
 
 @media only screen and (max-width: 768px) {
-  .text-uppercase {
-    font-size: 16px; /* Réduire davantage la taille pour les écrans plus petits si nécessaire */
-    font-weight: 700;
-    line-height: 1.6;
-  }
-}
-@media only screen and (max-width: 768px) {
   .btn-xs {
     padding: 0.25rem 0.5rem;
     font-size: 12px;
@@ -140,70 +141,8 @@ input[type="file"]{
   background-color:#1F4283;
   font-family: "Fuzzy Bubbles", sans-serif;
  }
-@media only screen and (max-width: 768px) {
-  .table thead th {
-    font-weight: 600;
-    font-size: 12px;
-    border-bottom: 0;
-    padding-left: 1rem;
-  }
-}
-@media (max-width: 767px) {
-  .user-info-dropdown .dropdown-toggle .user-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #1F4283;
-  }
-}
-@media (max-width: 767px) {
-  .user-info-dropdown .dropdown-toggle .user-icon {
-    font-size: 24px;
-    color: #1F4283;
-    line-height: 52px;
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    aspect-ratio: 1/1;
-  }
-}
 
-@media (max-width: 767px) {
-  .dropdown-item {
-    font-size: 14px;
-    font-weight: 400;
-    padding: .657rem 1rem;
-      padding-left: 1rem;
-    padding-left: 1rem;
-    color: #444;
-    font-family: "Fuzzy Bubbles", sans-serif;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-  }
-}
 
-@media (max-width: 767px) {
-  label {
-    display: inline-block;
-    margin-bottom: .5rem;
-    font-size: 14px;
-    /* font-weight: 700; */
-  }
-}
-
-.table td {
-  font-size: 14px;
-  font-weight: 500;
-  padding: 1rem;
-}
-
-@media (max-width: 767px) {
-  .table td {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 1rem;
-  }
-}
 
 .custom-pagination .page-item .page-link {
   color: #1F4283; /* Couleur du texte */
@@ -273,4 +212,26 @@ input[type="file"]{
 .user-info-dropdown {
   padding: 5px 10px 5px 0;
   margin-right: 18px;
+}
+.logo-image {
+    width: 100px; /* Ajustez la largeur de l'image ici */
+    height: auto; /* Maintient les proportions de l'image */
+    max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur du conteneur */
+    display: block; /* Assure que l'image est affichée comme un bloc pour un meilleur centrage */
+    margin: 0 auto; /* Centre l'image horizontalement dans le conteneur */
+}
+.form-inline input {
+  flex-grow: 1; /* Permet au champ de recherche de prendre toute la largeur disponible */
+  margin-right: 10px; /* Espacement entre le champ de recherche et le bouton */
+}
+@media (max-width: 767.98px) {
+  .form-inline {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+  }
 }
