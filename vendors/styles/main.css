@@ -1,0 +1,276 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap');
+body {
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-style: normal;
+}
+.sidebar-menu .dropdown-toggle {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: .03em;
+    font-family: "Fuzzy Bubbles", sans-serif;
+}
+.sidebar-menu .submenu li a {
+    display: block;
+    padding: 18px 15px 18px 60px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: .03em;
+    position: relative;
+    font-family: "Fuzzy Bubbles", sans-serif;
+}
+.dropdown-item {
+    font-size: 16px;
+    font-weight: 400;
+    padding: .657rem 1rem;
+      padding-left: 1rem;
+    color: #444;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+  .user-info-dropdown .dropdown-toggle .user-name {
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    color: #131e22;
+    font-family: "Fuzzy Bubbles", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #1F4283;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 32px;
+  }
+
+input[type="text"], input[type="email"], input[type="date"], input[type="password"] {
+    font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+small{
+  font-size: 10px;
+}
+.btn{
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+label{
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+
+}
+.select-form{
+  cursor: pointer;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+.profile-image {
+  width:70px; /* Taille de l'image */
+  height: 60px; /* Taille de l'image */
+  border-radius: 50%; /* Pour arrondir l'image */
+  object-fit: cover; /* Pour que l'image conserve ses proportions et remplisse le conteneur */
+  cursor: pointer; /* Curseur pointer pour indiquer que l'image est cliquable */
+  text-align: center;
+}
+input[type="file"]{
+  border: none;
+  font-family: "Fuzzy Bubbles", sans-serif;
+
+}
+
+.btn-icons {
+  padding: 0.25rem 0.5rem; /* Ajustez les valeurs en conséquence pour la taille souhaitée */
+  font-size: 12px; /* Ajustez la taille de la police en conséquence */
+}
+
+.btn-xs {
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-responsive {
+      width: 100%; /* Réduire davantage la taille pour les écrans plus petits si nécessaire */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .text-uppercase {
+    font-size: 16px; /* Réduire davantage la taille pour les écrans plus petits si nécessaire */
+    font-weight: 700;
+    line-height: 1.6;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .btn-xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+.fa-2x {
+  font-size: 18px;
+}
+ /* Définition de la couleur personnalisée pour l'icône */
+ .icon-pending i {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+ /* Définition de la couleur personnalisée pour l'icône */
+ .logo {
+     border-radius:50%;
+    height: 40px;
+    width: 40px;
+    background-color:#1F4283;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+ }
+ .btn-customize{
+  background-color:#1F4283;
+  font-family: "Fuzzy Bubbles", sans-serif;
+ }
+@media only screen and (max-width: 768px) {
+  .table thead th {
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 0;
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 767px) {
+  .user-info-dropdown .dropdown-toggle .user-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1F4283;
+  }
+}
+@media (max-width: 767px) {
+  .user-info-dropdown .dropdown-toggle .user-icon {
+    font-size: 24px;
+    color: #1F4283;
+    line-height: 52px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-item {
+    font-size: 14px;
+    font-weight: 400;
+    padding: .657rem 1rem;
+      padding-left: 1rem;
+    padding-left: 1rem;
+    color: #444;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+}
+
+@media (max-width: 767px) {
+  label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 14px;
+    /* font-weight: 700; */
+  }
+}
+
+.table td {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+@media (max-width: 767px) {
+  .table td {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 1rem;
+  }
+}
+
+.custom-pagination .page-item .page-link {
+  color: #1F4283; /* Couleur du texte */
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #1F4283; /* Couleur de fond de l'élément actif */
+  border-color: #1F4283; /* Couleur de la bordure de l'élément actif */
+  color: white; /* Couleur du texte de l'élément actif */
+}
+
+.custom-pagination .page-item .page-link:hover {
+  background-color: #1F4283; /* Couleur de fond au survol */
+  color: white; /* Couleur du texte au survol */
+}
+.notification-list ul li a h3 {
+  font-size: 16px;
+  color: #202342;
+  font-weight: 700;
+  text-transform: capitalize;
+  font-family: "Fuzzy Bubbles", sans-serif;
+  padding-bottom: 5px;
+}
+.docs-buttons label, .notification-list ul li a p, .project-info-right p {
+  margin-bottom: 0;
+  font-family: "Fuzzy Bubbles", sans-serif;
+}
+.notification-list ul li a img {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  border-radius: 30px;
+}
+/* Media query pour les écrans plus petits */
+@media (max-width: 768px) {
+  .btn-icons {
+    padding: 0.5rem 0.3rem; /* Augmentez les valeurs pour les écrans plus petits */
+    font-size: 16px; /* Augmentez la taille de la police pour les écrans plus petits */
+  }
+}
+
+.text-uppercase-responsive {
+  text-transform: uppercase;
+}
+
+@media (max-width: 576px) {
+  .text-center-responsive {
+      text-align: center;
+  }
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  border-color: #1F4283;
+  background-color: #1F4283;
+  overflow: hidden;
+  border: none;
+}
+
+.shadow-none {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.user-info-dropdown {
+  padding: 5px 10px 5px 0;
+  margin-right: 18px;
+}

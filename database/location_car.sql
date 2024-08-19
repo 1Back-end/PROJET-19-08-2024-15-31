@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 août 2024 à 15:10
+-- Généré le : lun. 19 août 2024 à 15:35
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -58,6 +58,21 @@ CREATE TABLE `cars` (
   `notes` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `added_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `forgot_password`
+--
+
+CREATE TABLE `forgot_password` (
+  `id` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `reset_code` varchar(6) NOT NULL,
+  `request_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `expiration_date` timestamp NULL DEFAULT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -130,6 +145,14 @@ ALTER TABLE `cars`
   ADD KEY `brand_id` (`brand_id`);
 
 --
+-- Index pour la table `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reset_code` (`reset_code`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Index pour la table `payments`
 --
 ALTER TABLE `payments`
@@ -160,6 +183,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `cars`
   ADD CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `carbrands` (`id`);
+
+--
+-- Contraintes pour la table `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  ADD CONSTRAINT `forgot_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `rentals`
