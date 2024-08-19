@@ -1,0 +1,32 @@
+[
+    {
+        "id": "e4e6c45a-9d8b-4b24-b6c7-9f56ed43f7c4",
+        "name": "Toyota",
+        "image": "https://example.com/images/toyota.jpg",
+        "created_at": "2024-08-19T15:10:00Z"
+    },
+    {
+        "id": "c81e728d-9d4c-4baf-bb7d-1d1e65e7e8ee",
+        "name": "Honda",
+        "image": "https://example.com/images/honda.jpg",
+        "created_at": "2024-08-19T15:10:00Z"
+    },
+    {
+        "id": "f2b2c1ed-8c74-4b3d-a09a-2db6e7b4a1df",
+        "name": "Ford",
+        "image": "https://example.com/images/ford.jpg",
+        "created_at": "2024-08-19T15:10:00Z"
+    },
+    {
+        "id": "44b4e4c8-97bc-4b87-a1c4-c5f53e2b5c82",
+        "name": "BMW",
+        "image": "https://example.com/images/bmw.jpg",
+        "created_at": "2024-08-19T15:10:00Z"
+    },
+    {
+        "id": "d8e8f8d4-6a87-4e76-9104-6d0c27d254d8",
+        "name": "Mercedes-Benz",
+        "image": "https://example.com/images/mercedes.jpg",
+        "created_at": "2024-08-19T15:10:00Z"
+    }
+]
