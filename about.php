@@ -25,11 +25,11 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 text-center">
         <li class="nav-item">
-          <a class="nav-link active mx-3" aria-current="page" href="index.php">Acceuil</a>
+          <a class="nav-link  mx-3" aria-current="page" href="index.php">Acceuil</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link mx-3" aria-current="page" href="about.php">À propos</a>
+          <a class="nav-link active mx-3" aria-current="page" href="about.php">À propos</a>
         </li>
 
         <li class="nav-item">
@@ -51,82 +51,26 @@
 <div class="container mt-5 section-padding p-3">
 </div>
 
+
 <div class="container mt-5 section-padding p-3">
   <div class="row align-items-center">
     <!-- Section Titre et Description -->
     <div class="col-md-6 col-sm-12 mb-3">
-      <h1 class="title1">Louez votre voiture en toute simplicité</h1>
-      <p class="lead">
-        Découvrez notre large gamme de véhicules disponibles à la location. Que vous ayez besoin d'une voiture compacte pour la ville ou d'un SUV pour un voyage en famille, nous avons ce qu'il vous faut.
-      </p>
-      <a href="#" class="btn btn-primary btn-lg me-2 shadow-none">Voir les véhicules</a>
+      <h1 class="title1">Un Service de location fiable et rapide</h1>
+            <p class="lead">
+                Chez nous, la satisfaction du client est une priorité. Nous vous offrons un service de location de véhicules rapide, fiable et sécurisé. Que vous ayez besoin d'un véhicule pour un voyage professionnel ou pour des vacances, notre équipe est là pour vous remettre les clés en toute simplicité et vous accompagner tout au long du processus.
+            </p>
+      <!-- <a href="#" class="btn btn-primary btn-lg me-2 shadow-none">Voir les véhicules</a> -->
       <a href="#" class="btn btn-primary btn-lg me-2 shadow-none">Nous contacter</a>
     </div>
     <!-- Section Image -->
     <div class="col-md-6 col-sm-12 mb-3">
-      <img src="v1.png" alt="Voiture de location" class="img-fluid">
+      <img src="about.png" alt="Voiture de location" class="img-fluid">
     </div>
   </div>
 </div>
 
 
-<div class="container mt-5 section-padding p-3">
-    <div class="col-md-12 col-sm-12 mb-3">
-    <h2 class="text-center title2">Nos services</h2>
-    </div>
-    <div class="col-md-12 col-sm-12 mb-3">
-        <div class="row">
-        <div class="col-md-4 col-sm-12 mb-4">
-        <div class="card shadow-sm text-center h-100">
-            <div class="card-body d-flex flex-column align-items-center">
-            <div class="icon mb-3">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-            </div>
-            <h5 class="card-title mb-3">Location à court terme</h5>
-            <p class="card-text">
-                Idéal pour les voyages de courte durée ou les besoins temporaires. Choisissez parmi notre large gamme de véhicules modernes.
-            </p>
-            <a href="" class="btn btn-secondary btn-lg me-2 shadow-none">Lire plus</a>
-            </div>
-        </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-12 mb-4">
-        <div class="card shadow-sm text-center h-100">
-            <div class="card-body d-flex flex-column align-items-center">
-            <div class="icon mb-3">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-            </div>
-            <h5 class="card-title mb-3">Location à long terme</h5>
-            <p class="card-text">
-            Parfait pour les besoins prolongés. Profitez de tarifs avantageux et de la flexibilité pour des périodes plus longues.
-            </p>
-            <a href="" class="btn btn-secondary btn-lg me-2 shadow-none">Lire plus</a>
-            </div>
-        </div>
-        </div>
-
-
-        <div class="col-md-4 col-sm-12 mb-4">
-        <div class="card shadow-sm text-center h-100">
-            <div class="card-body d-flex flex-column align-items-center">
-            <div class="icon mb-3">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-            </div>
-            <h5 class="card-title mb-3">Service Premium</h5>
-            <p class="card-text">
-            Pour une expérience de conduite luxueuse, optez pour nos véhicules premium avec toutes les commodités.
-            </p>
-            <a href="" class="btn btn-secondary btn-lg me-2 shadow-none">Lire plus</a>
-            </div>
-        </div>
-        </div>
-
-            
-        </div>
-    </div>
-</div>
 
 <footer class="text-white pt-5 pb-4 bg-dark">
     <div class="container text-md-left">

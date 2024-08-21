@@ -9,39 +9,39 @@
     <title><?php echo ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF'])));?></title>
 	<!-- Bootstrap 5 CDN Link -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 	<!-- Custom CSS Link -->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="forgot_password.css">
 </head>
-<body>
+<body> 
     <section class="wrapper">
 		<div class="container">
 			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
 				<div class="logo">
-					<img decoding="async" src="../logo.png" class="img-fluid" alt="Logo">
+					<img decoding="async" src="../logo.png" class="img-fluid" alt="logo">
 				</div>
-				<form class="rounded bg-white shadow py-5 px-4">
-					<h4 class="text-dark fw-bolder fs-2 mb-2">Connectez vous à votre compte !</h4>
-					<div class="fw-normal text-muted mb-4"> Nouveau ici ?
-						<a href="registration.php" class="text-primary fw-bold text-decoration-none">Créer un compte</a>
-					</div>
+				<form class="rounded bg-white shadow p-5">
+					<h3 class="text-dark fw-bolder fs-4 mb-2">Mot de passe oublié ?</h3>
+
+					<div class="fw-normal text-muted mb-4">
+                    Entrez votre email pour réinitialiser votre mot de passe.
+					</div>  
+
 					<div class="form-floating mb-3">
 						<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
 						<label for="floatingInput">Adresse email</label>
-					</div>
-					<div class="form-floating">
-						<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-						<label for="floatingPassword">Mot de passe</label>
-					</div>
-					<div class="mt-2 text-end">
-						<a href="forgot_password.php" class="text-primary fw-bold text-decoration-none">Mot de passe oublié ?</a>
-					</div>
-					<button type="submit" class="btn btn-primary submit_btn w-100 my-4">Se connecter</button>
-					
+					</div> 
+                    <div class="mb-3">
+                    <button type="submit" class="btn btn-primary submit_btn btn-block">Soumettre</button>
+                    </div> 
+
+					<!-- <button type="submit" class="btn btn-primary submit_btn my-4">Soumettre</button>
+                    <a href="" class="btn btn-secondary submit_btn my-4 ms-3">Annuler</a>
+                    <button type="submit" class="btn btn-secondary submit_btn my-4 ms-3">Cancel</button>  -->
 				</form>
 			</div>
 		</div>
 	</section>
-    
 </body>
 </html>
 

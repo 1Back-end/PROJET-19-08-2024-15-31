@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+/* Styling the navbar background and links */
+.navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 20px;
+    border-radius: 50px;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 0.5rem;
+    z-index: 99;
+    position: fixed;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #333;
+    
+  }
+  
+  .navbar-nav .nav-link {
+    color: #555;
+    font-weight: 500;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    transition: color 0.3s;
+    font-size: 14px;
+  }
+
+  
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: #1F4283;
+  }
+
+  
+  /* Centering the navbar links */
+  .navbar-collapse {
+    justify-content: space-between;
+  }
+  
+  .navbar-nav {
+    flex: 1;
+    justify-content: center;
+}
+.section-padding{
+    padding-top: 80px;
+    transition: 0.3s ease-in-out;
+}
+/* header section start */
+.login-btn{
+    background-color: #1F4283;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 50px;
+}
+.container .title1{
+   font-size: 38px;
+   color: #1F4283;
+   transition: 0.3s ease-in-out;
+   font-weight: 700;
+}
+.container .lead{
+    font-size: 18px;
+    color: #333;
+    transition: 0.3s ease-in-out;
+}
+.container .title2{
+    font-size: 30px;
+    color: #1F4283;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+}
+.container .btn-primary{
+    background-color: #1F4283;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 50px;
+}
+.container .card{
+    margin-bottom: 20px;
+    transition: 0.3s ease-in-out;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    text-align: center;
+}
+.container .card-title{
+    font-size: 18px;
+    color: #1F4283;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+}
+.container .card-text{
+    font-size: 12px;
+    transition: 0.3s ease-in-out;
+}
+.container .icon{
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F4283;
+    color: #fff;
+    border-radius: 50%;
+    /* margin-bottom: 10px; */
+}
+.container .btn-secondary{
+    background-color: #1F4283;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    /* border-radius: 50px; */
+}
+footer {
+    flex-shrink: 0;
+    background-color: #333;
+    color: white;
+}
+/* Style des icônes des réseaux sociaux */
+.social-icons a {
+    font-size: 1.5rem; /* Taille des icônes */
+    color: #ffffff; /* Couleur des icônes */
+    margin-right: 1rem; /* Espacement entre les icônes */
+    transition: color 0.3s ease, transform 0.3s ease; /* Effet de transition pour les changements de couleur et d'animation */
+  }
+  
+  /* Effet au survol des icônes des réseaux sociaux */
+  .social-icons a:hover {
+    color: #1F4283; /* Couleur des icônes au survol */
+    transform: scale(1.1); /* Zoom léger au survol */
+  }
+  
+  /* Optionnel : Ajouter un effet de fond circulaire derrière les icônes */
+  .social-icons a {
+    display: inline-flex; /* Permet un centrage vertical */
+    align-items: center; /* Centre verticalement le contenu */
+    justify-content: center; /* Centre horizontalement le contenu */
+    width: 40px; /* Largeur du fond circulaire */
+    height: 40px; /* Hauteur du fond circulaire */
+    border-radius: 50%; /* Arrondir les coins pour un cercle */
+    background-color: rgba(255, 255, 255, 0.2); /* Fond circulaire avec opacité */
+    text-decoration: none; /* Retirer la décoration de texte */
+  }
+  
+  /* Optionnel : Ajouter un effet de fond circulaire derrière les icônes au survol */
+  .social-icons a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Changer la couleur de fond au survol */
+  }
+.container .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Coins arrondis pour l'image */
+}
+.container .mini_title{
+    font-size: 28px;
+    color: #1F4283;
+    transition: 0.3s ease-in-out;
+    font-weight: 700;
+}
+
+
+
+
+  /* Pouces en portrait (de 576px à 767px) */
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        padding-left: 15px; /* Ajustez la marge pour une meilleure utilisation de l'espace */
+        padding-right: 15px;
+    }
+    
+    .row {
+        flex-direction: column; /* Dispose les éléments en colonne */
+        align-items: center;    /* Centre les éléments horizontalement */
+        width: 100%;            /* Assure que la largeur est de 100% */
+    }
+
+    .col-md-6 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-3 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-4 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-8 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-12 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+}
+
+/* Pouces en portrait (de 768px à 991px) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        padding-left: 30px; /* Ajustez la marge pour une meilleure utilisation de l'espace */
+        padding-right: 30px;
+    }
+    
+    .row {
+        flex-direction: column; /* Dispose les éléments en colonne */
+        align-items: center;    /* Centre les éléments horizontalement */
+        width: 100%;            /* Assure que la largeur est de 100% */
+    }
+
+    .col-md-6 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-4{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-3{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-2{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-1{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+}
+
+/* Pouces en tablette (de 992px à 1199px) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        padding-left: 40px; /* Ajustez la marge pour une meilleure utilisation de l'espace */
+        padding-right: 40px;
+    }
+    
+    .row {
+        flex-direction: column; /* Dispose les éléments en colonne */
+        align-items: center;    /* Centre les éléments horizontalement */
+        width: 100%;            /* Assure que la largeur est de 100% */
+    }
+
+    .col-md-6 {
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-4{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-3{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-2{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .col-md-1{
+        width: 100%;            /* Les colonnes prennent toute la largeur */
+        margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+}

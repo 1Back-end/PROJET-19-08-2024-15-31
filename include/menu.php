@@ -8,12 +8,7 @@
 	echo strtoupper(ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF']))));
 	?>
     </title>
-
-	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
+    <link rel="shortcut icon" href="../v1.png" type="image/x-icon">
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -86,8 +81,8 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="#">
-				<h4 class="text-white">DriveMate</h4>
+			<a href="##">
+				<img src="../logo.png" alt="" class="">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
