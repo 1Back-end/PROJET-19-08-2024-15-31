@@ -3,11 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>
-    <?php
-	echo strtoupper(ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF']))));
-	?>
-    </title>
+	<title><?php echo ucfirst(str_replace(".php", "", basename($_SERVER['PHP_SELF'])));?></title>
     <link rel="shortcut icon" href="../v1.png" type="image/x-icon">
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -60,7 +56,7 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon shadow-none">
-							<img src="../vendors/images/user_profile.jpg" alt="">
+							<img src="../vendors/images/profile.jpg" alt="">
 						</span>
 						<span class="user-name">Laurent Alphonse</span>
 					</a>
@@ -109,7 +105,7 @@
 					</li>
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user-2"></span><span class="mtext">Utilisateurs</span>
 						</a>
 					</li>
@@ -138,11 +134,7 @@
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
-	<div class="main-container">
-		
-							
-	</div>
-			
+
 		
 	<script src="../vendors/scripts/core.js"></script>
 	<script src="../vendors/scripts/script.min.js"></script>
