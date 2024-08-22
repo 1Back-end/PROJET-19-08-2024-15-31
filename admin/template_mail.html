@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifiants de Connexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 5px;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .content p {
+            margin: 0 0 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Ajoutez votre logo ici -->
+            <img src="https://i.imgur.com/u5s20o2.png" alt="Logo de l'Entreprise">
+        </div>
+        <div class="content">
+            <p>Bonjour {{nom_prenom}},</p>
+            <p>Nous sommes ravis de vous accueillir sur notre plateforme. Voici vos identifiants de connexion :</p>
+            <p><strong>Identifiant :</strong> {{email}}</p>
+            <p><strong>Mot de passe :</strong> {{mot_de_passe}}</p>
+            <p>Pour vous connecter, veuillez cliquer sur le bouton ci-dessous :</p>
+            <a href="https://example.com/login" class="button">Se Connecter</a>
+        </div>
+        <div class="footer">
+            <p>&copy; <span id="current-year"></span>. Tous droits réservés.</p>
+        </div>
+    </div>
+    <script>
+        // JavaScript pour mettre à jour l'année automatiquement
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

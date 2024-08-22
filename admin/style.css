@@ -1,0 +1,72 @@
+
+
+.main-container .icon{
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F4283;
+    color: #fff;
+    border-radius: 50%;
+    /* margin-bottom: 10px; */
+}
+.photo_profil{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+/* CSS pour l'image du logo dans la modale */
+#avatar {
+    max-width: 150px; /* Largeur maximale de l'image */
+    max-height: 100px; /* Hauteur maximale de l'image */
+    object-fit: cover; /* Assure que l'image est recadrée pour remplir la zone sans déformation */
+    border-radius: 4px; /* Coins légèrement arrondis */
+    border: 1px solid #ddd; /* Bordure légère autour de l'image */
+    background-color: #f8f9fa; /* Couleur de fond pour mieux faire ressortir l'image */
+}
+.img-logo{
+    
+
+}
+textarea{
+    resize: none;
+    height: 150px;
+   
+}
+.img-marque{
+    max-width: 50px; /* Largeur maximale de l'image */
+    max-height: 50px; /* Hauteur maximale de l'image */
+    object-fit: cover; /* Assure que l'image est recadrée pour remplir la zone sans déformation */
+    border-radius: 50px; /* Coins légèrement arrondis */
+    border: 1px solid #ddd; /* Bordure légère autour de l'image */
+    background-color: #f8f9fa; /* Couleur de fond pour mieux faire ressortir l'image */
+}
+.text-multiline {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Nombre de lignes à afficher */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5; /* Ajustez selon votre besoin */
+    max-height: 4.5em; /* Ajustez en fonction de la hauteur de ligne */
+}
+.photo-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.photo-preview img {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}

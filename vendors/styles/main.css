@@ -58,8 +58,13 @@ body {
     font-family: "Poppins", sans-serif;
     font-size: 22px;
   }
-input[type="text"], input[type="email"], input[type="date"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="date"], input[type="password"] input[type="tel"] {
     font-family: "Poppins", sans-serif;
+    font-size: 12px;
+}
+textarea{
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
 }
 
 small{
@@ -75,9 +80,24 @@ label{
   font-size: 14px;
 
 }
-.select-form{
-  cursor: pointer;
+
+/* styles.css */
+.select-custom {
+  font-size: 12px;
   font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  
+}
+
+.select-custom option {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+textarea{
+  resize: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
 }
 .profile-image {
   width:70px; /* Taille de l'image */

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 août 2024 à 15:35
+-- Généré le : jeu. 22 août 2024 à 20:17
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -31,8 +31,20 @@ CREATE TABLE `carbrands` (
   `id` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `description` varchar(255) NOT NULL,
+  `added_by` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `carbrands`
+--
+
+INSERT INTO `carbrands` (`id`, `name`, `image`, `description`, `added_by`, `created_at`, `is_deleted`) VALUES
+('67fa5e41-8f8d-4140-913e-81ce6047e3c7', 'Honda', 'Honda.png', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est inventore rem nobis dolorem numquam eaque recusandae quam voluptas porro repellendus soluta labore expedita dignissimos, debitis, alias a necessitatibus aut modi.', '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '2024-08-22 15:42:57', 0),
+('7ec583e4-0273-4c71-9eac-a6d29541ac9e', 'Toyota', 'Toyota.png', '                                            Toyota est un constructeur automobile japonais réputé pour sa fiabilité, sa durabilité et ses innovations technologiques. Fondée en 1937, la marque est l\'un des plus grands fabricants de voitures au monde.      ', '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '2024-08-22 15:31:47', 0),
+('a4e252c8-b00e-466a-ac46-45b303f5fba9', 'Jeep', 'Jeep.png', '\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ut necessitatibus possimus distinctio nisi facilis culpa vel doloremque debitis accusantium! Labore repudiandae sapiente placeat necessitatibus dolores earum architecto excepturi vel?\r\n\r\n\r', '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '2024-08-22 16:27:06', 0);
 
 -- --------------------------------------------------------
 
@@ -119,10 +131,23 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `birthday` date NOT NULL,
   `role` varchar(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `is_active` tinyint(1) DEFAULT 1,
   `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `contact`, `birthday`, `role`, `created_at`, `is_deleted`, `is_active`, `photo`) VALUES
+('72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', 'Laurent', 'Alphonse', 'laurentalphonsewilfried@gmail.com', '$2y$10$/4Zni1g7vgM37zgnfZgR3uzKuee7LOG95pgwW9azHVQF6mkreUOEa', '+237678536884', '2002-02-13', '1', '2024-08-22 09:51:41', 0, 1, ''),
+('d5f27033-2abe-4413-94dd-02c734535d09', 'Sophie', 'Leclerc', 'sophie.leclerc@example.com', '$2y$10$uSsdbaYpbwTNjGrXU1Xrh.ESqIVXS2/jKFMJrfYa743EbR/7ZO8.a', '+237689129012', '2008-09-12', '1', '2024-08-22 11:13:15', 0, 2, ''),
+('dd159427-0a1e-4ec3-b4de-edd0df6c037d', 'Mvondo', 'Fernando', 'mvondofernando7777@gmail.com', '$2y$10$xnSatgEbe5bUL1hTLzWxculxDhxF4YatPUw1oFKsH9DvFVjgBaa2G', '+237690128934', '1990-12-09', '1', '2024-08-22 17:05:36', 0, 1, '');
 
 --
 -- Index pour les tables déchargées
@@ -134,7 +159,8 @@ CREATE TABLE `users` (
 ALTER TABLE `carbrands`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `id` (`id`);
+  ADD KEY `id` (`id`),
+  ADD KEY `added_by_2` (`added_by`);
 
 --
 -- Index pour la table `cars`
@@ -177,6 +203,12 @@ ALTER TABLE `users`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `carbrands`
+--
+ALTER TABLE `carbrands`
+  ADD CONSTRAINT `carbrands_ibfk_1` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `cars`

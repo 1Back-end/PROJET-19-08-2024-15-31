@@ -52,13 +52,17 @@
 					</div>
 				</div>
 			</div>
+			<?php include("../login/session_user.php");?>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon shadow-none">
-							<img src="../vendors/images/profile.jpg" alt="">
-						</span>
-						<span class="user-name">Laurent Alphonse</span>
+					<span class="user-icon shadow-none">
+						<img src="../uploads/<?= htmlspecialchars($_SESSION['photo'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil">
+					</span>
+					<span class="user-name ml-3">
+						<?= htmlspecialchars($_SESSION['username']); ?>
+					</span>
+
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                         <small><a class="dropdown-item" href="../login/profile.php"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></small>
@@ -93,22 +97,18 @@
 					</li>
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../admin/liste_marques.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-fuel"></span><span class="mtext">Marques</span>
 						</a>
 					</li>
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../admin/liste_car.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-car"></span><span class="mtext">Véhicules</span>
 						</a>
 					</li>
 
-                    <li>
-						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-user-2"></span><span class="mtext">Utilisateurs</span>
-						</a>
-					</li>
+                   
 
                     <li>
 						<a href="invoice.html" class="dropdown-toggle no-arrow">
@@ -127,14 +127,18 @@
 							<span class="micon dw dw-settings1"></span><span class="mtext">Paramètres</span>
 						</a>
 					</li>
+
+					<li>
+						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-user-2"></span><span class="mtext">Utilisateurs</span>
+						</a>
+					</li>
                  
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="mobile-menu-overlay"></div>
-
-
+	
 		
 	<script src="../vendors/scripts/core.js"></script>
 	<script src="../vendors/scripts/script.min.js"></script>

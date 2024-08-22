@@ -13,34 +13,63 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php include("script_login.php");?>
     <section class="wrapper">
 		<div class="container">
-			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
-				<div class="logo">
+		
+			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+				<div class="logo text-center">
 					<img decoding="async" src="../logo.png" class="img-fluid" alt="Logo">
 				</div>
-				<form class="rounded bg-white shadow py-5 px-4">
-					<h4 class="text-dark fw-bolder fs-2 mb-2">Connectez vous à votre compte !</h4>
-					<div class="fw-normal text-muted mb-4"> Nouveau ici ?
-						<a href="registration.php" class="text-primary fw-bold text-decoration-none">Créer un compte</a>
+				<div class="text-center">
+				<?php if (!empty($erreur)): ?>
+					<div class="alert alert-danger text-center" role="alert">
+						<?= htmlspecialchars($erreur) ?>
+					</div>
+				<?php endif; ?>
+				</div>
+				<form class="rounded bg-white shadow py-5 px-4" method="post">
+					<h4 class="text-dark fw-bolder fs-2 mb-2 text-center">Connectez vous à votre compte !</h4>
+					<div class="fw-normal text-muted mb-4 text-center"> Nouveau ici ?
+						<a href="registration.php" class="text-primary fw-bold text-decoration-none text-center ">Créer un compte</a>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+						<input type="email" class="form-control" value="<?= htmlspecialchars($email ?? '') ?>" id="floatingInput" name="email" placeholder="name@example.com">
 						<label for="floatingInput">Adresse email</label>
+						<?php if(isset($erreur_champ) && empty($_POST['email'])): ?>
+					<small class="text-danger"><?=$erreur_champ?></small>
+					<?php endif; ?>
 					</div>
+					
 					<div class="form-floating">
-						<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+						<input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
 						<label for="floatingPassword">Mot de passe</label>
 					</div>
+					<?php if(isset($erreur_champ) && empty($_POST['password'])): ?>
+					<small class="text-danger"><?=$erreur_champ?></small>
+					<?php endif; ?>
 					<div class="mt-2 text-end">
-						<a href="forgot_password.php" class="text-primary fw-bold text-decoration-none">Mot de passe oublié ?</a>
+						<a href="forgot_password.php" class="text-primary fw-bold text-decoration-none">Mot de passe oublié ?</a>
 					</div>
-					<button type="submit" class="btn btn-primary submit_btn w-100 my-4">Se connecter</button>
+					<button type="submit"  name="submit" class="btn btn-primary submit_btn w-100 my-4">Se connecter</button>
 					
 				</form>
 			</div>
 		</div>
 	</section>
+
+
+	
+
+<script>
+    $(document).ready(function() {
+    // Cacher l'alerte après 2 secondes (2000 ms)
+    setTimeout(function() {
+    $(".alert").alert('close');
+    }, 2000);
+    });
+</script>
+
     
 </body>
 </html>
