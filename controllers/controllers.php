@@ -19,7 +19,7 @@ function generateUuid4() {
 
 
 function generateLicensePlate($length = 10) {
-    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $characters = 'ABCWETPD0123456789';
     $plate = '';
 
     for ($i = 0; $i < $length; $i++) {
@@ -147,7 +147,7 @@ $admins = get_all_admin($pdo);
 function getActiveCarBrands($pdo) {
     try {
         // Préparer la requête SQL
-        $stmt = $pdo->prepare("SELECT * FROM carbrands WHERE is_deleted = 0");
+        $stmt = $pdo->prepare("SELECT * FROM carbrands WHERE is_deleted = 0 ORDER BY created_at DESC");
         // Exécuter la requête
         $stmt->execute();
         // Récupérer les résultats
@@ -301,14 +301,92 @@ function getAvailableMileages() {
     // Retourner le tableau des kilométrages
     return $mileagesList;
 }
-
 // Exemple d'utilisation de la fonction
 $mileages = getAvailableMileages();
 
+
+function getActiveCars($pdo) {
+    try {
+        // Préparation de la requête SQL
+        $stmt = $pdo->prepare("SELECT * FROM cars WHERE is_deleted = 0");
+        // Exécution de la requête
+        $stmt->execute();
+        // Récupération des résultats
+        $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $cars;
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération des voitures: " . $e->getMessage();
+        return false;
+    }
+}
+// Appeler la fonction pour récupérer les voitures actives
+$cars = getActiveCars($pdo);
+
+
+function get_count_users($pdo){
+    try {
+        // Préparation de la requête SQL
+        $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM users WHERE role = 1 AND is_deleted = 0");
+        // Exécution de la requête
+        $stmt->execute();
+        // Récupération des résultats
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération du nombre d'utilisateurs : " . $e->getMessage();
+        return false;
+    }
+}
+// Appeler la fonction pour récupérer le nombre d'utilisateurs
+$countUsers = get_count_users($pdo);
+
+
+function get_count_marques($pdo){
+    try {
+        // Préparation de la requête SQL
+        $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM carbrands WHERE is_deleted = 0");
+        // Exécution de la requête
+        $stmt->execute();
+        // Récupération des résultats
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération du nombre de marques : " . $e->getMessage();
+        return false;
+    }
+}
+
+// Appeler la fonction pour récupérer le nombre de marques
+$countMarques = get_count_marques($pdo);
+
+
+function get_count_voitures($pdo){
+    try {
+        // Préparation de la requête SQL
+        $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM cars WHERE is_deleted = 0");
+        // Exécution de la requête
+        $stmt->execute();
+        // Récupération des résultats
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération du nombre de voitures : " . $e->getMessage();
+        return false;
+    }
+}
+
+// Appeler la fonction pour récupérer le nombre de voitures
+$countVoitures = get_count_voitures($pdo);
+
 ?>
 
+<!DOCTYPE html>
 
-
+?>
 
 
 

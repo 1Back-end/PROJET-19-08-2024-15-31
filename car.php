@@ -97,7 +97,7 @@
     $search = $_GET['search'] ?? '';
 
     // Construction de la requête SQL avec le critère de recherche
-    $query = "SELECT id, model, price_per_day, seats, image FROM cars WHERE is_deleted = 0 AND availability_status = 'Disponible'";
+    $query = "SELECT id, model, price_per_day, seats,transmission,fuel_type, image FROM cars WHERE is_deleted = 0 AND availability_status = 'Disponible'";
     
     // Ajout de la condition de recherche si le terme est présent
     if ($search) {
@@ -125,15 +125,27 @@
         $firstImage = !empty($images[0]) ? $images[0] : 'default.jpg'; // Assurez-vous d'avoir une image par défaut
     ?>
     <div class="col-md-4 col-sm-6 mb-4">
-        <div class="card car-card shadow-sm h-100 p-3">
+        <div class="card car-card shadow-sm h-100 p-3 text-center">
             <img src="upload/<?php echo htmlspecialchars($firstImage); ?>" class="card-img-top car-image" alt="Image de <?php echo htmlspecialchars($car['model']); ?>">
             <div class="card-body">
                 <h5 class="card-title"><?php echo htmlspecialchars($car['model']); ?></h5>
-                <p class="card-text d-flex align-items-center justify-content-between">
-                    <span class="ml-2"><?php echo number_format($car['price_per_day'] / 24, 2); ?> € par heure</span>
+                <p class="card-text d-flex align-items-center justify-content-between mb-3">
+                    <span><?php echo htmlspecialchars($car['transmission']); ?></span>
+                    <span><?php echo htmlspecialchars($car['fuel_type']); ?></span>
                     <span><?php echo htmlspecialchars($car['seats']); ?> Places</span>
                 </p>
-                <a href="car_details.php?id=<?php echo $car['id']; ?>" class="btn btn-primary btn-sm">Voir plus</a>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="ml-auto">
+                        <h5 class="fw-bold">
+                            <?php echo number_format($car['price_per_day']).'/ Jour';?>
+                            
+                        </h5>
+                    </div>
+                    <div class="mr-auto">
+                    <a href="car_details.php?id=<?php echo $car['id']; ?>" class="btn btn-primary btn-sm">Voir plus</a>
+                    </div>
+                </div>
+               
             </div>
         </div>
     </div>

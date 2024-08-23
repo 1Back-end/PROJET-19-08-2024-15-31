@@ -16,14 +16,14 @@
 <body> 
     <section class="wrapper">
 		<div class="container">
-			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center">
-				<div class="logo">
+			<div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+				<div class="logo text-center">
 					<img decoding="async" src="../logo.png" class="img-fluid" alt="logo">
 				</div>
 				<form class="rounded bg-white shadow p-5">
-					<h3 class="text-dark fw-bolder fs-4 mb-2">Mot de passe oublié ?</h3>
+					<h3 class="text-dark fw-bolder fs-4 mb-2 text-center">Mot de passe oublié ?</h3>
 
-					<div class="fw-normal text-muted mb-4">
+					<div class="fw-normal text-muted mb-4 text-center">
                     Entrez votre email pour réinitialiser votre mot de passe.
 					</div>  
 
@@ -31,9 +31,14 @@
 						<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
 						<label for="floatingInput">Adresse email</label>
 					</div> 
-                    <div class="mb-3">
-                    <button type="submit" class="btn btn-primary submit_btn btn-block">Soumettre</button>
-                    </div> 
+                    <div class="mb-2">
+					<button type="submit"  name="submit" class="btn btn-primary submit_btn w-100 my-4">Réinitialiser</button>
+					</div>
+					<div class="mb-2 text-center">
+						<div class="text-muted">
+							Je me souviens de mon mot de passe ! <a href="login.php" class="text-primary fw-bold text-decoration-none">Me connecter</a>
+						</div>
+					</div>
 
 					<!-- <button type="submit" class="btn btn-primary submit_btn my-4">Soumettre</button>
                     <a href="" class="btn btn-secondary submit_btn my-4 ms-3">Annuler</a>

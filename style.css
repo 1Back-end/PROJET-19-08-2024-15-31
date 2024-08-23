@@ -66,6 +66,17 @@ body {
     transition: 0.3s ease-in-out;
     border-radius: 50px;
 }
+.btn-search{
+    background-color: #1F4283;
+    color: white;
+    font-size: 14px;
+    padding: 17px 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 10px;
+}
 .container .title1{
    font-size: 38px;
    color: #1F4283;
@@ -181,6 +192,55 @@ footer {
     transition: 0.3s ease-in-out;
     font-weight: 700;
 }
+.car-card {
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.car-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+.price-icon {
+    font-size: 1.5rem; /* Taille plus grande pour l'icône de prix */
+    color: #007bff; /* Couleur de l'icône */
+    margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+.seats-icon {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-right: 5px;
+}
+
+.btn-sm {
+    margin-top: 10px; /* Espace au-dessus du bouton */
+}
+
 
 
 

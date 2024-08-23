@@ -13,8 +13,8 @@
     </div>
 </div>
 <div class="col-md-12 col-sm-12">
-        <div class="table-responsive">
             <div class="card-box p-3">
+            <div class="table-responsive w-100">
                 <table class="table table-bordered text-center table-striped">
                     <thead>
                         <tr>
@@ -32,7 +32,7 @@
                                     <td><?php echo htmlspecialchars($index + 1); ?></td>
                                     <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="img-thumbnail img-marque"></td>
                                     <td><?php echo htmlspecialchars($brand['name']); ?></td>
-                                    <td><?php echo htmlspecialchars(date('d/m/Y H:i:s', strtotime($brand['created_at']))); ?></td>
+                                    <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
                                     <td>
                                        <a href="" class="btn-danger btn-xs btn-sm">Supprimer</a>
                                     </td>
@@ -52,4 +52,3 @@
 
 
 </div>
-
