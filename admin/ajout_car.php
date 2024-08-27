@@ -165,6 +165,7 @@
                 </div>
                    
                 <div class="mb-2">
+                    <label for="">Type de carburant <span class="text-danger">*</span></label>
                 <select 
                         name="fuelType" 
                         id="fuelType" 
@@ -269,7 +270,7 @@
             
             <div class="row mb-3 align-items-center">
             <div class="col-md-6">
-                <label for="photos" class="form-label">Télécharger les photos du véhicule</label>
+                <label for="photos" class="form-label">Télécharger les photos du véhicule <span class="text-danger">*</span></label>
                 <input
                     type="file"
                     name="photos[]"

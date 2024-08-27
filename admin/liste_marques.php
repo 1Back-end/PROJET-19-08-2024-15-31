@@ -12,6 +12,26 @@
         </a>
     </div>
 </div>
+
+
+<div class="col-md-12 col-sm-12">
+<?php
+// Exemple de code à ajouter au début de liste_user.php
+$message = $_GET['message'] ?? null;
+
+if ($message == 'success') {
+    echo '<div class="alert alert-success text-center" role="alert">Marque supprimée avec succès.</div>';
+} elseif ($message == 'error') {
+    echo '<div class="alert alert-danger text-center" role="alert">Une erreur est survenue. Veuillez réessayer.</div>';
+}
+?>
+</div>
+
+
+
+
+
+
 <div class="col-md-12 col-sm-12">
             <div class="card-box p-3">
             <div class="table-responsive w-100">
@@ -33,9 +53,10 @@
                                     <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="img-thumbnail img-marque"></td>
                                     <td><?php echo htmlspecialchars($brand['name']); ?></td>
                                     <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
-                                    <td>
-                                       <a href="" class="btn-danger btn-xs btn-sm">Supprimer</a>
-                                    </td>
+                                    <!-- Bouton qui déclenche la modale -->
+                                        <td>
+                                            <a href="#" class="shadow-none btn-danger btn-xs btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="<?php echo htmlspecialchars($brand['id']); ?>">Supprimer</a>
+                                        </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
@@ -52,3 +73,47 @@
 
 
 </div>
+
+
+<!-- Modale Bootstrap -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette marque ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs btn-sm" data-dismiss="modal">Annuler</button>
+                <a href="#" id="confirmDelete" class="btn btn-danger btn-xs btn-sm">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Capture l'événement de l'ouverture de la modale
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Bouton qui a déclenché la modale
+        var id = button.data('id'); // Récupère l'ID stocké dans l'attribut data-id
+
+        var modal = $(this);
+        // Modifie le lien de suppression dans la modale avec l'ID correspondant
+        modal.find('#confirmDelete').attr('href', 'delete_marque.php?id=' + id);
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+    // Cacher l'alerte après 2 secondes (2000 ms)
+    setTimeout(function() {
+    $(".alert").alert('close');
+    }, 2000);
+    });
+</script>

@@ -20,7 +20,17 @@
 				<div class="logo text-center">
 					<img decoding="async" src="../logo.png" class="img-fluid" alt="logo">
 				</div>
-				<form class="rounded bg-white shadow p-5">
+				
+				<div class="text-center">
+				<?php include_once("script_forgot_password.php");?>
+				<?php if (!empty($erreur)): ?>
+					<div class="alert alert-danger text-center" role="alert">
+						<?= htmlspecialchars($erreur) ?>
+					</div>
+				<?php endif; ?>
+				</div>
+				
+				<form class="rounded bg-white shadow p-5" action="" method="POST">
 					<h3 class="text-dark fw-bolder fs-4 mb-2 text-center">Mot de passe oublié ?</h3>
 
 					<div class="fw-normal text-muted mb-4 text-center">
@@ -28,8 +38,11 @@
 					</div>  
 
 					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+						<input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
 						<label for="floatingInput">Adresse email</label>
+						<?php if(isset($erreur_champ)): ?>
+						<small class="text-danger"><?=$erreur_champ?></small>
+						<?php endif; ?>
 					</div> 
                     <div class="mb-2">
 					<button type="submit"  name="submit" class="btn btn-primary submit_btn w-100 my-4">Réinitialiser</button>

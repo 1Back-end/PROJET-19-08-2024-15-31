@@ -29,11 +29,11 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active mx-3" aria-current="page" href="about.php">À propos</a>
+          <a class="nav-link  mx-3" aria-current="page" href="about.php">À propos</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link mx-3" href="car.php">Nos véhicules</a>
+          <a class="nav-link active mx-3" href="car.php">Nos véhicules</a>
         </li>
 
         <li class="nav-item">
@@ -70,91 +70,245 @@
   </div>
 </div>
 <div class="container mt-5 section-padding p-3 pb-5">
-<div class="col-md-12 col-sm-12 mb-5">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="ml-auto">
-            <h3 class="title2 fw-bold">
-             Nos véhicules à votre portée
-            </h3>
-            </div>
-            <form method="GET" action="">
-            <div class="d-flex align-items-center gap-2 ml-auto">
-                <input type="text" name="search" class="form-control py-3 shadow-none me-2" placeholder="Rechercher..." value="<?php echo htmlspecialchars($_GET['search'] ?? '', ENT_QUOTES); ?>">
-                <button type="submit" class="btn-search">Rechercher</button>
-           
-            </div>
-            </form>
-
-        </div>
-    </div>
-    
     <div class="col-md-12 col-sm-12 mb-5">
-<?php include("database/database.php");?>
-
-<div class="row">
-<?php
-    // Récupérer le terme de recherche
-    $search = $_GET['search'] ?? '';
-
-    // Construction de la requête SQL avec le critère de recherche
-    $query = "SELECT id, model, price_per_day, seats,transmission,fuel_type, image FROM cars WHERE is_deleted = 0 AND availability_status = 'Disponible'";
-    
-    // Ajout de la condition de recherche si le terme est présent
-    if ($search) {
-        $query .= " AND (model LIKE :search OR price_per_day LIKE :search OR mileage LIKE :search OR transmission LIKE :search OR color LIKE :search)";
-    }
-
-    $stmt = $pdo->prepare($query);
-
-    // Exécution de la requête avec le paramètre de recherche
-    if ($search) {
-        $stmt->execute(['search' => "%$search%"]);
-    } else {
-        $stmt->execute();
-    }
-    
-    $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (empty($cars)) {
-        echo '<div class="alert alert-danger" role="alert">Aucun résultat trouvé.</div>';
-    }
-
-    foreach ($cars as $car):
-        // Séparer les images par virgule
-        $images = explode(',', $car['image']);
-        $firstImage = !empty($images[0]) ? $images[0] : 'default.jpg'; // Assurez-vous d'avoir une image par défaut
-    ?>
-    <div class="col-md-4 col-sm-6 mb-4">
-        <div class="card car-card shadow-sm h-100 p-3 text-center">
-            <img src="upload/<?php echo htmlspecialchars($firstImage); ?>" class="card-img-top car-image" alt="Image de <?php echo htmlspecialchars($car['model']); ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo htmlspecialchars($car['model']); ?></h5>
-                <p class="card-text d-flex align-items-center justify-content-between mb-3">
-                    <span><?php echo htmlspecialchars($car['transmission']); ?></span>
-                    <span><?php echo htmlspecialchars($car['fuel_type']); ?></span>
-                    <span><?php echo htmlspecialchars($car['seats']); ?> Places</span>
-                </p>
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="ml-auto">
-                        <h5 class="fw-bold">
-                            <?php echo number_format($car['price_per_day']).'/ Jour';?>
-                            
-                        </h5>
-                    </div>
-                    <div class="mr-auto">
-                    <a href="car_details.php?id=<?php echo $car['id']; ?>" class="btn btn-primary btn-sm">Voir plus</a>
-                    </div>
-                </div>
-               
-            </div>
+        <div class="text-center">
+            <h2 class="fw-bold text-uppercase title2">
+                Nos véhicules à votre portée
+            </h2>
+            <p class="mt-3">
+                Découvrez notre vaste sélection de véhicules adaptés à tous vos besoins. Que vous recherchiez une berline élégante, un SUV spacieux, ou une voiture économique, nous avons ce qu'il vous faut pour vous déplacer en toute sérénité. Explorez nos offres et trouvez le véhicule qui vous correspond.
+            </p>
         </div>
     </div>
-    <?php endforeach; ?>
-</div>
 </div>
 
 
+
+    <div class="container section-padding p-3 pb-5">
+    <div class="row">
+    <?php include_once("controllers.php"); ?>
+    <!-- Search Section on the Left -->
+    <div class="col-md-4 col-sm-12 mb-3">
+        <div class="card-info p-3">
+          <h4 class="card-title mb-3">Options de recherche</h4>
+            <form method="get" action="">
+                <div class="mb-3">
+                    <label for="carBrand">Marque</label>
+                    <select name="carBrand" id="carBrand" class="form-select shadow-none py-3">
+                        <option disabled selected>Sélectionner une marque</option>
+                        <?php if ($carBrands && count($carBrands) > 0): ?>
+                            <?php foreach ($carBrands as $brand): ?>
+                                <option value="<?= htmlspecialchars($brand['id']) ?>" <?= isset($_GET['carBrand']) && $_GET['carBrand'] == $brand['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($brand['name']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <option disabled>Aucune marque disponible</option>
+                        <?php endif; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="carModel">Modèle</label>
+                    <select name="carModel" id="carModel" class="form-select shadow-none py-3">
+                        <option disabled selected>Sélectionner un modèle</option>
+                        <?php foreach ($carModels as $model): ?>
+                            <option value="<?= htmlspecialchars($model) ?>" <?= isset($_GET['carModel']) && $_GET['carModel'] == $model ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($model) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="transmission">Transmission</label>
+                    <select name="transmission" id="transmission" class="form-select shadow-none py-3">
+                        <option disabled selected>Sélectionner une transmission</option>
+                        <?php foreach ($transmissionTypes as $transmissionType): ?>
+                            <option value="<?= htmlspecialchars($transmissionType) ?>" <?= isset($_GET['transmission']) && $_GET['transmission'] == $transmissionType ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($transmissionType) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="fuelType">Type de carburant</label>
+                    <select name="fuelType" id="fuelType" class="form-select shadow-none py-3">
+                        <option disabled selected>Sélectionner un type de carburant</option>
+                        <?php foreach ($fuelTypes as $fuelType): ?>
+                            <option value="<?= htmlspecialchars($fuelType) ?>" <?= isset($_GET['fuelType']) && $_GET['fuelType'] == $fuelType ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($fuelType) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="mileage">Kilométrage</label>
+                    <select name="mileage" id="mileage" class="form-select shadow-none py-3">
+                        <option disabled selected>Sélectionner un kilométrage</option>
+                        <?php foreach ($mileages as $mileage): ?>
+                            <option value="<?= htmlspecialchars($mileage) ?>" <?= isset($_GET['mileage']) && $_GET['mileage'] == $mileage ? 'selected' : '' ?>>
+                                <?= number_format($mileage, 0, ',', ' ') ?> Km
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn-search btn-block">Rechercher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Vehicle Section on the Right -->
+    <div class="col-md-8 col-sm-12 mb-3">              
+        <div class="row">
+            <?php
+            include("database/database.php");
+
+            // Retrieve search term and current page
+            $search = $_GET['search'] ?? '';
+            $carBrand = $_GET['carBrand'] ?? '';
+            $carModel = $_GET['carModel'] ?? '';
+            $transmission = $_GET['transmission'] ?? '';
+            $fuelType = $_GET['fuelType'] ?? '';
+            $mileage = $_GET['mileage'] ?? '';
+            $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+            $limit = 4;
+            $offset = ($page - 1) * $limit;
+
+            // Construct SQL query with search criteria
+            $query = "SELECT id, model, price_per_day, seats, transmission, fuel_type, image 
+                      FROM cars 
+                      WHERE is_deleted = 0 AND availability_status = 'Disponible'";
+
+            // Add search conditions
+            if ($carBrand) {
+                $query .= " AND brand_id = :carBrand";
+            }
+            if ($carModel) {
+                $query .= " AND model LIKE :carModel";
+            }
+            if ($transmission) {
+                $query .= " AND transmission LIKE :transmission";
+            }
+            if ($fuelType) {
+                $query .= " AND fuel_type LIKE :fuelType";
+            }
+            if ($mileage) {
+                $query .= " AND mileage LIKE :mileage";
+            }
+
+            // Add pagination
+            $query .= " ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
+
+            $stmt = $pdo->prepare($query);
+
+            // Bind parameters for search and pagination
+            if ($carBrand) {
+                $stmt->bindValue(':carBrand', $carBrand, PDO::PARAM_INT);
+            }
+            if ($carModel) {
+                $stmt->bindValue(':carModel', "%$carModel%", PDO::PARAM_STR);
+            }
+            if ($transmission) {
+                $stmt->bindValue(':transmission', "%$transmission%", PDO::PARAM_STR);
+            }
+            if ($fuelType) {
+                $stmt->bindValue(':fuelType', "%$fuelType%", PDO::PARAM_STR);
+            }
+            if ($mileage) {
+                $stmt->bindValue(':mileage', "%$mileage%", PDO::PARAM_STR);
+            }
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+            $stmt->execute();
+            $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (empty($cars)) {
+                echo '<div class="alert alert-danger text-center" role="alert">Aucun résultat trouvé.</div>';
+            } else {
+                foreach ($cars as $car):
+                    // Separate images by comma
+                    $images = explode(',', $car['image']);
+                    $firstImage = !empty($images[0]) ? $images[0] : 'default.jpg'; // Ensure default image exists
+            ?>
+                    <div class="col-md-6 col-sm-12 mb-4">
+                        <div class="card car-card h-100 p-3 text-center">
+                            <img src="upload/<?php echo htmlspecialchars($firstImage); ?>" class="card-img-top car-image mb-3" alt="Image de <?php echo htmlspecialchars($car['model']); ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo htmlspecialchars($car['model']); ?></h5>
+                                <p class="card-text d-flex align-items-center justify-content-between mb-3">
+                                    <span><?php echo htmlspecialchars($car['transmission']); ?></span>
+                                    <span><?php echo htmlspecialchars($car['fuel_type']); ?></span>
+                                    <span><?php echo htmlspecialchars($car['seats']); ?> Places</span>
+                                </p>
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="ml-auto">
+                                        <h5 class="fw-bold">
+                                            <?php echo number_format($car['price_per_day']).' / Jour'; ?>
+                                        </h5>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <a href="car_details.php?id=<?php echo $car['id']; ?>" class="btn btn-primary btn-sm">Voir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php endforeach; ?>
+            <?php } ?>
+        </div>
+
+        <!-- Pagination -->
+        <?php if (!empty($cars)): ?>
+            <nav>
+                <ul class="pagination justify-content-center shadow-none">
+                    <?php if($page > 1): ?>
+                        <li class="page-item shadow-none">
+                            <a class="page-link shadow-none" href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>&carBrand=<?php echo urlencode($carBrand); ?>&carModel=<?php echo urlencode($carModel); ?>&transmission=<?php echo urlencode($transmission); ?>&fuelType=<?php echo urlencode($fuelType); ?>&mileage=<?php echo urlencode($mileage); ?>">
+                                Précédent
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                    <li class="page-item shadow-none">
+                        <a class="page-link shadow-none" href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>&carBrand=<?php echo urlencode($carBrand); ?>&carModel=<?php echo urlencode($carModel); ?>&transmission=<?php echo urlencode($transmission); ?>&fuelType=<?php echo urlencode($fuelType); ?>&mileage=<?php echo urlencode($mileage); ?>">
+                            Suivant
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        <?php endif; ?>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+</div>
+
 
 
 

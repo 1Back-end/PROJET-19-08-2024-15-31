@@ -55,7 +55,7 @@ function generatePassword($length = 12) {
     return $password;
 }
 
-function generateNumericPassword($length = 4) {
+function generateNumericPassword($length = 6) {
     // Définir les chiffres possibles
     $numbers = '0123456789';
     
@@ -381,10 +381,6 @@ function get_count_voitures($pdo){
 
 // Appeler la fonction pour récupérer le nombre de voitures
 $countVoitures = get_count_voitures($pdo);
-
-?>
-
-<!DOCTYPE html>
 
 ?>
 

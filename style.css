@@ -76,6 +76,18 @@ body {
     cursor: pointer;
     transition: 0.3s ease-in-out;
     border-radius: 10px;
+    width: 100%;
+}
+.form-select{
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+}
+.form-select option{
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+
 }
 .container .title1{
    font-size: 38px;
@@ -193,15 +205,22 @@ footer {
     font-weight: 700;
 }
 .car-card {
-    border: none;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 28px rgba(0,0,0,.08);
+    box-shadow: 0 0 28px rgba(0,0,0,.08);
+}
+.card-info{
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 28px rgba(0,0,0,.08);
+    box-shadow: 0 0 28px rgba(0,0,0,.08);
 }
 
 .car-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
 .car-image {
@@ -240,7 +259,202 @@ footer {
 .btn-sm {
     margin-top: 10px; /* Espace au-dessus du bouton */
 }
+/* Style de base pour la pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 20px 0;
+    
+}
+.pagination li {
+    margin: 0 5px;
+}
 
+.pagination a {
+    background-color: #1F4283;
+    color: #fff; /* Couleur personnalisée */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-item.active a {
+    background-color: #1F4283;
+    color: #fff;
+    border-color: #1F4283;
+}
+
+.pagination .page-item.disabled a {
+    color: #ccc;
+    pointer-events: none;
+    border-color: #ccc;
+}
+
+
+/* Card */
+.card-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+h4 {
+    font-size: 24px;
+    color: #1F4283;
+}
+
+/* Détails du véhicule */
+.car-details {
+    font-size: 16px;
+    color: #495057;
+}
+
+.car-details strong {
+    color: #212529;
+}
+.card-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacement entre les images */
+}
+
+.card-img {
+    flex: 1 1 calc(50% - 15px); /* Trois images par ligne par défaut */
+    max-width: calc(50% - 15px);
+    box-sizing: border-box; /* Inclure les bordures et le padding dans la largeur totale */
+}
+
+
+.card-img img {
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Documents */
+.car-documents .document-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.car-documents .document-item .document-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Bouton Réserver */
+.reservation-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.reservation-button:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+}
+.detail-item strong {
+    display: inline-block;
+    
+}
+
+
+/* Responsive */
+@media (max-width: 732px) {
+    .card-img {
+        flex: 1 1 100%; /* Une image par ligne */
+        max-width: 100%;
+    }
+    label{
+        font-size: 14px;
+        color: #1F4283;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-img {
+        flex: 1 1 100%; /* Une image par ligne */
+        max-width: 100%;
+    }
+    h4{
+        font-size: 18px;
+        color: #1F4283;
+
+    }
+    .notes{
+        font-size: 14px;
+        color: #495057;
+        text-align: justify;
+    }
+    .container .icon{
+        font-size: 20px;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1F4283;
+        color: #fff;
+        border-radius: 50%;
+        /* margin-bottom: 10px; */
+    }
+    
+
+}
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="date"],
+input[type="number"],
+textarea, 
+select, 
+input[type="file"] {
+    width: 100%;
+    padding: 13px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #1F4283;
+    font-weight: 600;
+}
+
+/* Champs de formulaire */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
 
 
 
@@ -279,6 +493,7 @@ footer {
         width: 100%;            /* Les colonnes prennent toute la largeur */
         margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
     }
+    
 }
 
 /* Pouces en portrait (de 768px à 991px) */
@@ -315,6 +530,18 @@ footer {
         width: 100%;            /* Les colonnes prennent toute la largeur */
         margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
     }
+    .container .title1{
+        font-size: 22px; /* Réduit pour les petits écrans */
+        line-height: 1.2;
+    }
+    .container .lead{
+        font-size: 16px; /* Légère réduction */
+        text-align: justify;
+    }
+    .container .title2{
+        font-size: 18px; /* Réduit pour les petits écrans */
+    }
+    
 }
 
 /* Pouces en tablette (de 992px à 1199px) */
@@ -350,5 +577,64 @@ footer {
     .col-md-1{
         width: 100%;            /* Les colonnes prennent toute la largeur */
         margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .container .title1{
+        font-size: 22px; /* Réduit pour les petits écrans */
+        line-height: 1.2;
+    }
+    .container .lead{
+        font-size: 16px; /* Légère réduction */
+        text-align: justify;
+    }
+    .container .title2{
+        font-size: 18px; /* Réduit pour les petits écrans */
+    }
+    
+}
+
+/* Responsive Design */
+
+/* Petits appareils (mobiles en mode portrait) */
+@media (max-width: 575.98px) {
+    .container .title1{
+        font-size: 22px; /* Réduit pour les petits écrans */
+        line-height: 1.2;
+    }
+    .container .lead{
+        font-size: 16px; /* Légère réduction */
+        text-align: justify;
+    }
+    .container .title2{
+        font-size: 18px; /* Réduit pour les petits écrans */
+    }
+}
+
+/* Appareils moyens (tablettes et petits écrans) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .container .title1{
+        font-size: 22px; /* Réduit pour les petits écrans */
+        line-height: 1.2;
+    }
+    .container .lead{
+        font-size: 16px; /* Légère réduction */
+        text-align: justify;
+    }
+    .container .title2{
+        font-size: 18px; /* Réduit pour les petits écrans */
+    }
+}
+
+/* Grands appareils (desktop) */
+@media (min-width: 992px) {
+    .container .title1{
+        font-size: 22px; /* Réduit pour les petits écrans */
+        line-height: 1.2;
+    }
+    .container .lead{
+        font-size: 16px; /* Légère réduction */
+        text-align: justify;
+    }
+    .container .title2{
+        font-size: 18px; /* Réduit pour les petits écrans */
     }
 }

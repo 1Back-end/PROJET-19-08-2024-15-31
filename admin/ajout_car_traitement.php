@@ -25,21 +25,22 @@ if (isset($_POST["submit"])) {
     $added_by = $_SESSION['user_id'] ?? null;
 
     // Validation des champs requis
-    if (empty($brand) || empty($carYear) || empty($documents) || empty($transmissionType) || empty($color) || empty($price_per_day) || empty($modele) || empty($fuelType) || empty($availableSeats) || empty($mileage) || empty($insurance_expiration) || empty($notes)) {
+    if (empty($brand) || empty($carYear) || empty($transmissionType) || empty($color) || empty($price_per_day) || empty($modele) || empty($fuelType) || empty($availableSeats) || empty($mileage) || empty($insurance_expiration) || empty($notes)) {
         $erreur_champ = "Tous les champs requis doivent être remplis.";
     }
 
-    // Vérification des fichiers téléchargés
-    if ($documents) {
+    // Vérification des documents si téléchargés
+    if ($documents && $documents['error'][0] == UPLOAD_ERR_OK) {
         $allowedDocumentTypes = ['application/pdf', 'application/msword', 'application/vnd.ms-excel'];
-        foreach ($documents['type'] as $key => $type) {
+        foreach ($documents['type'] as $type) {
             if (!in_array($type, $allowedDocumentTypes)) {
                 $erreur .= "Type de document non autorisé. ";
             }
         }
     }
 
-    if ($photos) {
+    // Vérification des photos si téléchargées
+    if ($photos && $photos['error'][0] == UPLOAD_ERR_OK) {
         if (count($photos['name']) > 4) {
             $erreur .= "Vous ne pouvez télécharger que 4 photos. ";
         }
@@ -55,7 +56,7 @@ if (isset($_POST["submit"])) {
     if (empty($erreur) && empty($erreur_champ)) {
         // Enregistrement des documents
         $documentPaths = [];
-        if ($documents) {
+        if ($documents && $documents['error'][0] == UPLOAD_ERR_OK) {
             foreach ($documents['tmp_name'] as $key => $tmp_name) {
                 $fileName = basename($documents['name'][$key]);
                 $targetFile = "../documents/" . $fileName;
@@ -69,7 +70,7 @@ if (isset($_POST["submit"])) {
 
         // Enregistrement des photos
         $photoPaths = [];
-        if ($photos) {
+        if ($photos && $photos['error'][0] == UPLOAD_ERR_OK) {
             foreach ($photos['tmp_name'] as $key => $tmp_name) {
                 $fileName = basename($photos['name'][$key]);
                 $targetFile = "../upload/" . $fileName;
@@ -87,7 +88,6 @@ if (isset($_POST["submit"])) {
             $photoPathsStr = implode(',', $photoPaths);
 
             try {
-                
                 $stmt = $pdo->prepare("INSERT INTO cars (id, registration_number, brand_id, model, year, fuel_type, transmission, color, seats, mileage, price_per_day, availability_status, insurance_expiration, documents, notes, created_at, added_by, is_deleted, image) VALUES (:id, :registration_number, :brand_id, :model, :year, :fuel_type, :transmission, :color, :seats, :mileage, :price_per_day, :availability_status, :insurance_expiration, :documents, :notes, :created_at, :added_by, :is_deleted, :image)");
                 // Lier les valeurs avec bindValue
                 $stmt->bindValue(':id', $id);

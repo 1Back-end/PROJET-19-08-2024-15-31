@@ -1,0 +1,40 @@
+{
+    "payment_methods": [
+      {
+        "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "method": "Credit Card",
+        "is_deleted": false,
+        "is_active": true,
+        "date_added": "2024-08-26T10:00:00Z"
+      },
+      {
+        "uuid": "6b12c528-53cf-44b6-9242-d2f99a2d2d6c",
+        "method": "Bank Transfer",
+        "is_deleted": false,
+        "is_active": true,
+        "date_added": "2024-08-26T10:00:00Z"
+      },
+      {
+        "uuid": "a94c9cbb-0d5e-4df4-a8ed-9738f4e9f3bc",
+        "method": "PayPal",
+        "is_deleted": false,
+        "is_active": true,
+        "date_added": "2024-08-26T10:00:00Z"
+      },
+      {
+        "uuid": "8f10cbe8-92f2-4ad3-920b-7ddefb2a90e1",
+        "method": "Cash",
+        "is_deleted": false,
+        "is_active": true,
+        "date_added": "2024-08-26T10:00:00Z"
+      },
+      {
+        "uuid": "7367a4d9-bc63-4117-891b-17f488fc9c90",
+        "method": "Check",
+        "is_deleted": false,
+        "is_active": true,
+        "date_added": "2024-08-26T10:00:00Z"
+      }
+    ]
+  }
+  
