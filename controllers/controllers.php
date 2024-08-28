@@ -29,6 +29,23 @@ function generateLicensePlate($length = 10) {
     return $plate;
 }
 
+
+function generateReservationNumber($prefix = 'RES', $length = 8) {
+    // Générer une partie aléatoire
+    $randomPart = strtoupper(substr(md5(uniqid(rand(), true)), 0, $length));
+    
+    // Inclure une partie temporelle pour éviter les collisions
+    $timestampPart = date('YmdHis');
+
+    // Combiner le préfixe, la partie temporelle, et la partie aléatoire
+    $reservationNumber = $prefix . '-' . $timestampPart . '-' . $randomPart;
+
+    return $reservationNumber;
+}
+
+// Exemple d'utilisation
+$reservationNumber = generateReservationNumber();
+
 function generatePassword($length = 12) {
     // Définir les caractères que vous souhaitez utiliser dans le mot de passe
     $upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -381,6 +398,69 @@ function get_count_voitures($pdo){
 
 // Appeler la fonction pour récupérer le nombre de voitures
 $countVoitures = get_count_voitures($pdo);
+
+function get_count_car($pdo){
+    try {
+        // Préparation de la requête SQL pour récupérer le nombre de voitures par marque
+        $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM reservations where is_deleted=0");
+        // Exécution de la requête
+        $stmt->execute();
+        // Récupération des résultats
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $results['count'];
+        
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération du nombre de voitures par marque : " . $e->getMessage();
+        return false;
+    } 
+}
+
+// Appeler la fonction pour récupérer le nombre de voitures par marque
+$countCar = get_count_car($pdo);
+
+
+
+
+function afficherReservations($pdo) {
+    try {
+        // Préparer la requête SQL pour récupérer les réservations avec l'immatriculation du véhicule
+        $sql = "
+            SELECT 
+                reservations.*,
+                cars.registration_number,
+                cars.price_per_day,
+                (reservations.number_of_days * cars.price_per_day) AS total_cost
+            FROM 
+                reservations
+            INNER JOIN 
+                cars 
+            ON 
+                reservations.id_car = cars.id WHERE 
+                reservations.is_deleted = 0 ORDER BY
+                reservations.created_at DESC;
+        ";
+
+        // Exécuter la requête
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        // Récupérer les résultats
+        $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $reservations ?: []; // Retourne un tableau vide si aucun résultat n'est trouvé
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération des réservations: " . $e->getMessage();
+        return false;
+    }
+}
+
+// Appeler la fonction pour afficher les réservations
+
+$reservations = afficherReservations($pdo);
+
+
 
 ?>
 

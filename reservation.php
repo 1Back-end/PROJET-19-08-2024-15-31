@@ -52,8 +52,21 @@
 
 <div class="container mt-5 section-padding p-3">
 </div>
-
+<?php include('script_reservation.php');?>
 <div class="container mt-5 section-padding p-3 pb-5">
+<div class="col-md-12 col-sm-12">
+    <?php if (!empty($erreur)): ?>
+        <div class="alert alert-danger text-center" role="alert">
+            <?= htmlspecialchars($erreur); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($succes)): ?>
+        <div class="alert alert-success text-center" role="alert">
+            <?= htmlspecialchars($succes); ?>
+        </div>
+    <?php endif; ?>
+</div>
     <div class="card-box p-3">
         <form action="" method="post" enctype="multipart/form-data">
             <!-- Informations Personnelles -->
@@ -64,19 +77,28 @@
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="full_name">Nom complet <span class="text-danger">*</span></label>
-                        <input type="text" id="full_name" name="full_name" class="shadow-none form-control" required>
+                        <input type="text" id="full_name" name="full_name" class="shadow-none form-control" value="<?= !empty($succes) ? '' : htmlspecialchars($_POST['full_name'] ?? '') ?>">
+                        <?php if(isset($erreur_champ) && empty($_POST['full_name'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" class="shadow-none form-control" required>
+                        <input type="email" id="email" name="email" class="shadow-none form-control" value="<?= !empty($succes) ? '' : htmlspecialchars($_POST['email'] ?? '') ?>">
+                        <?php if(isset($erreur_champ) && empty($_POST['email'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="phone">Numéro de téléphone <span class="text-danger">*</span></label>
-                        <input type="tel" id="phone" name="phone" class="shadow-none form-control" required>
+                        <input type="tel" id="phone" name="phone" class="shadow-none form-control" value="<?= !empty($succes) ? '' : htmlspecialchars($_POST['phone'] ?? '') ?>">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -89,21 +111,30 @@
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="start_date">Date de Début <span class="text-danger">*</span></label>
-                        <input type="date" id="start_date" name="start_date" class="shadow-none form-control" required>
+                        <input type="date" id="start_date" name="start_date" class="shadow-none form-control" value="<?= !empty($succes) ? '' : htmlspecialchars($_POST['start_date'] ?? '') ?>">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2">
                       <?php $carId = $_GET["id"];?>
                         <label for="end_date">Date de Fin <span class="text-danger">*</span></label>
-                        <input type="date" id="end_date" name="end_date" class="shadow-none form-control" required>
+                        <input type="date" id="end_date" name="end_date" class="shadow-none form-control" value="<?= !empty($succes) ? '' : htmlspecialchars($_POST['end_date'] ?? '') ?>">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                         <input type="hidden" id="id_car" name="id_car" value="<?php echo $carId; ?>" class="form-control" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="number_of_days">Nombre de Jours de la Location <span class="text-danger">*</span></label>
-                        <input type="number" id="number_of_days" name="number_of_days" class="shadow-none form-control" readonly>
+                        <input type="number" id="number_of_days" name="number_of_days" class="shadow-none form-control">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -116,20 +147,30 @@
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="cni">Photocopie de la CNI (Format JPG, PNG, PDF) <span class="text-danger">*</span></label>
-                        <input type="file" id="cni" name="cni" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none" required>
+                        <input type="file" id="cni" name="cni" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="cni">Photocopie du permis (Format JPG, PNG, PDF) <span class="text-danger">*</span></label>
-                        <input type="file" id="permis" name="permis" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none" required>
+                        <input type="file" id="permis" name="permis" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2"><br>
-                        <label for="cni">Preuve de domicile <span class="text-danger">*</span></label>
-                        <input type="file" id="preuve_domicile" name="preuve_domicile" class="form-control shadow-none" accept="image/*,application/pdf" required><br><br>
+                        <label for="cni">Domicile <span class="text-danger">*</span></label>
+                        <input type="file" id="preuve_domicile" name="preuve_domicile" class="form-control shadow-none" accept="image/*,application/pdf">
+                        <?php if(isset($erreur_champ) && empty($_POST['phone'])): ?>
+                            <small class="text-danger"><?=$erreur_champ?></small>
+                        <?php endif; ?>
+
 
                     </div>
                 </div>
@@ -144,11 +185,11 @@
             </div>
             <div class="mb-2">
                         <label for="comments">Commentaires ou Instructions Spéciales <span class="text-danger">*</span></label>
-                        <textarea id="comments" name="comments" class="shadow-none form-control" rows="3" required></textarea>
+                        <textarea id="comments" name="comments" class="shadow-none form-control" rows="3"></textarea>
               </div>
 
             <div class="mb-3">
-                <button type="submit" class="reservation-button border-0">Confirmer la Réservation</button>
+                <button type="submit" name="submit" class="reservation-button border-0">Confirmer la Réservation</button>
             </div>
         </form>
     </div>

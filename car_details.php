@@ -114,7 +114,7 @@ if ($id_car) {
 <div class="col-md-12 col-sm-12">
     <div class="row">
         <div class="col-md-6 mb-3 col-sm-12">
-            <div class="card-box p-3 order-sm-1">
+            <div class="card-box h-100 p-3 order-sm-1">
             <div class="car-details">
             <div class="detail-item mb-2">
                 <strong>N° Immatriculation :</strong> 
@@ -160,11 +160,12 @@ if ($id_car) {
             <?php echo htmlspecialchars($car['notes']);?>
             </p>
         </div>
+        
 
             </div>
         </div>
         <div class="col-md-6 mb-3 col-sm-12">
-            <div class="card-box p-3 h-100 order-sm-2">
+            <div class="card-box h-100 p-3 h-100 order-sm-2">
             <div class="mb-2">
             <strong>Images :</strong>
                     <?php if (!empty($car['image'])): ?>
@@ -238,8 +239,10 @@ if ($id_car) {
     <?php else: ?>
         <p>Voiture non trouvée ou déjà supprimée.</p>
     <?php endif; ?>
+
     <a href="reservation.php?id=<?php echo $car['id']; ?>" class="reservation-button">Réserver</a>
 
+    
     
 </div>
 

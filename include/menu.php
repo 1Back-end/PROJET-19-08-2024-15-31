@@ -111,7 +111,7 @@
                    
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../admin/liste_reservation.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-calendar-1"></span><span class="mtext">Réservation</span>
 						</a>
 					</li>
