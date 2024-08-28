@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -56,7 +55,7 @@
 
 <div class="container mt-5 section-padding p-3 pb-5">
     <div class="card-box p-3">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <!-- Informations Personnelles -->
             <div class="mb-3">
                 <h3>Informations Personnelles</h3>
@@ -95,6 +94,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mb-2">
+                      <?php $carId = $_GET["id"];?>
                         <label for="end_date">Date de Fin <span class="text-danger">*</span></label>
                         <input type="date" id="end_date" name="end_date" class="shadow-none form-control" required>
                         <input type="hidden" id="id_car" name="id_car" value="<?php echo $carId; ?>" class="form-control" readonly>
@@ -112,24 +112,40 @@
             <div class="mb-3">
                 <h3>Options Supplémentaires</h3>
             </div>
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-4">
                     <div class="mb-2">
                         <label for="cni">Photocopie de la CNI (Format JPG, PNG, PDF) <span class="text-danger">*</span></label>
                         <input type="file" id="cni" name="cni" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none" required>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="mb-2">
-                        <label for="comments">Commentaires ou Instructions Spéciales <span class="text-danger">*</span></label>
-                        <textarea id="comments" name="comments" class="shadow-none form-control" rows="3" required></textarea>
+                        <label for="cni">Photocopie du permis (Format JPG, PNG, PDF) <span class="text-danger">*</span></label>
+                        <input type="file" id="permis" name="permis" accept=".jpg, .jpeg, .png, .pdf" class="form-control shadow-none" required>
                     </div>
                 </div>
-                <!-- Espace pour le troisième élément de la section ou laisser vide -->
                 <div class="col-md-4">
-                    <!-- Vous pouvez ajouter un autre champ ici si nécessaire -->
+                    <div class="mb-2"><br>
+                        <label for="cni">Preuve de domicile <span class="text-danger">*</span></label>
+                        <input type="file" id="preuve_domicile" name="preuve_domicile" class="form-control shadow-none" accept="image/*,application/pdf" required><br><br>
+
+                    </div>
                 </div>
+
+                <!-- <div class="col-md-4">
+                    <div class="mb-2">
+                    <label for="preuve_domicile">Preuve de domicile <span class="text-danger">*</span></label>
+                  <input type="file" id="preuve_domicile" name="preuve_domicile" class="form-control shadow-none" accept="image/*,application/pdf" required><br><br>
+
+                    </div>
+                </div> -->
             </div>
+            <div class="mb-2">
+                        <label for="comments">Commentaires ou Instructions Spéciales <span class="text-danger">*</span></label>
+                        <textarea id="comments" name="comments" class="shadow-none form-control" rows="3" required></textarea>
+              </div>
 
             <div class="mb-3">
                 <button type="submit" class="reservation-button border-0">Confirmer la Réservation</button>
@@ -138,7 +154,7 @@
     </div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

@@ -97,7 +97,7 @@ if ($id_car) {
 </div>
 
 
-<div class="container mt-5 section-padding p-3">
+<div class="container mt-5 section-padding p-3 pb-5">
 <div class="col-md-12 mx-auto col-sm-12 mb-3">
     <div class="card-box p-2">
     <div class="d-flex align-items-center">
@@ -238,9 +238,14 @@ if ($id_car) {
     <?php else: ?>
         <p>Voiture non trouvée ou déjà supprimée.</p>
     <?php endif; ?>
-    <a href="reservation_form.php?id=<?php echo $car['id']; ?>" class="reservation-button">Réserver</a>
+    <a href="reservation.php?id=<?php echo $car['id']; ?>" class="reservation-button">Réserver</a>
 
     
 </div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
