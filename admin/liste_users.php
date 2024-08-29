@@ -5,12 +5,13 @@
 <div class="main-container mt-3 pb-5">
 
       <div class="col-md-12 col-sm-12 mb-3">
-         <div class="d-flex justify-content-between align-items-center">
-            <!-- Titre de la page -->
-            <h5 class="text-uppercase fw-bold mb-0">Liste des administrateurs</h5>
-            <!-- Bouton d'ajout d'utilisateur -->
-            <a href="ajout_user.php" class="btn btn-customize text-white  btn-sm"><i class="fa fa-plus mx-2 fa-2x" aria-hidden="true"></i> Ajouter un administrateur</a>
-         </div>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+    <!-- Titre de la page -->
+    <h5 class="text-uppercase fw-bold mb-3 mb-md-0">Liste des administrateurs</h5>
+    <!-- Bouton d'ajout d'utilisateur -->
+    <a href="ajout_user.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2 fa-2x" aria-hidden="true"></i> Ajouter un administrateur</a>
+</div>
+
       </div>
 
 
@@ -94,11 +95,10 @@ if ($delete == 'success') {
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center mb-3">
                                         <?php if ($admin['is_active'] == 1): ?>
-                                            <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deactivateModal" class="btn btn-danger btn-xs text-white btn-sm mx-2">Désactiver</a>
+                                            <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deactivateModal" class="btn btn-customize text-white btn-xs text-white btn-sm mx-2">Désactiver</a>
                                         <?php else: ?>
                                             <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#activateModal" class="btn btn-success btn-xs text-white btn-sm mx-2">Activer</a>
                                         <?php endif; ?>
-                                        <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#editUserModal" class="btn btn-customize btn-xs text-white btn-sm mx-2">Modifier</a>
                                         <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-xs btn-sm mx-2">Supprimer</a>
                                 </td>
 

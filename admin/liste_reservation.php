@@ -4,15 +4,16 @@
 
 <div class="main-container mt-3 pb-5">
     <div class="col-md-12 col-sm-12 mb-3">
-        <div class="d-flex align-items-center  justify-content-between">
-            <div class="mr-auto mb-0">
-                <h4 class="text-uppercase">Liste des réservations</h4>
-            </div>
-            <div class="ml-auto d-flex">
-                <input type="text" class="form-control shadow-none mx-2" placeholder="Rechercher">
-                <button class="btn btn-customize text-white btn-sm shadow-none">Rechercher</button>
-            </div>
-        </div>
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+    <div class="mb-3 mb-md-0">
+        <h4 class="text-uppercase">Liste des réservations</h4>
+    </div>
+    <div class="d-flex flex-column flex-md-row ml-md-auto">
+        <input type="text" class="form-control shadow-none mb-2 mb-md-0 mx-md-2" placeholder="Rechercher">
+        <button class="btn btn-customize text-white btn-sm shadow-none">Rechercher</button>
+    </div>
+</div>
+
     </div>
 
     <div class="col-md-12 col-sm-12 mb-3">

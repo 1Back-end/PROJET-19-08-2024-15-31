@@ -42,7 +42,6 @@ function generateReservationNumber($prefix = 'RES', $length = 8) {
 
     return $reservationNumber;
 }
-
 // Exemple d'utilisation
 $reservationNumber = generateReservationNumber();
 
@@ -461,6 +460,27 @@ function afficherReservations($pdo) {
 $reservations = afficherReservations($pdo);
 
 
+function getTotalClients($pdo) {
+    try {
+        // Préparer la requête pour compter les clients uniques par email
+        $stmt = $pdo->prepare("SELECT COUNT(DISTINCT email) AS total_clients FROM reservations");
+        
+        // Exécuter la requête
+        $stmt->execute();
+        
+        // Récupérer le résultat
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Retourner le nombre total de clients
+        return $result['total_clients'];
+    } catch (PDOException $e) {
+        // En cas d'erreur, retourner 0 ou un message d'erreur
+        return 0;  // Ou bien: return "Erreur : " . $e->getMessage();
+    }
+}
+
+// Exemple d'utilisation de la fonction
+$total_clients = getTotalClients($pdo);
 
 ?>
 

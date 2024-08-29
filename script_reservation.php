@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
 
     $cni_file = $_FILES['cni'] ?? null;
     $permis_file = $_FILES['permis'] ?? null;
-    $preuve_domicile = $_FILES['preuve_domicile'] ?? null;
+    // $preuve_domicile = $_FILES['preuve_domicile'] ?? null;
 
     // Check if all required fields are filled
     if (empty($full_name) || empty($email) || empty($phone) || empty($start_date) || empty($end_date) || empty($number_of_days) || empty($cni_file) || empty($permis_file)) {
@@ -110,7 +110,7 @@ function uuid4() {
     );
 }
 
-function generateReservationNumber($prefix = 'RES', $length = 8) {
+function generateReservationNumber($prefix = 'RES', $length = 6) {
     // Générer une partie aléatoire
     $randomPart = strtoupper(substr(md5(uniqid(rand(), true)), 0, $length));
     

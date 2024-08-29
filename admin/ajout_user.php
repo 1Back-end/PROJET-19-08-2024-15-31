@@ -12,7 +12,8 @@
             <i class="bi bi-arrow-left-circle"></i>
         </a>
         <!-- Titre centré -->
-        <h4 class="text-uppercase fw-bold flex-grow-1 text-center mb-0">Ajouter un utilisateur</h4>
+        <h4 class="text-uppercase fw-bold flex-grow-1 text-center mb-0 fs-5 fs-md-4 fs-lg-3">Ajouter un administrateur</h4>
+
     </div>
 </div>
 </div>

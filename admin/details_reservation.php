@@ -1,7 +1,7 @@
 <?php include("../include/menu.php"); ?>
 <?php include("../controllers/controllers.php"); ?>
 <?php include("../database/database.php"); ?>
-<link rel="stylesheet" href="style.css">
+
 
 <?php
 
@@ -39,6 +39,8 @@ if ($id_reservation) {
 }
 ?>
 
+<link rel="stylesheet" href="style.css">
+
 <div class="main-container mt-3 pb-5">
     
     <div class="col-md-12 col-sm-12">
@@ -57,7 +59,7 @@ if ($id_reservation) {
                     </div>
                     <div class="mb-2">
                         <strong>Prix par jour :</strong> 
-                        <?php echo htmlspecialchars(number_format($reservation['price_per_day'], 2, ',', ' ')); ?> Frcfa
+                        <?php echo htmlspecialchars(number_format($reservation['price_per_day'], 2, ',', ' ')); ?> €
                     </div>
                     <div class="mb-2">
                         <strong>Nombre de jours de location :</strong> 
@@ -65,7 +67,7 @@ if ($id_reservation) {
                     </div>
                     <div class="mb-2">
                         <strong>Coût total :</strong> 
-                        <?php echo htmlspecialchars(number_format($reservation['total_cost'], 2, ',', ' ')); ?> Frcfa
+                        <?php echo htmlspecialchars(number_format($reservation['total_cost'], 2, ',', ' ')); ?> €
                     </div>
                     <div class="mb-2">
                         <strong>Date de début :</strong> 
@@ -84,7 +86,7 @@ if ($id_reservation) {
                 <?php endif; ?>
             </div>
             
-            <div class="col-md-6 mb-3 col-sm-12">
+            <div class="col-md-6 mb-2 col-sm-12">
                 <?php if ($reservation): ?>
                     <h4 class="mb-3">Informations du client</h4>
                     <div class="mb-2">
@@ -113,13 +115,13 @@ if ($id_reservation) {
                                 <?php if ($cni_file): ?>
                                     <div class="card-photos">
                                         <strong>CNI :</strong>
-                                        <img src="../upload/<?php echo htmlspecialchars($cni_file); ?>" class="img-thumbnail" alt="CNI">
+                                        <img src="../upload/<?php echo htmlspecialchars($cni_file); ?>" class="card-img img-thumbnail" alt="CNI">
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($permis_file): ?>
                                     <div class="card-photos">
                                         <strong>Permis :</strong>
-                                        <img src="../upload/<?php echo htmlspecialchars($permis_file); ?>" class="img-thumbnail" alt="Permis">
+                                        <img src="../upload/<?php echo htmlspecialchars($permis_file); ?>" class="card-img img-thumbnail" alt="Permis">
                                     </div>
                                 <?php endif; ?>
                             <?php else: ?>
