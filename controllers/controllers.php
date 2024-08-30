@@ -48,6 +48,30 @@ function get_total_agencies_count($pdo) {
     return $stmt->fetchColumn();
 }
 
+function getSubscriptionTypesOptions($pdo){
+    $query = "SELECT id, name FROM subscription_types WHERE is_active = 1";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+$subscriptionTypes = getSubscriptionTypesOptions($pdo);
+
+function getAgenciesOptions($pdo) {
+    // Préparer la requête SQL pour récupérer les IDs et les noms des agences
+    $query = "SELECT id, name FROM agencies WHERE is_deleted = 0";
+    
+    try {
+        // Exécuter la requête
+        $stmt = $pdo->query($query);
+        
+        // Récupérer toutes les lignes en tant que tableau associatif
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        // Gérer les erreurs de connexion à la base de données
+        echo "Erreur lors de la récupération des agences : " . $e->getMessage();
+        return [];
+    }
+}
+$agencies = getAgenciesOptions($pdo);
 
 function generateAgencyCode($prefix = 'AGC') {
     // Obtenir la date actuelle au format YYYYMMDD

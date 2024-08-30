@@ -207,3 +207,18 @@ textarea{
         width: 24px; /* Réduit la taille de l'icône sur mobile */
     }
 }
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: #1F4283;
+    background-color: #1F4283;
+    overflow: hidden;
+    border: none;
+    border-radius: 20px;
+    width: 40px;
+    text-align: center;
+    justify-content: center;
+    height: auto;
+    font-size: 20px;
+    font-weight: bold;
+  }

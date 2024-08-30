@@ -71,14 +71,14 @@ $agencies = get_agencies($pdo, $limit, $offset);
                     <?php foreach ($agencies as $index => $agency) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($index + 1 + $offset); ?></td>
+                            <td><?php echo htmlspecialchars($agency['owner_name']); ?></td>
                             <td>
                                 <?php if (!empty($agency['logo'])): ?>
-                                    <img src="../upload/<?php echo htmlspecialchars($agency['logo']); ?>" alt="Logo" class="img-thumbnail" width="50" height="50">
+                                    <img src="../upload/<?php echo htmlspecialchars($agency['logo']); ?>" alt="Logo" class="img-fluid" width="50" height="50">
                                 <?php else: ?>
                                     <img src="../vendors/images/default_logo.jpg" alt="Logo" class="img-thumbnail" width="50" height="50">
                                 <?php endif; ?>
                             </td>
-                            <td><?php echo htmlspecialchars($agency['owner_name']); ?></td>
                             <td><?php echo htmlspecialchars($agency['name']); ?></td>
                             <td><?php echo htmlspecialchars($agency['agency_code']); ?></td>
                             <td><?php echo htmlspecialchars($agency['country']); ?></td>
@@ -114,10 +114,6 @@ $agencies = get_agencies($pdo, $limit, $offset);
                                     <i class="fa fa-info-circle mr-2"></i> Détails
                                 </a>
 
-                                <!-- Bouton pour modifier l'agence -->
-                                <a href="modification_agence.php?id=<?php echo htmlspecialchars($agency['id']); ?>" class="dropdown-item text-warning">
-                                    <i class="fa fa-pencil-alt mr-2"></i> Modifier
-                                </a>
 
                                 <!-- Bouton pour supprimer l'agence -->
                                 <a href="#" data-id="<?php echo htmlspecialchars($agency['id']); ?>" data-toggle="modal" data-target="#deleteModal" class="dropdown-item text-danger">

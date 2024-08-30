@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 29 août 2024 à 23:52
+-- Généré le : ven. 30 août 2024 à 19:23
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -42,8 +42,20 @@ CREATE TABLE `agencies` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   `is_active` tinyint(1) NOT NULL DEFAULT 0,
-  `added_by` varchar(255) NOT NULL
+  `added_by` varchar(255) NOT NULL,
+  `comments` varchar(255) NOT NULL,
+  `agency_code` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `agencies`
+--
+
+INSERT INTO `agencies` (`id`, `owner_id`, `name`, `email`, `phone`, `address`, `city`, `country`, `postal_code`, `logo`, `created_at`, `updated_at`, `is_deleted`, `is_active`, `added_by`, `comments`, `agency_code`) VALUES
+('21c7cd45-f666-492b-8520-4e2a5d5b5959', 'c45b2c2a-51d8-41f4-a81d-25dd97eca748', 'Prime Living', 'contact@agencemarseillaise.fr', '+237 345 678 901', '789 Boulevard Saint-Germain, Marseille, France', 'Marseille', 'France', '13001', '21c7cd45-f666-492b-8520-4e2a5d5b5959_logo.jpg', '2024-08-30 11:44:45', '2024-08-30 11:45:53', 0, 1, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '\r\n                ', 'AGC-20240830-771388'),
+('ca714596-7d5d-4e52-a260-422652dfa3e1', '0d5495ab-d373-414c-89d8-04d25726a565', 'Enterprise Rent-A-Car', 'contact@agencetoulousaine.fr', '+237 567 890 123', '03 Rue de la Liberté, Toulouse,', 'Berlin', 'Allemagne', '31000', 'ca714596-7d5d-4e52-a260-422652dfa3e1_logo3.jpg', '2024-08-30 14:10:58', '2024-08-30 14:10:58', 0, 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '\r\n                ', 'AGC-20240830-044424'),
+('d26de0ec-d856-4931-af2a-4d0594d9f24e', '0d5495ab-d373-414c-89d8-04d25726a565', 'Speedy Cars', 'contact@agencelyonnaise.fr', '+237 987 654 321', '456 Avenue de Lyon, Lyon, France', 'Akra', 'Ghana', '69001', 'd26de0ec-d856-4931-af2a-4d0594d9f24e_logo2.jpg', '2024-08-30 10:46:04', '2024-08-30 11:15:40', 0, 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '\r\n                ', 'AGC-20240830-931864'),
+('fb1d1d63-24e8-45af-8661-65a9eb139daa', 'c45b2c2a-51d8-41f4-a81d-25dd97eca748', 'AutoDrive Rentals', 'contact@agenceparisienne.fr', '+237 123 456 789', '123 Rue de Paris, Paris, France', 'Paris', 'France', '75001', 'fb1d1d63-24e8-45af-8661-65a9eb139daa_logo1.jpg', '2024-08-30 10:41:27', '2024-08-30 10:43:18', 0, 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', '\r\n                ', 'AGC-20240830-611229');
 
 -- --------------------------------------------------------
 
@@ -141,12 +153,23 @@ CREATE TABLE `owners` (
   `city` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
   `postal_code` varchar(20) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `password_hash` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `added_by` varchar(255) NOT NULL
+  `added_by` varchar(255) NOT NULL,
+  `status` enum('active','inactive') DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `owners`
+--
+
+INSERT INTO `owners` (`id`, `name`, `email`, `phone`, `address`, `city`, `country`, `postal_code`, `image`, `password_hash`, `created_at`, `updated_at`, `is_deleted`, `added_by`, `status`) VALUES
+('0d5495ab-d373-414c-89d8-04d25726a565', 'Jean Dupont', 'jean.dupont@example.com', '+237 123 456 789', '123 Rue de Paris, Paris, France', 'Douala', 'Cameroun', '75001', '', '$2y$10$32PVvdrtZhAH2sVsil0Z1uM5MAm./AeoXf/4EnAbjg72AV3KajF1.', '2024-08-30 08:15:40', '2024-08-30 09:03:16', 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', 'active'),
+('73d45fe6-08ac-4958-8326-fb5470111d40', 'Marie Curie', 'marie.curie@example.com', '+237 987 654 321', '456 Avenue de Lyon, Lyon, France', 'Lyon', 'France', '69001', '73d45fe6-08ac-4958-8326-fb5470111d40_photo4.jpg', '$2y$10$Z4FJZrFisy1gDOffQr6EQez7Ke0GBuZWqoAWLTrW9pvJCt04nYEiC', '2024-08-30 08:32:21', '2024-08-30 09:37:19', 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', 'inactive'),
+('c45b2c2a-51d8-41f4-a81d-25dd97eca748', 'Paul Martin', 'paul.martin@example.com', '+237 345 678 901', '789 Boulevard Saint-Germain, Paris, France', 'Ghana', 'Akra', '75002', 'c45b2c2a-51d8-41f4-a81d-25dd97eca748_WhatsApp Image 2024-05-23 à 14.11.42_a12d25c4.jpg', '$2y$10$58vjP8bI4LoNmhrN/N9pJOIiAoAyhMD.ScinseRUfWBGxqgOjHRgC', '2024-08-30 09:00:20', '2024-08-30 09:37:07', 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', 'active');
 
 -- --------------------------------------------------------
 
@@ -209,13 +232,49 @@ INSERT INTO `reservations` (`id`, `id_car`, `full_name`, `email`, `phone`, `star
 CREATE TABLE `subscriptions` (
   `id` varchar(255) NOT NULL,
   `agency_id` varchar(255) NOT NULL,
+  `id_type` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
   `status` enum('active','inactive','expired') NOT NULL DEFAULT 'inactive',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `added_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `subscriptions`
+--
+
+INSERT INTO `subscriptions` (`id`, `agency_id`, `id_type`, `start_date`, `end_date`, `status`, `created_at`, `updated_at`, `is_deleted`, `added_by`) VALUES
+('90f5dffe-a76f-4211-83f4-b305716dcb18', '21c7cd45-f666-492b-8520-4e2a5d5b5959', '550e8400-e29b-41d4-a716-446655440000', '2024-08-31', '2024-09-13', 'inactive', '2024-08-30 17:22:44', '2024-08-30 17:22:44', 0, '72265e52-f7be-4e2b-b6b2-72ceae2aa8c1');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `subscription_types`
+--
+
+CREATE TABLE `subscription_types` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `vehicle_limit` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `subscription_types`
+--
+
+INSERT INTO `subscription_types` (`id`, `name`, `description`, `price`, `duration`, `vehicle_limit`, `is_active`, `created_at`, `updated_at`) VALUES
+('550e8400-e29b-41d4-a716-446655440000', 'Premium', 'Abonnement Premium avec accès à 200 véhicules.', 999.99, 30, 200, 1, '2024-08-30 16:41:48', '2024-08-30 16:41:48'),
+('550e8400-e29b-41d4-a716-446655440001', 'Standard', 'Abonnement Standard avec accès à 50 véhicules.', 299.99, 30, 50, 1, '2024-08-30 16:41:48', '2024-08-30 16:41:48'),
+('550e8400-e29b-41d4-a716-446655440002', 'Luxury', 'Abonnement Luxury avec accès à 100 véhicules.', 499.99, 30, 100, 1, '2024-08-30 16:41:48', '2024-08-30 16:41:48');
 
 -- --------------------------------------------------------
 
@@ -245,7 +304,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `contact`, `birthday`, `role`, `created_at`, `is_deleted`, `is_active`, `photo`) VALUES
 ('72265e52-f7be-4e2b-b6b2-72ceae2aa8c1', 'Laurent', 'Alphonse', 'laurentalphonsewilfried@gmail.com', '$2y$10$/4Zni1g7vgM37zgnfZgR3uzKuee7LOG95pgwW9azHVQF6mkreUOEa', '+237678536884', '2002-02-13', '1', '2024-08-22 09:51:41', 0, 1, ''),
 ('d5f27033-2abe-4413-94dd-02c734535d09', 'Sophie', 'Leclerc', 'sophie.leclerc@example.com', '$2y$10$uSsdbaYpbwTNjGrXU1Xrh.ESqIVXS2/jKFMJrfYa743EbR/7ZO8.a', '+237689129012', '2008-09-12', '1', '2024-08-22 11:13:15', 0, 2, ''),
-('dd159427-0a1e-4ec3-b4de-edd0df6c037d', 'Mvondo', 'Fernando', 'mvondofernando7777@gmail.com', '$2y$10$xnSatgEbe5bUL1hTLzWxculxDhxF4YatPUw1oFKsH9DvFVjgBaa2G', '+237690128934', '1990-12-09', '1', '2024-08-22 17:05:36', 0, 1, '');
+('dd159427-0a1e-4ec3-b4de-edd0df6c037d', 'Mvondo', 'Fernando', 'mvondofernando7777@gmail.com', '$2y$10$xnSatgEbe5bUL1hTLzWxculxDhxF4YatPUw1oFKsH9DvFVjgBaa2G', '+237690128934', '1990-12-09', '1', '2024-08-22 17:05:36', 0, 2, '');
 
 --
 -- Index pour les tables déchargées
@@ -257,8 +316,10 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `contac
 ALTER TABLE `agencies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `agency_code` (`agency_code`),
   ADD KEY `owner_id` (`owner_id`),
-  ADD KEY `added_by` (`added_by`);
+  ADD KEY `added_by` (`added_by`),
+  ADD KEY `added_by_2` (`added_by`);
 
 --
 -- Index pour la table `carbrands`
@@ -290,7 +351,8 @@ ALTER TABLE `forgot_password`
 --
 ALTER TABLE `owners`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `added_by` (`added_by`);
 
 --
 -- Index pour la table `payments`
@@ -311,7 +373,15 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `subscriptions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `agency_id` (`agency_id`);
+  ADD KEY `agency_id` (`agency_id`),
+  ADD KEY `id_type` (`id_type`),
+  ADD KEY `added_by` (`added_by`);
+
+--
+-- Index pour la table `subscription_types`
+--
+ALTER TABLE `subscription_types`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `users`
@@ -351,6 +421,12 @@ ALTER TABLE `forgot_password`
   ADD CONSTRAINT `forgot_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Contraintes pour la table `owners`
+--
+ALTER TABLE `owners`
+  ADD CONSTRAINT `owners_ibfk_1` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
+
+--
 -- Contraintes pour la table `payments`
 --
 ALTER TABLE `payments`
@@ -366,7 +442,9 @@ ALTER TABLE `reservations`
 -- Contraintes pour la table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  ADD CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`agency_id`) REFERENCES `agencies` (`id`);
+  ADD CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`agency_id`) REFERENCES `agencies` (`id`),
+  ADD CONSTRAINT `subscriptions_ibfk_2` FOREIGN KEY (`id_type`) REFERENCES `subscription_types` (`id`),
+  ADD CONSTRAINT `subscriptions_ibfk_3` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

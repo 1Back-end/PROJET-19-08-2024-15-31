@@ -65,6 +65,7 @@ if ($delete == 'success') {
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Contact</th>
                         <th scope="col">Statut</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -92,13 +93,35 @@ if ($delete == 'success') {
                                         <span class="badge bg-danger text-white">Inactif</span>
                                     <?php endif; ?>
                                 </td>
-                                <td class="d-flex align-items-center justify-content-center mb-3">
-                                        <?php if ($admin['is_active'] == 1): ?>
-                                            <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deactivateModal" class="btn btn-customize text-white btn-xs text-white btn-sm mx-2">Désactiver</a>
-                                        <?php else: ?>
-                                            <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#activateModal" class="btn btn-success btn-xs text-white btn-sm mx-2">Activer</a>
-                                        <?php endif; ?>
-                                        <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-xs btn-sm mx-2">Supprimer</a>
+                                <td>
+                                      <div class="d-flex align-items-center justify-content-center mb-3">
+                                      <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <?php if ($admin['is_active'] == 1): ?>
+                                                    <li>
+                                                        <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deactivateModal" class="dropdown-item text-danger">
+                                                            <i class="fa fa-ban text-danger"></i> Désactiver
+                                                        </a>
+                                                    </li>
+                                                <?php else: ?>
+                                                    <li>
+                                                        <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#activateModal" class="dropdown-item text-success">
+                                                            <i class="fa fa-check text-success"></i> Activer
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <li>
+                                                    <a href="#" data-id="<?php echo htmlspecialchars($admin['id']); ?>" data-toggle="modal" data-target="#deleteModal" class="dropdown-item text-danger">
+                                                        <i class="fa fa-trash text-danger"></i> Supprimer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                      </div>
                                 </td>
 
                         <?php endforeach; ?>

@@ -109,7 +109,7 @@
 					</li>
 
 					<li>
-						<a href="../admin/dashboard.php" class="dropdown-toggle no-arrow">
+						<a href="../admin/liste_subscriptions.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-credit-card"></span><span class="mtext">Abonnements</span>
 						</a>
 					</li>
