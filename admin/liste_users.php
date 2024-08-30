@@ -65,7 +65,6 @@ if ($delete == 'success') {
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Contact</th>
                         <th scope="col">Statut</th>
                         <th scope="col">Action</th>
                     </tr>

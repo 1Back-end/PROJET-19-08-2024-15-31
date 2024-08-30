@@ -1,0 +1,80 @@
+[
+    {
+        "id": "a1b2c3d4-e5f6-7g8h-9i10-j11k12l13m14",
+        "name": "Jean Dupont",
+        "email": "jean.dupont@example.com",
+        "phone": "+237 123 456 789",
+        "address": "123 Rue de Paris, Paris, France",
+        "city": "Paris",
+        "country": "France",
+        "postal_code": "75001",
+        "password": "$2y$10$eWzLcK5RqIwIqJ9NKrUp8OsgMKJ.fyr.z7VWScn5sFTwZDt9txw1y",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    },
+    {
+        "id": "b2c3d4e5-f6g7-8h9i-10j11-k12l13m14n15",
+        "name": "Marie Curie",
+        "email": "marie.curie@example.com",
+        "phone": "+237 987 654 321",
+        "address": "456 Avenue de Lyon, Lyon, France",
+        "city": "Lyon",
+        "country": "France",
+        "postal_code": "69001",
+        "password": "LIjvv;1cf%A6",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    },
+    {
+        "id": "c3d4e5f6-g7h8-9i10-j11k-12l13m14n15o",
+        "name": "Paul Martin",
+        "email": "paul.martin@example.com",
+        "phone": "+237 345 678 901",
+        "address": "789 Boulevard Saint-Germain, Paris, France",
+        "city": "Paris",
+        "country": "France",
+        "postal_code": "75002",
+        "password": "ACK&n&UY@h%X",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    },
+    {
+        "id": "d4e5f6g7-h8i9-10j11-k12l-13m14n15o16p",
+        "name": "Sophie Dubois",
+        "email": "sophie.dubois@example.com",
+        "phone": "+237 456 789 012",
+        "address": "101 Avenue de la République, Marseille, France",
+        "city": "Marseille",
+        "country": "France",
+        "postal_code": "13001",
+        "password": "$2y$10$Q3zF7qVjx9iZ1wA2qF8WzON1rMv6NiLBY93kO4dCk7UmvYHFl6khG",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    },
+    {
+        "id": "e5f6g7h8-i9j10-k11l-12m13-14n15o16p17q",
+        "name": "Jacques Rousseau",
+        "email": "jacques.rousseau@example.com",
+        "phone": "+237 567 890 123",
+        "address": "202 Rue du Faubourg Saint-Antoine, Paris, France",
+        "city": "Paris",
+        "country": "France",
+        "postal_code": "75003",
+        "password": "$2y$10$P4yC8w7aJ9q1RkN2m2u8OZ6g3R9VdPz7Hk4v6pKJf5QLWwK5u7ApE",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    },
+    {
+        "id": "f6g7h8i9-j10k-11l12-m13n-14o15p16q17r",
+        "name": "Claire Bernard",
+        "email": "claire.bernard@example.com",
+        "phone": "+237 678 901 234",
+        "address": "303 Rue de la Liberté, Lyon, France",
+        "city": "Lyon",
+        "country": "France",
+        "postal_code": "69002",
+        "password": "$2y$10$R5wD8o3L5H0QjN3s2E8JrK9u1q5PzX7l6T4k4y1x6R6eO5mQpP2Dl",
+        "created_at": "2024-08-29T12:00:00Z",
+        "updated_at": "2024-08-29T12:00:00Z"
+    }
+]

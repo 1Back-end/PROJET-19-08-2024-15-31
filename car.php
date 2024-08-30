@@ -245,7 +245,7 @@
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <div class="ml-auto">
                                         <h5 class="fw-bold">
-                                            <?php echo number_format($car['price_per_day']).' / Jour'; ?>
+                                            <?php echo number_format($car['price_per_day']).' €  / Jour'; ?>
                                         </h5>
                                     </div>
                                     <div class="mr-auto">

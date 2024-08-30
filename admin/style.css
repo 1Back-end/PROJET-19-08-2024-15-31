@@ -150,6 +150,15 @@ textarea{
     height: 150px; /* Conserver les proportions de l'image */
     border-radius: 5px; /* Coins arrondis pour les images */
 }
+.profile-image {
+    width:70px; /* Taille de l'image */
+    height: 60px; /* Taille de l'image */
+    border-radius: 50%; /* Pour arrondir l'image */
+    object-fit: cover; /* Pour que l'image conserve ses proportions et remplisse le conteneur */
+    cursor: pointer; /* Curseur pointer pour indiquer que l'image est cliquable */
+    text-align: center;
+    aspect-ratio: 1/1;
+}
 @media screen and (max-width: 768px) {
     h4{
         font-size: 18px;

@@ -1,6 +1,69 @@
 <?php
 include_once("../database/database.php");
 
+function get_all_owners($pdo, $limit = 10, $offset = 0) {
+    // Préparation de la requête SQL pour récupérer les propriétaires non supprimés avec pagination
+    $query = "SELECT * FROM owners WHERE is_deleted = 0 ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Retourne les résultats sous forme de tableau associatif
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function get_total_owners_count($pdo) {
+    $query = "SELECT COUNT(*) FROM owners WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchColumn();
+}
+
+function get_name_owners($pdo) {
+    $query = "SELECT id, name FROM owners WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+$name_owners = get_name_owners($pdo);
+
+function get_agencies($pdo, $limit, $offset) {
+    $query = "
+        SELECT a.id, a.logo,a.name,a.country, a.agency_code, a.email, a.created_at, a.is_active, o.name as owner_name
+        FROM agencies a
+        JOIN owners o ON a.owner_id = o.id
+        WHERE a.is_deleted = 0
+        ORDER BY a.created_at DESC
+        LIMIT :limit OFFSET :offset
+    ";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function get_total_agencies_count($pdo) {
+    $query = "SELECT COUNT(*) FROM agencies WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchColumn();
+}
+
+
+function generateAgencyCode($prefix = 'AGC') {
+    // Obtenir la date actuelle au format YYYYMMDD
+    $date = date('Ymd');
+
+    // Générer un identifiant unique basé sur l'horodatage actuel
+    $uniqueId = uniqid($prefix, true);
+
+    // Extraire les derniers caractères de l'identifiant unique pour ajouter de la variabilité
+    $shortUniqueId = substr($uniqueId, -6);
+
+    // Combiner la date avec l'identifiant unique pour former le code final
+    $code = $prefix . '-' . $date . '-' . $shortUniqueId;
+
+    return $code;
+}
 
 
 function generateUuid4() {

@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
         $erreur_champ = "Tous les champs sont obligatoires !";
     } else {
         // Validate file sizes
-        if ($cni_file['size'] > MAX_FILE_SIZE ||$preuve_domicile['size'] > MAX_FILE_SIZE ||  $permis_file['size'] > MAX_FILE_SIZE) {
+        if ($cni_file['size'] > MAX_FILE_SIZE  ||  $permis_file['size'] > MAX_FILE_SIZE) {
             $erreur = "Les fichiers ne doivent pas dépasser " . (MAX_FILE_SIZE / 1024 / 1024) . " MB.";
         } else {
             // Generate UUID4 for the ID

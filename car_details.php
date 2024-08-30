@@ -150,7 +150,7 @@ if ($id_car) {
             </div>
             <div class="mb-2 detail-item">
                 <strong>Prix par jour : </strong>
-                <?php echo htmlspecialchars($car['price_per_day']);?> FCFA 
+                <?php echo htmlspecialchars($car['price_per_day']);?> €  
             </div>
            
             <div class="detail-item">

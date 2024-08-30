@@ -96,31 +96,49 @@
 						</a>
 					</li>
 
-                    <li>
+					<li>
+						<a href="../admin/liste_owners.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-add-user"></span><span class="mtext">Propriétaires</span>
+						</a>
+					</li>
+					
+					<li>
+						<a href="../admin/liste_agencies.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-suitcase"></span><span class="mtext">Agences</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="../admin/dashboard.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-credit-card"></span><span class="mtext">Abonnements</span>
+						</a>
+					</li>
+
+                    <!-- <li>
 						<a href="../admin/liste_marques.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-fuel"></span><span class="mtext">Marques</span>
 						</a>
-					</li>
+					</li> -->
 
-                    <li>
+                    <!-- <li>
 						<a href="../admin/liste_car.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-car"></span><span class="mtext">Véhicules</span>
 						</a>
-					</li>
+					</li> -->
 
                    
 
-                    <li>
+                    <!-- <li>
 						<a href="../admin/liste_reservation.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-calendar-1"></span><span class="mtext">Réservation</span>
 						</a>
-					</li>
+					</li> -->
 
-                    <li>
+                    <!-- <li>
 						<a href="invoice.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-money-1"></span><span class="mtext">Payements</span>
 						</a>
-					</li>
+					</li> -->
 
                     <li>
 						<a href="invoice.html" class="dropdown-toggle no-arrow">
@@ -130,7 +148,7 @@
 
 					<li>
 						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-user-2"></span><span class="mtext">Utilisateurs</span>
+							<span class="micon dw dw-user-13"></span><span class="mtext">Utilisateurs</span>
 						</a>
 					</li>
                  
