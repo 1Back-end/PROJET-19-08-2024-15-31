@@ -57,7 +57,7 @@
 				<div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon shadow-none">
-							<img src="../vendors/images/user_profile.png" alt="">
+							<img src="../vendors/images/../v1.png" alt="">
 						</span>
 						<span class="user-name">Jean Dupont</span>
 					</a>

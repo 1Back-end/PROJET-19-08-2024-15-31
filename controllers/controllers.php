@@ -58,11 +58,9 @@ $subscriptionTypes = getSubscriptionTypesOptions($pdo);
 function getAgenciesOptions($pdo) {
     // Préparer la requête SQL pour récupérer les IDs et les noms des agences
     $query = "SELECT id, name FROM agencies WHERE is_deleted = 0";
-    
     try {
         // Exécuter la requête
         $stmt = $pdo->query($query);
-        
         // Récupérer toutes les lignes en tant que tableau associatif
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -76,16 +74,12 @@ $agencies = getAgenciesOptions($pdo);
 function generateAgencyCode($prefix = 'AGC') {
     // Obtenir la date actuelle au format YYYYMMDD
     $date = date('Ymd');
-
     // Générer un identifiant unique basé sur l'horodatage actuel
     $uniqueId = uniqid($prefix, true);
-
     // Extraire les derniers caractères de l'identifiant unique pour ajouter de la variabilité
     $shortUniqueId = substr($uniqueId, -6);
-
     // Combiner la date avec l'identifiant unique pour former le code final
     $code = $prefix . '-' . $date . '-' . $shortUniqueId;
-
     return $code;
 }
 
@@ -117,7 +111,7 @@ function generateLicensePlate($length = 10) {
 }
 
 
-function generateReservationNumber($prefix = 'RES', $length = 8) {
+function generateReservationNumber($prefix = 'RES', $length = 6) {
     // Générer une partie aléatoire
     $randomPart = strtoupper(substr(md5(uniqid(rand(), true)), 0, $length));
     

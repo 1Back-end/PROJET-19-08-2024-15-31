@@ -52,8 +52,8 @@ $agencies = get_agencies($pdo, $limit, $offset);
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Propriétaire</th>
                         <th>Logo</th>
+                        <th>Propriétaire</th>
                         <th>Nom</th>
                         <th>Code</th>
                         <th>Pays</th>
@@ -71,14 +71,14 @@ $agencies = get_agencies($pdo, $limit, $offset);
                     <?php foreach ($agencies as $index => $agency) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($index + 1 + $offset); ?></td>
-                            <td><?php echo htmlspecialchars($agency['owner_name']); ?></td>
                             <td>
                                 <?php if (!empty($agency['logo'])): ?>
-                                    <img src="../upload/<?php echo htmlspecialchars($agency['logo']); ?>" alt="Logo" class="img-fluid" width="50" height="50">
+                                    <img src="../upload/<?php echo htmlspecialchars($agency['logo']); ?>" alt="Logo" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
                                 <?php else: ?>
-                                    <img src="../vendors/images/default_logo.jpg" alt="Logo" class="img-thumbnail" width="50" height="50">
+                                    <img src="../vendors/images/default_logo.jpg" alt="Logo" class="img-thumbnail" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
                                 <?php endif; ?>
                             </td>
+                            <td><?php echo htmlspecialchars($agency['owner_name']); ?></td>
                             <td><?php echo htmlspecialchars($agency['name']); ?></td>
                             <td><?php echo htmlspecialchars($agency['agency_code']); ?></td>
                             <td><?php echo htmlspecialchars($agency['country']); ?></td>
