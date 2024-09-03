@@ -130,13 +130,13 @@
             <div class="mb-3 d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <!-- Bouton pour enregistrer -->
                 <button type="submit" name="submit" class="btn btn-customize text-white btn-responsive mb-2 mb-md-0">
-                    <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Enregistrer
                 </button>
 
                 <!-- Bouton pour annuler -->
                 <a href="liste_agencies.php" class="btn btn-secondary btn-responsive mb-2 ml-md-2">
-                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-times" aria-hidden="true"></i>
                     Annuler
                 </a>
 

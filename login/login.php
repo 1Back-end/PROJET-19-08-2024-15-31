@@ -29,7 +29,7 @@
 				<?php endif; ?>
 				</div>
 				<form class="rounded bg-white shadow py-5 px-4" method="post" id="loginForm">
-					<h4 class="text-dark fw-bolder fs-2 mb-2 text-center">Connectez vous à votre compte !</h4>
+					<h4 class="text-dark fw-bolder fs-3 mb-2 text-center">Connectez vous à votre compte !</h4>
 					<!-- <div class="fw-normal text-muted mb-4 text-center"> Nouveau ici ?
 						<a href="registration.php" class="text-primary fw-bold text-decoration-none text-center ">Créer un compte</a>
 					</div> -->

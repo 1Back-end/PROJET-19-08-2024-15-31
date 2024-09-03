@@ -9,7 +9,7 @@
     <!-- Titre de la page -->
     <h5 class="text-uppercase fw-bold mb-3 mb-md-0">Liste des agences</h5>
     <!-- Bouton d'ajout d'utilisateur -->
-    <a href="ajout_agencies.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2 fa-2x" aria-hidden="true"></i> Ajouter une agence</a>
+    <a href="ajout_agencies.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2" aria-hidden="true"></i> Ajouter une agence</a>
 </div>
 </div>
 

@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/style.css">
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	
 
 </head>
@@ -65,8 +66,8 @@
 
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <small><a class="dropdown-item" href="../login/profile.php"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></small>
-						<small><a class="dropdown-item" href="../login/Changer_Mot_De_Passe.php"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Changer mot de passe</a></small>
+                        <small><a class="dropdown-item" href="../admin/profile.php"><i class="fa fa-user" aria-hidden="true"></i>
+						Profile</a></small>
 						<small><a class="dropdown-item" href="../login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></small>
 					</div>
 				</div>

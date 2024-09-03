@@ -41,7 +41,8 @@
         </li>
       </ul>
       <div class="d-flex justify-content-center">
-        <a href="login/login.php" class="login-btn shadow-none">Se connecter</a>
+      <a href="owners/login.php" class="login-btn shadow-none mx-2">Mon compte</a>
+        <a href="login/login.php" class="login-btn shadow-none">S'inscire</a>
         </div>
     </div>
     

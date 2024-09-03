@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php include("script_login.php");?>
     <section class="wrapper">
 		<div class="container">
 		
@@ -21,20 +22,31 @@
 					<img decoding="async" src="../logo.png" class="img-fluid" alt="Logo">
 				</div>
 				<div class="text-center">
+				<?php if (!empty($erreur)): ?>
+					<div class="alert alert-danger text-center" role="alert">
+						<?= htmlspecialchars($erreur) ?>
+					</div>
+				<?php endif; ?>
 				</div>
 				<form class="rounded bg-white shadow py-5 px-4" method="post">
-					<h4 class="text-dark fw-bolder fs-2 mb-2 text-center">Connectez vous à votre compte !</h4>
-					<div class="fw-normal text-muted mb-4 text-center"> Nouveau ici ?
+					<h5 class="text-dark fw-bolder fs-4 mb-2 text-center">Connectez vous à votre compte !</h5>
+					<!-- <div class="fw-normal text-muted mb-4 text-center"> Nouveau ici ?
 						<a href="registration.php" class="text-primary fw-bold text-decoration-none text-center ">Créer un compte</a>
-					</div>
+					</div> -->
 					<div class="form-floating mb-3">
-						<input type="email" class="form-control"  id="floatingInput" name="email" placeholder="name@example.com">
+						<input type="email" class="form-control"  id="floatingInput" value="<?= htmlspecialchars($email ?? '') ?>"  name="email" placeholder="name@example.com">
 						<label for="floatingInput">Adresse email</label>
+						<?php if(isset($erreur_champ) && empty($_POST['email'])): ?>
+					<small class="text-danger"><?=$erreur_champ?></small>
+					<?php endif; ?>
 					</div>
 					
 					<div class="form-floating">
 						<input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
 						<label for="floatingPassword">Mot de passe</label>
+						<?php if(isset($erreur_champ) && empty($_POST['password'])): ?>
+					<small class="text-danger"><?=$erreur_champ?></small>
+					<?php endif; ?>
 					</div>
 					
 					<div class="mt-2 text-end">

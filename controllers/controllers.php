@@ -1,6 +1,28 @@
 <?php
 include_once("../database/database.php");
 
+$id_owner = $_SESSION['owner_id'] ?? null;
+$id_user = $_SESSION['user_id'] ?? null;
+
+
+function get_info_user_by_id($pdo,$id_user){
+    // Requête pour récupérer les informations de l'utilisateur en fonction de son ID
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id_user LIMIT 1");
+    $stmt->execute(['id_user' => $id_user]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+$user_info = get_info_user_by_id($pdo, $id_user);
+
+
+function get_information_by_owner($pdo, $owner_id) {
+    // Requête pour récupérer les informations de l'agence en fonction de l'ID du propriétaire
+    $stmt = $pdo->prepare("SELECT * FROM agencies WHERE owner_id = :owner_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute(['owner_id' => $owner_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+// Récupérer les informations de l'agence, y compris le chemin du logo
+$agency_info = get_information_by_owner($pdo, $id_owner);
+
 function get_all_owners($pdo, $limit = 10, $offset = 0) {
     // Préparation de la requête SQL pour récupérer les propriétaires non supprimés avec pagination
     $query = "SELECT * FROM owners WHERE is_deleted = 0 ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
@@ -82,6 +104,60 @@ function generateAgencyCode($prefix = 'AGC') {
     $code = $prefix . '-' . $date . '-' . $shortUniqueId;
     return $code;
 }
+function get_count_agencies($pdo){
+    $query = "SELECT COUNT(*) FROM agencies WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchColumn();
+}
+$countAgencies = get_count_agencies($pdo);
+
+function get_count_owners($pdo){
+    $query = "SELECT COUNT(*) FROM owners WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchColumn();
+}
+$countOwners = get_count_owners($pdo);
+
+
+function getSubscriptionsWithPagination($pdo, $limit, $offset) {
+    $query = "SELECT 
+                s.id AS subscription_id,
+                a.name AS agency_name,
+                st.name AS subscription_type,
+                s.start_date,
+                s.end_date,
+                DATEDIFF(s.end_date, s.start_date) AS days_between,
+                (DATEDIFF(s.end_date, s.start_date) * st.price) AS total_amount,
+                s.status,
+                s.created_at
+              FROM 
+                subscriptions s
+              JOIN 
+                agencies a ON s.agency_id = a.id
+              JOIN 
+                subscription_types st ON s.id_type = st.id
+              WHERE 
+                s.is_deleted = 0
+              ORDER BY 
+                s.created_at DESC
+              LIMIT :limit OFFSET :offset";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetchAll();
+}
+
+function getTotalSubscriptions($pdo) {
+    $query = "SELECT COUNT(*) AS total FROM subscriptions WHERE is_deleted = 0";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    
+    return $stmt->fetchColumn();
+}
+
 
 
 function generateUuid4() {

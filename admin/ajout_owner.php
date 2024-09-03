@@ -112,11 +112,11 @@
             </div>
             <div class="mb-5 d-flex flex-column flex-md-row align-items-center justify-content-between">
                     <button type="submit" name="submit" class="btn btn-customize text-white btn-responsive submit_btn mb-2 mb-md-0">
-                        <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
                             Enregistrer
                     </button>
                     <a href="liste_owners.php" class="btn btn-secondary btn-responsive ml-md-2 mb-2">
-                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-times" aria-hidden="true"></i>
                         Annuler
                     </a>
                     <!-- <button type="reset" class="btn btn-secondary ml-md-2 mb-2">Annuler</button> -->

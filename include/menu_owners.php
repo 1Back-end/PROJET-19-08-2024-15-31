@@ -52,19 +52,24 @@
 					</div>
 				</div>
 			</div>
-			
+			<?php include("../owners/session_owners.php");?>
+			<?php include_once("../database/database.php"); ?>
+			<?php include_once("../controllers/controllers.php"); ?>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon shadow-none">
-							<img src="../vendors/images/../v1.png" alt="">
-						</span>
-						<span class="user-name">Jean Dupont</span>
+					<span class="user-icon shadow-none">
+						<img src="../upload/<?= htmlspecialchars($_SESSION['owner_image'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil">
+					</span>
+					<span class="user-name ml-3">
+						<?= htmlspecialchars($_SESSION['owner_name']); ?>
+					</span>
+
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                         <small><a class="dropdown-item" href="../login/profile.php"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></small>
 						<small><a class="dropdown-item" href="../login/Changer_Mot_De_Passe.php"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Changer mot de passe</a></small>
-						<small><a class="dropdown-item" href="../login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></small>
+						<small><a class="dropdown-item" href="../owners/logout_owners.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></small>
 					</div>
 				</div>
 			</div>
@@ -78,9 +83,9 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="##">
-				<img src="../logo.png" alt="" class="">
-			</a>
+		  <h3 class="text-white mb-3 text-uppercase fw-bold mt-2 p-3">
+		  <?php echo !empty($agency_info['name']) ? htmlspecialchars($agency_info['name']) : 'Nom de l\'agence indisponible'; ?>
+		  </h3>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
 			</div>
