@@ -115,6 +115,12 @@
 						</a>
 					</li>
 
+					<li>
+						<a href="../admin/liste_payments.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-money-1"></span><span class="mtext">Paiements</span>
+						</a>
+					</li>
+
                     <!-- <li>
 						<a href="../admin/liste_marques.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-fuel"></span><span class="mtext">Marques</span>

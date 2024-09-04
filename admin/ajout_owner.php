@@ -100,7 +100,7 @@
                             <div class="d-flex align-items-center">
                         <div>
                             <!-- L'image affichée ici -->
-                            <img id="avatar" src="../vendors/images/profile.jpg" alt="Aperçu de l'image" class="img-thumbnail profile-image">
+                            <img id="avatar" src="../vendors/images/profile.jpg" alt="Aperçu de l'image" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
                         </div>
                         <div class="ml-3 w-100">
                             <!-- Champ d'entrée de fichier pour télécharger l'image -->

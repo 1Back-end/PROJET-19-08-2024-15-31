@@ -1,0 +1,29 @@
+{
+    "test_credit_cards": [
+      {
+        "description": "Carte de Crédit Valide pour un Paiement Réussi",
+        "number": "4242 4242 4242 4242",
+        "expiry_date": "12/24",
+        "cvc": "123",
+        "postal_code": "12345",
+        "note": "Ce numéro de carte simule un paiement réussi avec la carte de crédit Visa."
+      },
+      {
+        "description": "Carte de Crédit pour un Paiement Refusé",
+        "number": "4000 0000 0000 0002",
+        "expiry_date": "12/24",
+        "cvc": "123",
+        "postal_code": "12345",
+        "note": "Ce numéro de carte simule une carte de crédit refusée."
+      },
+      {
+        "description": "Carte de Crédit pour une Erreur de Validation",
+        "number": "4000 0000 0000 0001",
+        "expiry_date": "12/24",
+        "cvc": "123",
+        "postal_code": "12345",
+        "note": "Ce numéro de carte simule une erreur de validation."
+      }
+    ]
+  }
+  

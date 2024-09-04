@@ -7,6 +7,23 @@ $erreur_champ = "";
 $erreur = "";
 $success = "";
 
+// Function to update subscription status
+function updateSubscriptionStatus($pdo) {
+    $query = "UPDATE subscriptions 
+              SET status = 'expired' 
+              WHERE end_date < NOW() AND status = 'inactive'";
+    
+    try {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error updating subscriptions: " . $e->getMessage();
+    }
+}
+
+// Call the function to ensure subscription statuses are updated
+updateSubscriptionStatus($pdo);
+
 if (isset($_POST["submit"])) {
     // Récupération et validation des données du formulaire
     $subscription_type = $_POST['subscription_type'] ?? null;

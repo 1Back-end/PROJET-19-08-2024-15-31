@@ -104,6 +104,19 @@ function generateAgencyCode($prefix = 'AGC') {
     $code = $prefix . '-' . $date . '-' . $shortUniqueId;
     return $code;
 }
+
+function generateTransactionId() {
+    // Générer un identifiant unique basé sur l'horodatage actuel et un nombre aléatoire
+    $timestamp = time(); // Horodatage actuel en secondes
+    $randomNumber = mt_rand(1000, 9999); // Générer un nombre aléatoire à 4 chiffres
+    $uniqueId = uniqid(); // Générer un identifiant unique basé sur l'heure actuelle en microsecondes
+    
+    // Combiner l'horodatage, le nombre aléatoire, et l'identifiant unique
+    $transactionId = strtoupper($uniqueId . $timestamp . $randomNumber);
+    
+    return $transactionId;
+}
+
 function get_count_agencies($pdo){
     $query = "SELECT COUNT(*) FROM agencies WHERE is_deleted = 0";
     $stmt = $pdo->query($query);
@@ -117,6 +130,47 @@ function get_count_owners($pdo){
     return $stmt->fetchColumn();
 }
 $countOwners = get_count_owners($pdo);
+
+function get_all_payment($pdo, $limit, $offset) {
+    $query = "
+        SELECT 
+            p.id AS payment_id, 
+            p.amount, 
+            p.payment_date, 
+            p.payment_method, 
+            p.status, 
+            p.transaction_id ,
+            st.name AS subscription_name, 
+            a.name AS agency_name
+        FROM 
+            payments p
+        JOIN 
+            subscriptions s ON p.subscription_id = s.id
+        JOIN 
+            agencies a ON s.agency_id = a.id
+        JOIN 
+            subscription_types st ON s.id_type = st.id
+        WHERE 
+            p.is_deleted = 0
+        ORDER BY 
+            p.payment_date DESC
+        LIMIT 
+            :limit OFFSET :offset
+    ";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function get_payment_count($pdo) {
+    $query = "SELECT COUNT(*) FROM payments WHERE is_deleted = 0";
+    return $pdo->query($query)->fetchColumn();
+}
+
 
 
 function getSubscriptionsWithPagination($pdo, $limit, $offset) {

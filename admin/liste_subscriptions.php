@@ -9,7 +9,7 @@
     <!-- Titre de la page -->
     <h5 class="text-uppercase fw-bold mb-3 mb-md-0">Liste des Abonnements</h5>
     <!-- Bouton d'ajout d'utilisateur -->
-    <a href="ajout_subscriptions.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2 fa-2x" aria-hidden="true"></i> Ajouter un abonnement</a>
+    <a href="ajout_subscriptions.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2" aria-hidden="true"></i> Ajouter un abonnement</a>
 </div>
 </div>
 
@@ -72,19 +72,29 @@ setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fr', 'fr_CA');
 
                                 <td><?= htmlspecialchars($subscription['created_at']) ?></td>
                                 <td>
-                                  <div class="dropdown">
-                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Actions
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item text-info" href="edit_subscription.php?id=<?= urlencode($subscription['subscription_id']) ?>">
-                                              <i class="fas fa-edit text-info"></i> Modifier
-                                          </a>
-                                          <a class="dropdown-item text-success" href="pay_subscription.php?id=<?= urlencode($subscription['subscription_id']) ?>'">
-                                              <i class="fas fa-dollar-sign text-success"></i> Payer
-                                          </a>
-                                      </div>
-                                  </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item text-warning text-white" href="edit_subscription.php?id=<?= urlencode($subscription['subscription_id']) ?>">
+                                            <i class="fas fa-pencil text-warning text-white"></i> Modifier
+                                        </a>
+                                        <?php if ($subscription['status'] == 'expired' || $subscription['status'] == 'inactive'): ?>
+                                            <a class="dropdown-item text-success" href="pay_subscription.php?id=<?= urlencode($subscription['subscription_id']) ?>">
+                                                <i class="fas fa-credit-card-alt text-success"></i> Payer
+                                            </a>
+                                        <?php else: ?>
+                                            <!-- Le bouton est désactivé pour les autres statuts -->
+                                            <a class="dropdown-item text-muted" href="#" onclick="return false;">
+                                                <i class="fas fa-credit-card-alt text-muted"></i> Payer
+                                            </a>
+                                        <?php endif; ?>
+                                        <a class="dropdown-item text-danger" href="delete_subscription.php?id=<?= urlencode($subscription['subscription_id']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette souscription ?');">
+                                            <i class="fas fa-trash-alt text-danger"></i> Supprimer
+                                        </a>
+                                    </div>
+                                </div>
                               </td>
                             </tr>
                         <?php endforeach; ?>
