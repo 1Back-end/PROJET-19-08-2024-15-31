@@ -79,6 +79,10 @@
 	
 				
 					
+  <?php 
+  $owner_id = $_SESSION['owner_id'] ?? null;
+  $agency_info=get_information_by_owner($pdo, $owner_id);
+  ?>
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -134,6 +138,12 @@
 					<li>
 						<a href="../owners/liste_users.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user-13"></span><span class="mtext">Utilisateurs</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="../owners/my_account.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-name"></span><span class="mtext">Mon compte</span>
 						</a>
 					</li>
                  

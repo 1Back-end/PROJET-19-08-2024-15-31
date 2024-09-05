@@ -1,5 +1,5 @@
 <?php include("../include/menu_owners.php");?>
-<?php include("../controllers/controllers.php");?>
+<?php include_once 'controllers_owners.php';?>
 <link rel="stylesheet" href="style.css">
 
 <div class="main-container mt-3 pb-5">
@@ -30,48 +30,71 @@ if ($message == 'success') {
 
 
 
-
-
 <div class="col-md-12 col-sm-12">
-            <div class="card-box p-3">
-            <div class="table-responsive w-100">
-                <table class="table table-bordered text-center table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Logo</th>
-                            <th>Nom</th>
-                            <th>Ajouté le</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (!empty($carBrands)): ?>
-                            <?php foreach ($carBrands as $index => $brand): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($index + 1); ?></td>
-                                    <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;"></td>
-                                    <td><?php echo htmlspecialchars($brand['name']); ?></td>
-                                    <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
-                                    <!-- Bouton qui déclenche la modale -->
-                                        <td>
-                                            <a href="#" class="shadow-none btn-danger btn-xs btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="<?php echo htmlspecialchars($brand['id']); ?>">Supprimer</a>
-                                        </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
+    <div class="card-box p-3">
+        <div class="table-responsive w-100">
+            <table class="table table-bordered text-center table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Logo</th>
+                        <th>Nom</th>
+                        <th>Ajouté le</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($carBrands)): ?>
+                        <?php foreach ($carBrands as $index => $brand): ?>
                             <tr>
-                                <td colspan="5">Aucune marque de voiture trouvée.</td>
+                                <td><?php echo htmlspecialchars($index + 1 + ($currentPage - 1) * $itemsPerPage); ?></td>
+                                <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;"></td>
+                                <td><?php echo htmlspecialchars($brand['name']); ?></td>
+                                <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
+                                <td>
+                                    <a href="#" class="shadow-none btn-danger btn-xs btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="<?php echo htmlspecialchars($brand['id']); ?>">Supprimer</a>
+                                </td>
                             </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">Aucune marque de voiture trouvée.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+
         </div>
     </div>
-</div>
+</div><br>
+ <!-- Pagination -->
+ <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?php if ($currentPage > 1): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $currentPage - 1 ?>" aria-label="Précédent">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
+                    <?php for ($page = 1; $page <= $totalPages; $page++): ?>
+                        <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page ?>"><?= $page ?></a>
+                        </li>
+                    <?php endfor; ?>
 
+                    <?php if ($currentPage < $totalPages): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $currentPage + 1 ?>" aria-label="Suivant">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
 
 

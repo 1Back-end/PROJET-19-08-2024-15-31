@@ -1,5 +1,5 @@
 <?php include("../include/menu_owners.php");?>
-<?php include("../controllers/controllers.php");?>
+<?php include_once 'controllers_owners.php';?>
 <link rel="stylesheet" href="style.css">
 
 
@@ -15,38 +15,6 @@
         </a>
     </div>
 </div>
-<?php
-// Configuration de la pagination
-$itemsPerPage = 10;
-
-// Connexion à la base de données
-try {
-    // Calcul du nombre total d'éléments
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM cars WHERE is_deleted = 0");
-    $stmt->execute();
-    $totalItems = $stmt->fetchColumn();
-    $totalPages = ceil($totalItems / $itemsPerPage);
-
-    // Récupération de la page actuelle
-    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $currentPage = max(1, min($currentPage, $totalPages)); // Assure que la page est dans la plage valide
-
-    // Calcul de l'offset pour la requête
-    $offset = ($currentPage - 1) * $itemsPerPage;
-
-    // Récupération des données pour la page actuelle avec jointure pour récupérer le nom de la marque
-    $stmt = $pdo->prepare(" SELECT cars.*, carbrands.name AS brand_name FROM cars LEFT JOIN carbrands ON cars.brand_id = carbrands.id
-        WHERE cars.is_deleted = 0 LIMIT :offset, :itemsPerPage
-    ");
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
-    $stmt->execute();
-    $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-    echo "Erreur: " . $e->getMessage();
-}
-?>
 
 <div class="col-md-12 col-sm-12">
 <?php
@@ -62,84 +30,110 @@ if (isset($_GET['message'])) {
 ?>
 </div>
 
+<?php
+// ID du propriétaire (récupéré via la session ou autre source)
+$owner_id = $_SESSION['owner_id'] ?? null;
+
+// Récupérer la page actuelle depuis les paramètres GET
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$itemsPerPage = 10; // Nombre d'éléments par page
+
+// Récupérer les voitures pour cette page
+$cars = get_car_by_owner_id($pdo, $owner_id, $currentPage, $itemsPerPage);
+
+// Récupérer le nombre total de voitures pour la pagination
+$totalCarsCount = get_total_cars_count($pdo, $owner_id);
+$totalPages = ceil($totalCarsCount / $itemsPerPage);
+?>
+
 <div class="col-md-12 col-sm-12"> 
     <div class="card-box p-3">
-    <div class="table-responsive">
-    <!-- Tableau des voitures -->
-    <table class="table table-bordered table-striped text-center">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Immatriculation</th>
-                <th>Marque</th>
-                <th>Modèle</th>
-                <th>Transmission</th>
-                <th>Sièges</th>
-                <th>Kilométrage</th>
-                <th>Statut</th>
-                <th>
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($cars as $index => $car): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($index + 1); ?></td>
-                    <td><?php echo htmlspecialchars($car['registration_number']); ?></td>
-                    <td><?php echo htmlspecialchars($car['brand_name']); ?></td>
-                    <td><?php echo htmlspecialchars($car['model']); ?></td>
-                    <td><?php echo htmlspecialchars($car['transmission']); ?></td>
-                    <td><?php echo htmlspecialchars($car['seats']); ?></td>
-                    <td><?php echo htmlspecialchars($car['mileage']); ?> Km</td>
-                    <td>
-                    <?php if ($car['availability_status'] == "Disponible"): ?>
-                        <span class="badge badge-success">Disponible</span>
-                    <?php elseif ($car['availability_status'] == "Réservé"):?>
-                        <span class="badge badge-warning">Réservé</span>
-                    <?php else:?>
-                        <span class="badge badge-danger">Hors service</span>
-                    <?php endif;?>
-                    </td>
-                    <td class="d-flex align-items-center justify-content-center">
-                            <!-- Bouton pour supprimer une voiture -->
-                            <a href="#" data-id="<?php echo $car['id']; ?>" class="btn btn-danger btn-sm btn-xs mx-2 btn-delete">
-                                Supprimer
-                            </a>
-                        <!-- Bouton pour modifier une voiture -->
-                        <a href="modifier_car.php?id=<?php echo $car['id'];?>" class="btn btn-warning text-white btn-sm btn-xs mx-2">
-                            Modifier
-                        </a>
+        <div class="table-responsive">
+            <!-- Tableau des voitures -->
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Immatriculation</th>
+                        <th>Marque</th>
+                        <th>Modèle</th>
+                        <th>Transmission</th>
+                        <th>Sièges</th>
+                        <th>Kilométrage</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($cars as $index => $car): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars(($currentPage - 1) * $itemsPerPage + $index + 1); ?></td>
+                            <td><?php echo htmlspecialchars($car['registration_number']); ?></td>
+                            <td><?php echo htmlspecialchars($car['brand_name']); ?></td>
+                            <td><?php echo htmlspecialchars($car['model']); ?></td>
+                            <td><?php echo htmlspecialchars($car['transmission']); ?></td>
+                            <td><?php echo htmlspecialchars($car['seats']); ?></td>
+                            <td><?php echo htmlspecialchars($car['mileage']); ?> Km</td>
+                            <td>
+                                <?php if ($car['availability_status'] == "Disponible"): ?>
+                                    <span class="badge badge-success">Disponible</span>
+                                <?php elseif ($car['availability_status'] == "Réservé"):?>
+                                    <span class="badge badge-warning">Réservé</span>
+                                <?php else:?>
+                                    <span class="badge badge-danger">Hors service</span>
+                                <?php endif;?>
+                            </td>
+                            <td class="d-flex align-items-center justify-content-center">
+                            <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <!-- Bouton pour supprimer une voiture -->
+                                <li><a class="dropdown-item text-danger btn-delete" href="#" data-id="<?php echo $car['id']; ?>"><i class="fas fa-trash-alt"></i> Supprimer</a></li>
+                                <!-- Bouton pour modifier une voiture -->
+                                <li><a class="dropdown-item text-warning" href="modifier_car.php?id=<?php echo $car['id']; ?>"><i class="fas fa-edit"></i> Modifier</a></li>
+                                <!-- Bouton pour afficher les détails d'une voiture -->
+                                <li><a class="dropdown-item text-info" href="info_car.php?id=<?php echo $car['id']; ?>"><i class="fas fa-info-circle"></i> Détails</a></li>
+                            </ul>
+                                </div>
 
-                        <a href="info_car.php?id=<?php echo $car['id'];?>" class="btn btn-info btn-sm btn-xs mx-2">
-                             Détails
-                        </a> 
-        
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
-    <!-- Pagination -->
-    <div class="pagination">
+        </div>
+    </div>
+</div><br>
+<!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
         <?php if ($currentPage > 1): ?>
-            <a href="?page=<?php echo $currentPage - 1; ?>">&laquo; Précédent</a>
+            <li class="page-item">
+                <a class="page-link" href="?page=<?= $currentPage - 1 ?>" aria-label="Précédent">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
         <?php endif; ?>
 
         <?php for ($page = 1; $page <= $totalPages; $page++): ?>
-            <a href="?page=<?php echo $page; ?>" class="<?php echo $page == $currentPage ? 'active' : ''; ?>">
-                <?php echo $page; ?>
-            </a>
+            <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
+                <a class="page-link" href="?page=<?= $page ?>"><?= $page ?></a>
+            </li>
         <?php endfor; ?>
 
         <?php if ($currentPage < $totalPages): ?>
-            <a href="?page=<?php echo $currentPage + 1; ?>">Suivant &raquo;</a>
+            <li class="page-item">
+                <a class="page-link" href="?page=<?= $currentPage + 1 ?>" aria-label="Suivant">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
         <?php endif; ?>
-    </div>
-</div>
-</div>
-</div>
+    </ul>
+</nav>
+
 
 
 <!-- Modal pour la désactivation -->

@@ -444,23 +444,6 @@ function get_all_admin($pdo) {
 $admins = get_all_admin($pdo);
 
 
-function getActiveCarBrands($pdo) {
-    try {
-        // Préparer la requête SQL
-        $stmt = $pdo->prepare("SELECT * FROM carbrands WHERE is_deleted = 0 ORDER BY created_at DESC");
-        // Exécuter la requête
-        $stmt->execute();
-        // Récupérer les résultats
-        $carBrands = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $carBrands;
-    } catch (PDOException $e) {
-        // Gestion des erreurs
-        echo "Erreur lors de la récupération des marques de voitures : " . $e->getMessage();
-        return false;
-    }
-}
-// Appeler la fonction pour récupérer les marques de voitures actives
-$carBrands = getActiveCarBrands($pdo);
 
 
 function getCarModels() {
@@ -705,43 +688,7 @@ $countCar = get_count_car($pdo);
 
 
 
-function afficherReservations($pdo) {
-    try {
-        // Préparer la requête SQL pour récupérer les réservations avec l'immatriculation du véhicule
-        $sql = "
-            SELECT 
-                reservations.*,
-                cars.registration_number,
-                cars.price_per_day,
-                (reservations.number_of_days * cars.price_per_day) AS total_cost
-            FROM 
-                reservations
-            INNER JOIN 
-                cars 
-            ON 
-                reservations.id_car = cars.id WHERE 
-                reservations.is_deleted = 0 ORDER BY
-                reservations.created_at DESC;
-        ";
 
-        // Exécuter la requête
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-
-        // Récupérer les résultats
-        $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $reservations ?: []; // Retourne un tableau vide si aucun résultat n'est trouvé
-    } catch (PDOException $e) {
-        // Gestion des erreurs
-        echo "Erreur lors de la récupération des réservations: " . $e->getMessage();
-        return false;
-    }
-}
-
-// Appeler la fonction pour afficher les réservations
-
-$reservations = afficherReservations($pdo);
 
 
 function getTotalClients($pdo) {

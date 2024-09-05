@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
     // Récupération des données du formulaire
     $marque = $_POST['marque'] ?? null;
     $description = $_POST['description'] ?? null;
-    $added_by = $_SESSION['user_id'] ?? null;
+    $added_by = $_SESSION['owner_id'] ?? null;
     $id = generateUuid4();
     $photo = $_FILES['photo'] ?? null;
 

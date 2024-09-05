@@ -6,7 +6,28 @@ $erreur_champ = "";
 $erreur = "";
 $success = "";
 
-if (isset($_POST["submit"])) {
+// Limite de voitures par propriétaire
+$limite_voitures = 15;
+
+// ID du propriétaire (tiré de la session)
+$owner_id = $_SESSION['owner_id'] ?? null;
+
+// Vérifier si le propriétaire est connecté
+if ($owner_id === null) {
+    $erreur = "Vous devez être connecté pour ajouter une voiture.";
+} else {
+    // Compter le nombre de voitures ajoutées par ce propriétaire
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM cars WHERE added_by = :owner_id AND is_deleted = 0");
+    $stmt->bindValue(':owner_id', $owner_id, PDO::PARAM_STR);
+    $stmt->execute();
+    $nombre_voitures = $stmt->fetchColumn();
+
+    if ($nombre_voitures >= $limite_voitures) {
+        $erreur = "Vous avez atteint la limite de 15 voitures. Veuillez souscrire à un abonnement pour ajouter d'autres voitures.";
+    }
+}
+
+if (isset($_POST["submit"]) && empty($erreur)) {
     $brand = $_POST['brand'] ?? null;
     $carYear = $_POST['carYear'] ?? null;
     $transmissionType = $_POST['transmissionType'] ?? null;
@@ -22,35 +43,53 @@ if (isset($_POST["submit"])) {
     $photos = $_FILES['photos'] ?? null;
     $id = generateUuid4();
     $immatriculation = generateLicensePlate();
-    $added_by = $_SESSION['user_id'] ?? null;
+    $added_by = $owner_id;
 
     // Validation des champs requis
     if (empty($brand) || empty($carYear) || empty($transmissionType) || empty($color) || empty($price_per_day) || empty($modele) || empty($fuelType) || empty($availableSeats) || empty($mileage) || empty($insurance_expiration) || empty($notes)) {
         $erreur_champ = "Tous les champs requis doivent être remplis.";
     }
 
-    // Vérification des documents si téléchargés
-    if ($documents && $documents['error'][0] == UPLOAD_ERR_OK) {
-        $allowedDocumentTypes = ['application/pdf', 'application/msword', 'application/vnd.ms-excel'];
-        foreach ($documents['type'] as $type) {
-            if (!in_array($type, $allowedDocumentTypes)) {
-                $erreur .= "Type de document non autorisé. ";
+
+
+    // Vérification des documents et photos si téléchargés
+        if ($documents && $documents['error'][0] == UPLOAD_ERR_OK) {
+            $allowedDocumentTypes = ['application/pdf', 'application/msword', 'application/vnd.ms-excel'];
+            foreach ($documents['type'] as $type) {
+                if (!in_array($type, $allowedDocumentTypes)) {
+                    $erreur .= "Type de document non autorisé. ";
+                }
             }
         }
-    }
 
+        // Vérification des photos si téléchargées
+        if ($photos && $photos['error'][0] == UPLOAD_ERR_OK) {
+            $allowedPhotoTypes = ['image/jpeg', 'image/png'];
+            $maxFileSize = 5 * 1024 * 1024; // 5MB en octets
+
+            foreach ($photos['type'] as $key => $type) {
+                // Vérification du type de fichier
+                if (!in_array($type, $allowedPhotoTypes)) {
+                    $erreur .= "Type de photo non autorisé. ";
+                }
+                // Vérification de la taille du fichier
+                if ($photos['size'][$key] > $maxFileSize) {
+                    $erreur .= "La taille de la photo dépasse la limite de 5MB. ";
+                }
+            }
+        }
     // Vérification des photos si téléchargées
-    if ($photos && $photos['error'][0] == UPLOAD_ERR_OK) {
-        if (count($photos['name']) > 4) {
-            $erreur .= "Vous ne pouvez télécharger que 4 photos. ";
-        }
+        if ($photos && $photos['error'][0] == UPLOAD_ERR_OK) {
+            if (count($photos['name']) > 4) {
+                $erreur .= "Vous ne pouvez télécharger que 4 photos. ";
+            }
 
-        foreach ($photos['type'] as $type) {
-            if (!in_array($type, ['image/jpeg', 'image/png'])) {
-                $erreur .= "Type de photo non autorisé. ";
+            foreach ($photos['type'] as $type) {
+                if (!in_array($type, ['image/jpeg', 'image/png'])) {
+                    $erreur .= "Type de photo non autorisé. ";
+                }
             }
         }
-    }
 
     // Enregistrer les fichiers si pas d'erreur
     if (empty($erreur) && empty($erreur_champ)) {
@@ -122,4 +161,6 @@ if (isset($_POST["submit"])) {
         }
     }
 }
+
+
 ?>
