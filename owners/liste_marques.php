@@ -1,4 +1,4 @@
-<?php include("../include/menu.php");?>
+<?php include("../include/menu_owners.php");?>
 <?php include("../controllers/controllers.php");?>
 <link rel="stylesheet" href="style.css">
 
@@ -50,7 +50,7 @@ if ($message == 'success') {
                             <?php foreach ($carBrands as $index => $brand): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($index + 1); ?></td>
-                                    <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="img-thumbnail img-marque"></td>
+                                    <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;"></td>
                                     <td><?php echo htmlspecialchars($brand['name']); ?></td>
                                     <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
                                     <!-- Bouton qui déclenche la modale -->

@@ -108,7 +108,7 @@ if (isset($_GET['session_id']) && isset($_GET['subscription_id'])) {
         ':id' => $payment_id,
         ':subscription_id' => $subscription_id,
         ':amount' => $session->amount_total / 100, // Stripe renvoie le montant en centimes
-        ':transaction_id' => $transaction_id,
+        ':transaction_id' => $payment_intent,
         ':added_by' => $added_by, // Assurez-vous que cette valeur est valide
     ]);
 

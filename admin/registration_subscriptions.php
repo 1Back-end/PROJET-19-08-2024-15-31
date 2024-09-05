@@ -34,35 +34,44 @@ if (isset($_POST["submit"])) {
     $id = generateUuid4(); // Fonction pour générer un UUID
     $added_by = $_SESSION['user_id'] ?? null;
 
-    // Validation des champs (ajoutez d'autres validations selon les besoins)
+    // Validation des champs
     if (!$subscription_type || !$start_date || !$end_date || !$agency) {
         $erreur_champ = "Tous les champs obligatoires doivent être remplis.";
     } else {
-        try {
-            // Préparer la requête SQL pour insérer les données
-            $query = "INSERT INTO subscriptions (id, agency_id, id_type, start_date, end_date, status, created_at, updated_at, is_deleted, added_by)
-                      VALUES (:id, :agency_id, :id_type, :start_date, :end_date, 'inactive', NOW(), NOW(), 0, :added_by)";
-            $stmt = $pdo->prepare($query);
+        // Convertir les dates en objets DateTime pour comparaison
+        $startDateTime = new DateTime($start_date);
+        $endDateTime = new DateTime($end_date);
 
-            // Lier les paramètres à la requête SQL
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':agency_id', $agency);
-            $stmt->bindParam(':id_type', $subscription_type);
-            $stmt->bindParam(':start_date', $start_date);
-            $stmt->bindParam(':end_date', $end_date);
-            $stmt->bindParam(':added_by', $added_by);
+        // Vérifier si la date de fin est antérieure à la date de début
+        if ($endDateTime < $startDateTime) {
+            $erreur_champ = "La date de fin doit être supérieure à la date de début.";
+        } else {
+            try {
+                // Préparer la requête SQL pour insérer les données
+                $query = "INSERT INTO subscriptions (id, agency_id, id_type, start_date, end_date, status, created_at, updated_at, is_deleted, added_by)
+                          VALUES (:id, :agency_id, :id_type, :start_date, :end_date, 'inactive', NOW(), NOW(), 0, :added_by)";
+                $stmt = $pdo->prepare($query);
 
-            // Exécuter la requête
-            if ($stmt->execute()) {
-                // Si l'insertion est réussie, définir un message de succès
-                $success = "Abonnement enregistré avec succès.";
-            } else {
-                // Si l'insertion échoue, définir un message d'erreur
-                $erreur = "Erreur lors de l'enregistrement de l'abonnement.";
+                // Lier les paramètres à la requête SQL
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':agency_id', $agency);
+                $stmt->bindParam(':id_type', $subscription_type);
+                $stmt->bindParam(':start_date', $start_date);
+                $stmt->bindParam(':end_date', $end_date);
+                $stmt->bindParam(':added_by', $added_by);
+
+                // Exécuter la requête
+                if ($stmt->execute()) {
+                    // Si l'insertion est réussie, définir un message de succès
+                    $success = "Abonnement enregistré avec succès.";
+                } else {
+                    // Si l'insertion échoue, définir un message d'erreur
+                    $erreur = "Erreur lors de l'enregistrement de l'abonnement.";
+                }
+            } catch (PDOException $e) {
+                // En cas d'erreur PDO, définir un message d'erreur
+                $erreur = "Erreur de connexion à la base de données : " . $e->getMessage();
             }
-        } catch (PDOException $e) {
-            // En cas d'erreur PDO, définir un message d'erreur
-            $erreur = "Erreur de connexion à la base de données : " . $e->getMessage();
         }
     }
 }

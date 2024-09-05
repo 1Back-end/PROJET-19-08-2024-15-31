@@ -1,4 +1,4 @@
-<?php include("../include/menu.php");?>
+<?php include("../include/menu_owners.php");?>
 <link rel="stylesheet" href="style.css">
 
 <div class="main-container mt-3 pb-5">
@@ -43,7 +43,7 @@
                             <div class="d-flex align-items-center">
                                 <!-- Conteneur pour l'image affichée -->
                                 <div>
-                                    <img id="avatar" src="../Peugeot.png" alt="Aperçu de l'image" class="img-thumbnail">
+                                    <img id="avatar" src="../Peugeot.png" alt="Aperçu de l'image" class="rounded-circle img-fluid" width="80" height="80" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
                                 </div>
                                 <!-- Conteneur pour le champ d'entrée de fichier -->
                                 <div class="ml-3 w-100">

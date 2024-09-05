@@ -53,8 +53,7 @@
 				</div>
 			</div>
 			<?php include("../owners/session_owners.php");?>
-			<?php include_once("../database/database.php"); ?>
-			<?php include_once("../controllers/controllers.php"); ?>
+			<?php include_once '../owners/controllers_owners.php'; ?>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -93,16 +92,37 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 					<li>
-						<a href="../admin/dashboard.php" class="dropdown-toggle no-arrow">
+						<a href="../owners/dashboard.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-analytics1"></span><span class="mtext">Dashboard</span>
 						</a>
 					</li>
 
-                    <li>
-						<a href="../admin/liste_marques.php" class="dropdown-toggle no-arrow">
+
+					<li>
+						<a href="../owners/liste_marques.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-fuel"></span><span class="mtext">Marques</span>
 						</a>
-					</li> 
+					</li>
+
+                    <li>
+						<a href="../owners/liste_car.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-car"></span><span class="mtext">Véhicules</span>
+						</a>
+					</li>
+
+                   
+
+                    <li>
+						<a href="../owners/liste_reservation.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-calendar-1"></span><span class="mtext">Réservation</span>
+						</a>
+					</li>
+
+                    <li>
+						<a href="invoice.html" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-money-1"></span><span class="mtext">Payements</span>
+						</a>
+					</li>
                    
 
                     <li>
@@ -112,7 +132,7 @@
 					</li>
 
 					<li>
-						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
+						<a href="../owners/liste_users.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user-13"></span><span class="mtext">Utilisateurs</span>
 						</a>
 					</li>

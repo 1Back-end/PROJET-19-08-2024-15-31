@@ -10,7 +10,7 @@
 	<!-- Bootstrap 5 CDN Link -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom CSS Link -->
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="login.css">
 </head>
 <body>
 <?php include("script_login.php");?>

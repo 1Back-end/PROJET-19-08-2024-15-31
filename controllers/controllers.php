@@ -1,7 +1,5 @@
 <?php
 include_once("../database/database.php");
-
-$id_owner = $_SESSION['owner_id'] ?? null;
 $id_user = $_SESSION['user_id'] ?? null;
 
 
@@ -14,14 +12,7 @@ function get_info_user_by_id($pdo,$id_user){
 $user_info = get_info_user_by_id($pdo, $id_user);
 
 
-function get_information_by_owner($pdo, $owner_id) {
-    // Requête pour récupérer les informations de l'agence en fonction de l'ID du propriétaire
-    $stmt = $pdo->prepare("SELECT * FROM agencies WHERE owner_id = :owner_id AND is_deleted = 0 LIMIT 1");
-    $stmt->execute(['owner_id' => $owner_id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-// Récupérer les informations de l'agence, y compris le chemin du logo
-$agency_info = get_information_by_owner($pdo, $id_owner);
+
 
 function get_all_owners($pdo, $limit = 10, $offset = 0) {
     // Préparation de la requête SQL pour récupérer les propriétaires non supprimés avec pagination
@@ -116,6 +107,88 @@ function generateTransactionId() {
     
     return $transactionId;
 }
+
+function get_somme_money_payment($pdo){
+    $query = "SELECT SUM(amount) FROM payments WHERE is_deleted = 0";
+    $stmt = $pdo->query($query);
+    return $stmt->fetchColumn();
+}
+$somme_payment=get_somme_money_payment($pdo);
+
+function getAgencyPaymentsData($pdo) {
+    // Requête SQL pour récupérer les paiements totalisés par agence
+    $query = "
+        SELECT 
+            a.name AS agency_name,
+            SUM(p.amount) AS total_payments
+        FROM 
+            payments p
+        JOIN 
+            subscriptions s ON p.subscription_id = s.id
+        JOIN 
+            agencies a ON s.agency_id = a.id
+        WHERE 
+            p.is_deleted = 0
+        GROUP BY 
+            a.name
+        ORDER BY 
+            a.name
+    ";
+
+    try {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error retrieving agency payments data: " . $e->getMessage();
+        return [];
+    }
+}
+$data = getAgencyPaymentsData($pdo);
+
+
+// Fonction pour récupérer les propriétaires et le nombre de leurs agences
+function getOwnersAndAgencyCounts($pdo) {
+    $query = "
+        SELECT 
+            o.id AS owner_id,
+            o.name AS owner_name,
+            COUNT(a.id) AS number_of_agencies
+        FROM 
+            owners o
+        LEFT JOIN 
+            agencies a ON o.id = a.owner_id
+        WHERE 
+            o.is_deleted = 0
+        GROUP BY 
+            o.id, o.name
+        ORDER BY 
+            o.name
+    ";
+
+    try {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error fetching owners and agency counts: " . $e->getMessage();
+        return [];
+    }
+}
+
+// Appel de la fonction et récupération des données
+$ownersAndAgencies = getOwnersAndAgencyCounts($pdo);
+
+// Préparer les données pour JavaScript
+$labels = [];
+$numberOfAgencies = [];
+
+foreach ($ownersAndAgencies as $owner) {
+    $labels[] = $owner['owner_name'];
+    $numberOfAgencies[] = $owner['number_of_agencies'];
+}($pdo);
+
+
 
 function get_count_agencies($pdo){
     $query = "SELECT COUNT(*) FROM agencies WHERE is_deleted = 0";
