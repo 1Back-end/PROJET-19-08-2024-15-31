@@ -75,10 +75,14 @@
 			
 		</div>
 	</div>
-
-	
-			
-					
+<style>
+.agency-name {
+  max-width: 400px; /* Limite la largeur du texte */
+  white-space: nowrap; /* Empêche le texte de s'étendre sur plusieurs lignes */
+  overflow: hidden; /* Cache le texte qui dépasse */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+}
+</style>				
   <?php 
   $owner_id = $_SESSION['owner_id'] ?? null;
   $agency_info=get_information_by_owner($pdo, $owner_id);

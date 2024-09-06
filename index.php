@@ -96,6 +96,36 @@
     </div>
 </div>
 
+<div class="container mt-5 section-padding p-3">
+        <h2 class="text-center mb-4 title2">Nos Abonnements</h2>
+        <?php include_once("controllers.php"); ?>
+        <!-- Affichage des abonnements -->
+<div class="row">
+    <?php if ($abonnements): ?>
+        <?php foreach ($abonnements as $abonnement): ?>
+            <div class="col-md-3 col-sm-12 mb-4">
+                <div class="card border-primary card-box h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><?php echo htmlspecialchars($abonnement['name']); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($abonnement['description']); ?></p>
+                        <h6 class="card-subtitle mb-2 text-muted">Prix : <?php echo htmlspecialchars($abonnement['price']); ?> FCFA</h6>
+                        <p class="card-text">Limite de véhicules : <?php echo htmlspecialchars($abonnement['vehicle_limit']); ?></p>
+                        <p class="card-text">Durée : <?php echo htmlspecialchars($abonnement['duration_in_months']); ?> mois</p>
+                        <a href="subscribe_email.php?id=<?php echo htmlspecialchars($abonnement['id']); ?>" class="btn btn-primary btn-subscribe">Souscrire <i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="col-12">
+            <p>Aucun abonnement disponible pour le moment.</p>
+        </div>
+    <?php endif; ?>
+</div>
+
+    </div>
+
+
 
 <?php include_once("footer.php");?>
 

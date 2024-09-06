@@ -126,7 +126,7 @@ body {
     text-align: center;
 }
 .container .card-title{
-    font-size: 18px;
+    font-size: 25px;
     color: #1F4283;
     transition: 0.3s ease-in-out;
     font-weight: 600;
@@ -459,6 +459,19 @@ label {
     margin-bottom: 5px;
     font-weight: 500;
 }
+.container .title1{
+    color: #1F4283;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+.container .title2{
+    color: #1F4283;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+
 
 
 
@@ -496,6 +509,10 @@ label {
     .col-md-12 {
         width: 100%;            /* Les colonnes prennent toute la largeur */
         margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
+    }
+    .container .card-title{
+        font-size: 18px;
+        color: #1F4283;
     }
     
 }
@@ -542,9 +559,7 @@ label {
         font-size: 16px; /* Légère réduction */
         text-align: justify;
     }
-    .container .title2{
-        font-size: 18px; /* Réduit pour les petits écrans */
-    }
+    
     
 }
 
@@ -582,17 +597,7 @@ label {
         width: 100%;            /* Les colonnes prennent toute la largeur */
         margin-bottom: 20px;    /* Ajoute de l'espace entre les colonnes */
     }
-    .container .title1{
-        font-size: 22px; /* Réduit pour les petits écrans */
-        line-height: 1.2;
-    }
-    .container .lead{
-        font-size: 16px; /* Légère réduction */
-        text-align: justify;
-    }
-    .container .title2{
-        font-size: 18px; /* Réduit pour les petits écrans */
-    }
+   
     
 }
 
@@ -608,37 +613,5 @@ label {
         font-size: 16px; /* Légère réduction */
         text-align: justify;
     }
-    .container .title2{
-        font-size: 18px; /* Réduit pour les petits écrans */
-    }
-}
-
-/* Appareils moyens (tablettes et petits écrans) */
-@media (min-width: 576px) and (max-width: 991.98px) {
-    .container .title1{
-        font-size: 22px; /* Réduit pour les petits écrans */
-        line-height: 1.2;
-    }
-    .container .lead{
-        font-size: 16px; /* Légère réduction */
-        text-align: justify;
-    }
-    .container .title2{
-        font-size: 18px; /* Réduit pour les petits écrans */
-    }
-}
-
-/* Grands appareils (desktop) */
-@media (min-width: 992px) {
-    .container .title1{
-        font-size: 22px; /* Réduit pour les petits écrans */
-        line-height: 1.2;
-    }
-    .container .lead{
-        font-size: 16px; /* Légère réduction */
-        text-align: justify;
-    }
-    .container .title2{
-        font-size: 18px; /* Réduit pour les petits écrans */
-    }
+    
 }

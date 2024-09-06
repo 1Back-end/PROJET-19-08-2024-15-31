@@ -1,7 +1,17 @@
 <?php
 include("database/database.php");
 
-
+// Function to generate UUID4
+function uuid4() {
+    return sprintf(
+        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+        mt_rand(0, 0xffff),
+        mt_rand(0, 0x0fff) | 0x4000,
+        mt_rand(0, 0x3fff) | 0x8000,
+        mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+    );
+}
 
 function getCarModels() {
     // Création d'un tableau avec des modèles de voitures
@@ -150,6 +160,48 @@ function getActiveCarBrands($pdo) {
 }
 // Appeler la fonction pour récupérer les marques de voitures actives
 $carBrands = getActiveCarBrands($pdo);
+
+
+function fetchAndDisplaySubscriptions($pdo) {
+    // Préparer la requête pour récupérer les abonnements actifs
+    $sql = "SELECT * FROM subscription_types WHERE is_active = 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $subscriptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Calculer la durée pour chaque abonnement
+    foreach ($subscriptions as &$subscription) {
+        $start_date = new DateTime($subscription['start_date']);
+        $end_date = new DateTime($subscription['end_date']);
+        $interval = $start_date->diff($end_date);
+        $subscription['duration_in_months'] = $interval->m + ($interval->y * 12); // Convertir années et mois en mois totaux
+    }
+
+    return $subscriptions;
+}
+
+
+// Appeler la fonction pour récupérer les abonnements actifs
+
+$abonnements = fetchAndDisplaySubscriptions($pdo);
+
+function get_all_agencies($pdo){
+    try {
+        // Préparer la requête SQL
+        $stmt = $pdo->prepare("SELECT * FROM agencies WHERE is_deleted = 0 ORDER BY name ASC");
+        // Exécuter la requête
+        $stmt->execute();
+        // Récupérer les résultats
+        $agencies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $agencies;
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo "Erreur lors de la récupération des agences : ". $e->getMessage();
+        return false;
+    }
+}
+// Appeler la fonction pour récupérer toutes les agences
+$agencies = get_all_agencies($pdo);
 
 
 ?>
