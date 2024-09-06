@@ -118,7 +118,11 @@ input[type="file"]{
   font-family: "Poppins", sans-serif;
 
 }
+input[type="tel"]{
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
 
+}
 .btn-icons {
   padding: 0.25rem 0.5rem; /* Ajustez les valeurs en conséquence pour la taille souhaitée */
   font-size: 12px; /* Ajustez la taille de la police en conséquence */
@@ -277,4 +281,10 @@ input[type="file"]{
   height: auto;
   font-size: 20px;
   font-weight: bold;
+}
+.agency-name {
+  max-width: 400px; /* Limite la largeur du texte */
+  white-space: nowrap; /* Empêche le texte de s'étendre sur plusieurs lignes */
+  overflow: hidden; /* Cache le texte qui dépasse */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
 }

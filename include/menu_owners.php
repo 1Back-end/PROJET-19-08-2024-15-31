@@ -77,7 +77,7 @@
 	</div>
 
 	
-				
+			
 					
   <?php 
   $owner_id = $_SESSION['owner_id'] ?? null;
@@ -86,9 +86,9 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-		  <h3 class="text-white mb-3 text-uppercase fw-bold mt-2 p-3">
-		  <?php echo !empty($agency_info['name']) ? htmlspecialchars($agency_info['name']) : 'Nom de l\'agence indisponible'; ?>
-		  </h3>
+		<h3 class="text-white mb-3 text-uppercase fw-bold mt-2 p-3 agency-name">
+    <?php echo !empty($agency_info['name']) ? htmlspecialchars($agency_info['name']) : 'Nom de l\'agence indisponible'; ?>
+</h3>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
 			</div>
