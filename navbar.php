@@ -27,7 +27,7 @@
       </ul>
       <div class="d-flex justify-content-center">
       <a href="profile.php" class="login-btn shadow-none mx-2">Mon compte</a>
-        <a href="login/login.php" class="login-btn shadow-none">S'inscire</a>
+        <a href="create_account.php" class="login-btn shadow-none">S'inscire</a>
         </div>
     </div>
     

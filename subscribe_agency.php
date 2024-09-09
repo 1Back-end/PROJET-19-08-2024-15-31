@@ -50,7 +50,7 @@ if (!$agencies) {
     <div class="col-md-6 mx-auto col-sm-12 card-box p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="text-left">Choix de l'agence</h3>
-            <h2 class="card-title text-right">01</h2>
+            <h2 class="card-title text-right">02</h2>
         </div>
         <small class="mb-3">Veuillez sélectionner l'agence à laquelle vous souhaitez associer cet abonnement. Si vous possédez plusieurs agences, assurez-vous de choisir celle qui correspond à vos besoins actuels.</small>
 

@@ -8,10 +8,12 @@
     <div class="mb-3 mb-md-0">
         <h4 class="text-uppercase">Liste des réservations</h4>
     </div>
+    <form action="" method="get">
     <div class="d-flex flex-column flex-md-row ml-md-auto">
         <input type="text" class="form-control shadow-none mb-2 mb-md-0 mx-md-2" placeholder="Rechercher">
         <button class="btn btn-customize text-white btn-sm shadow-none">Rechercher</button>
     </div>
+    </form>
 </div>
 
     </div>

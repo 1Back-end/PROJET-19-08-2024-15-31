@@ -114,7 +114,7 @@ if ($delete == 'success') {
                                                     </li>
                                                 <?php endif; ?>
                                                 <li>
-                                                  <a href="details_users.php?id=<?php echo htmlspecialchars($owner['id']); ?>" class="dropdown-item text-info">
+                                                  <a href="details_users.php?id=<?php echo htmlspecialchars($admin['id']); ?>" class="dropdown-item text-info">
                                                       <i class="fas fa-info-circle"></i> Détails
                                                   </a>
                                               </li>

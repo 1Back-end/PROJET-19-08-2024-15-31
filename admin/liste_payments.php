@@ -44,6 +44,11 @@ $total_pages = ceil($total_payments / $limit);
             </tr>
         </thead>
         <tbody>
+        <?php if (empty($payments)) : ?>
+                <tr>
+                    <td colspan="10">Aucun élément trouvé</td>
+                </tr>
+            <?php else : ?>
             <?php foreach ($payments as $index => $payment): ?>
             <tr>
                 <td><?= $offset + $index + 1 ?></td>
@@ -73,6 +78,7 @@ $total_pages = ceil($total_payments / $limit);
                     <td><?= htmlspecialchars($payment['transaction_id']) ?></td>
             </tr>
             <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 

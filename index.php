@@ -27,7 +27,7 @@
       <p class="lead">
         Découvrez notre large gamme de véhicules disponibles à la location. Que vous ayez besoin d'une voiture compacte pour la ville ou d'un SUV pour un voyage en famille, nous avons ce qu'il vous faut.
       </p>
-      <a href="#" class="btn btn-primary btn-lg me-2 shadow-none">Voir les véhicules</a>
+      <a href="car.php" class="btn btn-primary btn-lg me-2 shadow-none">Voir les véhicules</a>
       <a href="#" class="btn btn-primary btn-lg me-2 shadow-none">Nous contacter</a>
     </div>
     <!-- Section Image -->
