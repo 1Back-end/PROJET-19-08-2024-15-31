@@ -12,6 +12,49 @@
     <a href="ajout_owner.php" class="btn btn-customize text-white btn-sm"><i class="fa fa-plus mx-2" aria-hidden="true"></i> Ajouter un propriétaire</a>
 </div>
 </div>
+
+
+<div class="col-md-12 col-sm-12 mb-3">
+    <div class="card-box p-3">
+        <form action="" method="get">
+            <div class="row g-3">
+                <div class="col-md-3 mb-2">
+                    <input type="text" class="form-control shadow-none" placeholder="Rechercher">
+                </div>
+                <div class="col-md-3 mb-2">
+                    <input type="date" name="" id="" class="form-control shadow-none">
+                </div>
+                <div class="col-md-3 mb-2">
+                    <select name="" id="" class="form-control shadow-none select-custom">
+                            <option disabled selected>Sélectionner un statut</option>
+                            <?php foreach($statusOwners as $statusOwner):?>
+                            <option value="<?php echo htmlspecialchars($statusOwner)?>">
+                                <?php echo htmlspecialchars($statusOwner);?>
+                            </option>
+                            <?php endforeach;?>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <button type="submit" class="btn btn-customize text-white shadow-none btn-lg w-100">Afficher</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="col-md-12 col-sm-12 mb-3">
 <?php
 // Exemple de code à ajouter au début de liste_owners.php
@@ -57,6 +100,7 @@ $total_pages = ceil($total_owners / $limit);
                 <th>Pays</th>
                 <th>Ville</th>
                 <th>Statut</th>
+                <th>Ajouté le</th>
                 <th>Actions</th>
                 </thead>
 
@@ -87,6 +131,7 @@ $total_pages = ceil($total_owners / $limit);
                                     <span class="badge bg-danger text-white">Inactif</span>
                                 <?php endif; ?>
                             </td>
+                            <td><?php echo htmlspecialchars($owner['created_at']); ?></td>
                             <td>
     <div class="d-flex align-items-center justify-content-center">
         <div class="dropdown">

@@ -29,12 +29,14 @@
         </div>
     <?php endif; ?>
 </div>
+<div class="container">
+    
 <hr class="mt-0 mb-4">
 <div class="row">
     <div class="col-xl-4">
         <!-- Profile picture card-->
-        <div class="card mb-4 mb-xl-0">
-            <div class="card-header">Logo</div>
+        <div class="card mb-4 mb-xl-0 p-3">
+            <h6 class="text-uppercase">Logo de l'agence</h6>
             <div class="card-body text-center">
                     <!-- Profile picture image-->
                     <img id="logoImage" src="../upload/<?php echo htmlspecialchars($agency_info['logo']); ?>" alt="Logo" class="img-account-profile rounded-circle mb-2">
@@ -53,8 +55,8 @@
 
     <div class="col-xl-8">
         <!-- Account details card-->
-        <div class="card mb-4">
-            <div class="card-header">Détails de mon agence</div>
+        <div class="card mb-4 p-3">
+            <h6 class="text-uppercase">Informations de mon agence</h6>
             <div class="card-body">
                     <div class="mb-3">
                         <label class="small mb-1" for="inputName">Nom de l'agence</label>
@@ -106,6 +108,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

@@ -16,6 +16,48 @@
     </div>
 </div>
 
+
+<div class="col-md-12 col-sm-12 mb-3">
+    <div class="card-box p-3">
+        <form action="" method="get">
+            <div class="row g-3">
+                <div class="col-md-3 mb-2">
+                    <input type="text" class="form-control shadow-none" placeholder="Rechercher">
+                </div>
+                <div class="col-md-3 mb-2">
+                    <select name="" id="" class="form-control shadow-none select-custom">
+                            <option disabled selected>Sélectionner un marque</option>
+                            <?php if (!empty($carBrands)): ?>
+                                <?php foreach ($carBrands as $brand): ?>
+                                    <option value="<?php echo htmlspecialchars($brand['id']); ?>" 
+                                        <?= (isset($_POST['brand']) && $_POST['brand'] == $brand['id']) ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($brand['name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <option disabled>Aucune marque disponible</option>
+                            <?php endif; ?>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <select name="" id="" class="form-control shadow-none select-custom">
+                        <option disabled selected>Sélectionner un modèle</option>
+                        <?php foreach($models_car as $models_cars):?>
+                            <option value="<?php echo htmlspecialchars($models_cars['id']);?>">
+                            <?php echo htmlspecialchars($models_cars['name']);?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <button type="submit" class="btn btn-customize text-white shadow-none btn-lg w-100">Afficher</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="col-md-12 col-sm-12">
 <?php
 // Vérifiez si un message est présent dans les paramètres de l'URL
@@ -29,7 +71,6 @@ if (isset($_GET['message'])) {
 }
 ?>
 </div>
-
 <?php
 // ID du propriétaire (récupéré via la session ou autre source)
 $owner_id = $_SESSION['owner_id'] ?? null;
@@ -39,12 +80,13 @@ $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $itemsPerPage = 10; // Nombre d'éléments par page
 
 // Récupérer les voitures pour cette page
-$cars = get_car_by_owner_id($pdo, $owner_id, $currentPage, $itemsPerPage);
+$cars = get_car_by_owner_id($pdo, $agency_id, $owner_id, $currentPage, $itemsPerPage);
 
 // Récupérer le nombre total de voitures pour la pagination
-$totalCarsCount = get_total_cars_count($pdo, $owner_id);
+$totalCarsCount = get_total_cars_count($pdo, $agency_id, $owner_id);
 $totalPages = ceil($totalCarsCount / $itemsPerPage);
 ?>
+
 
 <div class="col-md-12 col-sm-12"> 
     <div class="card-box p-3">
@@ -61,10 +103,15 @@ $totalPages = ceil($totalCarsCount / $itemsPerPage);
                         <th>Sièges</th>
                         <th>Kilométrage</th>
                         <th>Statut</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php if (empty($cars)) : ?>
+                            <tr>
+                                <td colspan="10">Aucun véhicule trouvé</td>
+                            </tr>
+                    <?php else : ?>
                     <?php foreach ($cars as $index => $car): ?>
                         <tr>
                             <td><?php echo htmlspecialchars(($currentPage - 1) * $itemsPerPage + $index + 1); ?></td>
@@ -101,6 +148,7 @@ $totalPages = ceil($totalCarsCount / $itemsPerPage);
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
 
@@ -189,4 +237,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2000);
     });
 </script>
-

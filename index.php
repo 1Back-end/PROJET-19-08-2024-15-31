@@ -23,7 +23,7 @@
   <div class="row align-items-center">
     <!-- Section Titre et Description -->
     <div class="col-md-6 col-sm-12 mb-3">
-      <h1 class="title1">Louez votre voiture en toute simplicité</h1>
+      <h1 class="title1 px-0">Louez votre voiture en toute simplicité</h1>
       <p class="lead">
         Découvrez notre large gamme de véhicules disponibles à la location. Que vous ayez besoin d'une voiture compacte pour la ville ou d'un SUV pour un voyage en famille, nous avons ce qu'il vous faut.
       </p>

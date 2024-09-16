@@ -58,7 +58,7 @@
 				<div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 					<span class="user-icon shadow-none">
-						<img src="../upload/<?= htmlspecialchars($_SESSION['owner_image'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil">
+						<img src="../upload/<?= htmlspecialchars($_SESSION['owner_image'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil" class="rounded-circle img-fluid"  width="50" height="auto"  style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
 					</span>
 					<span class="user-name ml-3">
 						<?= htmlspecialchars($_SESSION['owner_name']); ?>
@@ -111,10 +111,16 @@
 							<span class="micon dw dw-fuel"></span><span class="mtext">Marques</span>
 						</a>
 					</li>
+					<li>
+						<a href="../owners/liste_modeles.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-package"></span><span class="mtext">Modèles</span>
+						</a>
+					</li>
 
+				
                     <li>
 						<a href="../owners/liste_car.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-car"></span><span class="mtext">Véhicules</span>
+							<span class="micon dw dw-delivery-truck-2"></span><span class="mtext">Véhicules</span>
 						</a>
 					</li>
 
@@ -127,14 +133,14 @@
 					</li>
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../owners/payment.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-money-1"></span><span class="mtext">Payements</span>
 						</a>
 					</li>
                    
 
                     <li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="../owners/settings.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-settings1"></span><span class="mtext">Paramètres</span>
 						</a>
 					</li>

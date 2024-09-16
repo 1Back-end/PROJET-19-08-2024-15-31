@@ -39,37 +39,39 @@
             <div class="col-md-6 col-sm-12 mb-3">
               <div class="mb-2">
               <label for="">Nom complet <span class="text-danger">*</span></label>
-              <input type="text" class="form-control shadow-none">
+              <input type="text" class="form-control shadow-none" name="name">
               </div>
               <div class="mb-2">
               <label for="">Numéro de téléphone <span class="text-danger">*</span></label>
-              <input type="tel" class="form-control shadow-none">
+              <input type="tel" class="form-control shadow-none" name="tel">
               </div>
               <div class="mb-2">
                 <label for="">Ville <span class="text-danger">*</span></label>
-                <input type="text" class="form-control shadow-none">
+                <input type="text" class="form-control shadow-none" name="city">
               </div>
               <div class="mb-2">
                 <label for="">Code postal <span class="text-danger">*</span></label>
-                <input type="text" class="form-control shadow-none">
+                <input type="text" class="form-control shadow-none" name="postal_code">
               </div>
               <div class="mb-2">
               <label for="">Mot de passe<span class="text-danger">*</span></label>
-              <input type="password" class="form-control shadow-none py-2">
+              <input type="password" class="form-control shadow-none py-2" name="password1">
+              <input type="checkbox" name="" id="" class=""> Afficher le mot de passe
+
              </div>
             </div>
             <div class="col-md-6 col-sm-12 mb-3">
              <div class="mb-2">
              <label for="">Email <span class="text-danger">*</span></label>
-             <input type="email" class="shadow-none form-control">
+             <input type="email" class="shadow-none form-control" name="email">
              </div>
              <div class="mb-2">
              <label for="">Pays <span class="text-danger">*</span></label>
-             <input type="text" class="shadow-none form-control">
+             <input type="text" class="shadow-none form-control" name="contry">
              </div>
              <div class="mb-2">
               <label for="">Adresse</label>
-              <input type="text" class="form-control shadow-none">
+              <input type="text" class="form-control shadow-none" name="address">
              </div>
              
              <div class="mb-2">
@@ -87,7 +89,9 @@
                     </div>
                     <div class="mb-2">
               <label for="">Confirmer votre mot de passe<span class="text-danger">*</span></label>
-              <input type="password" class="form-control shadow-none py-2">
+              <input type="password" class="form-control shadow-none py-2" name="password2">
+              <input type="checkbox" name="" id="" class=""> Afficher le mot de passe
+
              </div>
                 </div>
                 

@@ -55,6 +55,15 @@ function get_agencies($pdo, $limit, $offset) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function get_all_role($pdo){
+    $query="SELECT * FROM admin_role WHERE is_deleted = 0 ORDER BY role ASC";
+    $stmt=$pdo->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+$all_admin_role =get_all_role($pdo);
+
 function get_total_agencies_count($pdo) {
     $query = "SELECT COUNT(*) FROM agencies WHERE is_deleted = 0";
     $stmt = $pdo->query($query);
@@ -83,6 +92,7 @@ function getAgenciesOptions($pdo) {
     }
 }
 $agencies = getAgenciesOptions($pdo);
+
 
 function generateAgencyCode($prefix = 'AGC') {
     // Obtenir la date actuelle au format YYYYMMDD
@@ -196,6 +206,7 @@ function get_count_agencies($pdo){
     return $stmt->fetchColumn();
 }
 $countAgencies = get_count_agencies($pdo);
+
 
 function get_count_owners($pdo){
     $query = "SELECT COUNT(*) FROM owners WHERE is_deleted = 0";
@@ -449,16 +460,64 @@ $admins = get_all_admin($pdo);
 function getCarModels() {
     // Création d'un tableau avec des modèles de voitures
     $carModels = array(
-        "Toyota Camry",
-        "Honda Accord",
-        "Ford Mustang",
-        "Chevrolet Malibu",
-        "BMW 3 Series",
-        "Audi A4",
-        "Mercedes-Benz C-Class",
-        "Volkswagen Jetta",
-        "Nissan Altima",
-        "Subaru Impreza"
+        "ABARTH",
+        "ABARTH 500",
+        "ALFA ROMEO",
+        "ALFA ROMEO GIULIA",
+        "ALFA ROMEO JUNIOR",
+        "ALFA ROMEO STELVIO",
+        "ALFA ROMEO TONALE",
+        "ALPINE",
+        "ALPINE A110",
+        "AUDI",
+        "AUDI A1",
+       " AUDI A3",
+        "AUDI A4",
+        "AUDI A5",
+       " AUDI A6",
+       " AUDI A8",
+        "AUDI E-TRON",
+        "AUDI E-TRON GT",
+        "AUDI E-TRON SPORTBACK",
+        "AUDI Q2",
+        "AUDI Q3",
+        "AUDI Q4",
+        "AUDI Q5",
+        "AUDI Q7",
+        "AUDI Q8",
+        "AUDI RS Q8",
+        "AUDI RS3",
+        "BMW",
+        "BMW I4",
+        "BMW I5",
+        "BMW I7",
+        "BMW IX",
+        "BMW IX1",
+        "BMW IX2",
+        "BMW IX3",
+        "BMW SERIE 1",
+        "BMW SERIE 2",
+        "BMW SERIE 3",
+        "BMW SERIE 4",
+        "BMW SERIE 5",
+        "BMW SERIE 7",
+        "BMW X1",
+        "BMW X2",
+        "BMW X3",
+        "BMW X4",
+        "BMW X5",
+        "BMW XM",
+        "BMW Z4",
+        "BYD",
+        "BYD ATTO 3",
+        "BYD DOLPHIN",
+        "BYD ETP3",
+        "BYD HAN",
+        "BYD SEAL",
+        "BYD TANG"
+
+
+        
     );
 
     // Retourner le tableau des modèles
@@ -568,17 +627,59 @@ function getAvailableColors() {
 // Exemple d'utilisation de la fonction
 $colors = getAvailableColors();
 
+function getStatusOwner(){
+    $StatusList = array(
+        "Actif",
+        "Inactif"
+    );
+    return $StatusList;
+}
+$statusOwners =  getStatusOwner();
+
+function getAgenciesStatus(){
+    $AgenciesList= array(
+        "Actif",
+        "Inactif"
+    );
+    return $AgenciesList;
+}
+$StatusAgencies = getAgenciesStatus();
+
+
+function getNumberAgencies(){
+    $NumberAgencies = array(
+        5,
+        25,
+        50,
+        100,
+        250,
+        500
+    );
+    return $NumberAgencies;
+}
+$number_agencies = getNumberAgencies();
+
 function getAvailableMileages() {
     // Création d'un tableau avec des valeurs de kilométrage typiques
     $mileagesList = array(
-        5000,     // 5,000 km
-        10000,    // 10,000 km
-        15000,    // 15,000 km
-        20000,    // 20,000 km
-        25000,    // 25,000 km
-        30000,    // 30,000 km
-        35000,    // 35,000 km
-        40000     // 40,000 km
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100,
+        110,
+        120,
+        140,
+        160,
+        180,
+        200,
+        220,
+        240
     );
 
     // Retourner le tableau des kilométrages
@@ -587,6 +688,55 @@ function getAvailableMileages() {
 // Exemple d'utilisation de la fonction
 $mileages = getAvailableMileages();
 
+
+function all_card_brands(){
+    $card_brand=array(
+        'ALFA ROMEO',
+        'ALPHINE',
+        'ASTON MARTIN',
+        'AUDI',
+        'BENTLEY',
+        'BMW',
+        'CHEVROLET',
+        'CITROEN',
+        'DACIA',
+        'DS',
+        'FERRARI',
+        'FIAT',
+        'FORD',
+        'HONDA',
+        'HYUNDAI',
+        'INFINITY',
+        'JAGUAR',
+        'JEEP',
+        'KIA',
+        'LAMBORGHINI',
+        'LAND ROVER',
+        'LEXUS',
+        'LOTUS',
+        'MASERATI',
+        'MAZDA',
+        'MITSUBISHI',
+        'NISSAN',
+        'OPEL',
+        'PEUGEOT',
+        'PORSCHE',
+        'RENAULT',
+        'ROLLS-ROYCE',
+        'SEAT',
+        'SKODA',
+        'SMART',
+        'SSANGYONG',
+        'SUBARU',
+        'SUZUKI',
+        'TESLA',
+        'TOYOTA',
+        'VOLKSWAGEN',
+        'VOLVO'
+
+    );
+}
+$card_brands=all_card_brands();
 
 function getActiveCars($pdo) {
     try {
@@ -714,7 +864,6 @@ function getTotalClients($pdo) {
 $total_clients = getTotalClients($pdo);
 
 ?>
-
 
 
 

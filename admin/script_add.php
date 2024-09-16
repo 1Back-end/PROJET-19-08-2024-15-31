@@ -18,7 +18,9 @@ if (isset($_POST["submit"])) {
     $email = $_POST['email'] ?? null;
     $telephone = $_POST['telephone'] ?? null;
     $birthday = $_POST["birthday"] ?? null;
-    
+    $role_id = $_POST["role_id"] ?? null;
+    $added_by = $_SESSION['user_id'] ?? null;
+
     // Génération des valeurs pour d'autres champs
     $id = generateUuid4();
     $password = generatePassword();
@@ -27,7 +29,27 @@ if (isset($_POST["submit"])) {
     $created_at = date('Y-m-d H:i:s'); // Date actuelle
     $is_deleted = 0; // Non supprimé
     $is_active = 1; // Actif
-    $photo = ''; // Champ photo peut être vide ou à mettre à jour selon vos besoins
+    $photo = ''; // Par défaut vide
+
+    // Gestion de l'upload de la photo (optionnel)
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $target_dir = "../upload/";
+        $photo = basename($_FILES["photo"]["name"]);
+        $target_file = $target_dir . $photo;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Vérifier le type de fichier
+        $check = getimagesize($_FILES["photo"]["tmp_name"]);
+        if ($check !== false) {
+            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                $success .= "La photo a été téléchargée avec succès. ";
+            } else {
+                $erreur .= "Erreur lors du téléchargement de la photo. ";
+            }
+        } else {
+            $erreur .= "Le fichier n'est pas une image valide. ";
+        }
+    }
 
     // Validation des champs
     if (empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($birthday)) {
@@ -60,7 +82,8 @@ if (isset($_POST["submit"])) {
                 $erreur = "Le numéro de téléphone est déjà utilisé.";
             } else {
                 // Insertion des données dans la base de données
-                $query = "INSERT INTO users (id, firstname, lastname, email, contact, birthday, password, role, created_at, is_deleted, is_active) VALUES (:id, :nom, :prenom, :email, :telephone, :birthday, :password_hash, :role, :created_at, :is_deleted, :is_active)";
+                $query = "INSERT INTO users (id, firstname, lastname, email, contact, birthday, password, role, created_at, is_deleted, is_active, photo, role_id) 
+                          VALUES (:id, :nom, :prenom, :email, :telephone, :birthday, :password_hash, :role, :created_at, :is_deleted, :is_active, :photo, :role_id)";
                 $stmt = $pdo->prepare($query);
                 
                 // Lier les paramètres
@@ -75,6 +98,8 @@ if (isset($_POST["submit"])) {
                 $stmt->bindParam(':created_at', $created_at);
                 $stmt->bindParam(':is_deleted', $is_deleted);
                 $stmt->bindParam(':is_active', $is_active);
+                $stmt->bindParam(':photo', $photo);
+                $stmt->bindParam(':role_id', $role_id);
                 
                 // Exécution de la requête
                 $stmt->execute();
@@ -115,7 +140,6 @@ if (isset($_POST["submit"])) {
                     
                     // Envoi de l'email
                     $mail->send();
-                    // $success .= " Un email de confirmation a été envoyé.";
                 } catch (Exception $e) {
                     $erreur = "L'email de confirmation n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}";
                 }

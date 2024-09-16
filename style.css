@@ -613,5 +613,8 @@ label {
         font-size: 16px; /* Légère réduction */
         text-align: justify;
     }
+    .container .description{
+        text-align: justify;
+    }
     
 }

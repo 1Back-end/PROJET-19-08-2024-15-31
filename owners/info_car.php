@@ -67,52 +67,52 @@ if ($id_car) {
         <div class="col-md-6 mb-3 col-sm-12">
             <div class="card-box p-2 h-100">
             <div class="car-details">
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>N° Immatriculation :</strong> 
                 <?php echo htmlspecialchars($car['registration_number']); ?>
             </div>
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>Marque :</strong> 
                 <?php echo htmlspecialchars($car['brand_name']); ?>
             </div>
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>Modèle :</strong> 
                 <?php echo htmlspecialchars($car['model']); ?>
             </div>
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>Type carburant :</strong> 
                 <?php echo htmlspecialchars($car['fuel_type']); ?>
             </div>
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>Transmission :</strong>
                 <?php echo htmlspecialchars($car['transmission']); ?>
             </div>
-            <div class="detail-item mb-2">
+            <div class="mb-2">
                 <strong>Couleur:</strong>
                 <?php echo htmlspecialchars($car['color']); ?>
             </div>
-            <div class="mb-2 detail-item">
+            <div class="mb-2">
                 <strong>Nombres de places :</strong>
                 <?php echo htmlspecialchars($car['seats']); ?>
             </div>
-            <div class="mb-2 detail-item">
+            <div class="mb-2">
                 <strong>Kilométrage : </strong>
                 <?php echo htmlspecialchars($car['mileage']); ?> Km
             </div>
-            <div class="mb-2 detail-item">
+            <div class="mb-2">
                 <strong>Prix par jour : </strong>
                 <?php echo htmlspecialchars($car['price_per_day']);?> FCFA 
             </div>
-            <div class="mb-2 detail-item">
+            <div class="mb-2">
                 <strong>Statut de Disponibilité : </strong>
                 <?php echo htmlspecialchars($car['availability_status']);?>
             </div>
-            <div class="mb-2 detail-item">
+            <div class="mb-2">
             <strong>Expiration de l'Assurance : </strong>
             <?php echo date('d/m/Y', strtotime($car['insurance_expiration'])); ?>
 
             </div>
-            <div class="detail-item">
+            <div class="mb-2">
             <strong>Notes : </strong>
             </div>
             <p>
@@ -202,25 +202,4 @@ if ($id_car) {
             <p>Voiture non trouvée ou déjà supprimée.</p>
         <?php endif; ?>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-

@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
                 $_SESSION['owner_image'] = $owner['image'];
 
                 // Redirection vers la page d'accueil ou tableau de bord
-                header("Location: ../include/menu_owners.php");
+                header("Location:dashboard.php");
                 exit;
             } else {
                 // Mot de passe incorrect

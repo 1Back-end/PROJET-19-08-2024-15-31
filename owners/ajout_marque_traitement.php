@@ -1,7 +1,7 @@
 <?php
 include_once("../database/database.php");
 include_once("../controllers/controllers.php");
-
+include_once("controllers_owners.php");
 $erreur_champ = "";
 $erreur = "";
 $success = "";
@@ -17,6 +17,7 @@ if (isset($_POST["submit"])) {
     $added_by = $_SESSION['owner_id'] ?? null;
     $id = generateUuid4();
     $photo = $_FILES['photo'] ?? null;
+    $agency_id = get_agency_id_by_owner($pdo, $id_owner);
 
     // Vérifier que tous les champs sont remplis
     if (empty($marque) || empty($description) || empty($added_by) || empty($photo) || $photo['error'] != UPLOAD_ERR_OK) {
@@ -40,12 +41,13 @@ if (isset($_POST["submit"])) {
             if (move_uploaded_file($photo['tmp_name'], $upload_file)) {
                 try {
                     // Préparer et exécuter la requête d'insertion avec PDO
-                    $stmt = $pdo->prepare("INSERT INTO carbrands (id, name, image, description, added_by) VALUES (:id, :name, :image, :description, :added_by)");
+                    $stmt = $pdo->prepare("INSERT INTO carbrands (id, name, image, description, added_by,agency_id) VALUES (:id, :name, :image, :description, :added_by,:agency_id)");
                     $stmt->bindParam(':id', $id);
                     $stmt->bindParam(':name', $marque);
                     $stmt->bindParam(':image', $photo_name);
                     $stmt->bindParam(':description', $description);
                     $stmt->bindParam(':added_by', $added_by);
+                    $stmt->bindParam(':agency_id', $agency_id);
 
                     if ($stmt->execute()) {
                         $success = "Marque ajoutée avec succès.";
@@ -61,4 +63,6 @@ if (isset($_POST["submit"])) {
         }
     }
 }
+// echo $agency_id;
+
 ?>

@@ -90,6 +90,7 @@
                         <small class="text-danger"><?=$erreur_champ?></small>
                         <?php endif; ?>
                 </div>
+                
                 </div>
                 <div class="col-md-6 mb-2 col-sm-12">
                 <div class="mb-2">
@@ -127,6 +128,7 @@
 
                 </textarea>
             </div>
+           
             <div class="mb-3 d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <!-- Bouton pour enregistrer -->
                 <button type="submit" name="submit" class="btn btn-customize text-white btn-responsive mb-2 mb-md-0">

@@ -98,3 +98,49 @@ Flux de Travail Typique
     Gestion des Abonnements et des Paiements :
         Les administrateurs suivent les paiements des abonnements et les états des abonnements dans le système.
         Les agences peuvent voir leurs propres informations d'abonnement et leur statut.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Informations a fournir pour la location coté locataire:
+
+
+        Nom,
+        Prenom,
+        Lieu,
+        Date Naissance,
+        Adresse,
+        Numero du permis de conduire
+
+    Modalités du contrat
+    Le type de véhicule,Sa marque , Immatriculation,ainsi que son kilométrage
+    Le montant TTC de la location,option et assurances incluses,
+    Les jours , heures , et lieux de recupération du véhicule
+

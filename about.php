@@ -37,6 +37,52 @@
     </div>
   </div>
 </div>
+<div class="container mt-5 section-padding p-3">
+  <div class="col-md-12 col-sm-12 mb-3">
+    <div class="row align-items-center">
+      <h1 class="title1">Nos Agences</h1>
+      <p class="description">
+        Découvrez notre réseau d'agences réparties dans tout le pays. Chaque agence est équipée pour vous offrir un service client exceptionnel et répondre à tous vos besoins. Que vous recherchiez des conseils personnalisés, des solutions sur mesure ou un soutien local, nos agences sont prêtes à vous assister avec professionnalisme et expertise.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-md-12 col-sm-12 mb-3">
+    <?php include_once("controllers.php"); ?>
+    <div class="row">
+      <?php if ($agencies): ?>
+        <?php foreach ($agencies as $agencie): ?>
+          <div class="col-md-4 col-sm-12 mb-3">
+            <div class="card-box p-3 h-100 text-center">
+              <div class="card-body text-center">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="mr-auto">
+                    <h5 class="card-title"><?php echo htmlspecialchars($agencie['name']); ?></h5>
+                  </div>
+                  <div class="ml-auto">
+                    <?php if (!empty($agencie['logo'])): ?>
+                      <img src="upload/<?php echo htmlspecialchars($agencie['logo']); ?>" alt="Logo" class="rounded-circle img-fluid" width="60" height="60" style="object-fit: cover; aspect-ratio: 1/1;">
+                    <?php else: ?>
+                      <img src="vendors/images/default_logo.jpg" alt="Logo" class="img-thumbnail rounded-circle img-fluid" width="60" height="60" style="object-fit: cover; aspect-ratio: 1/1;">
+                    <?php endif; ?>  
+                  </div>
+                </div>
+                <p class="card-text">Site web : <a href="<?php echo htmlspecialchars($agencie['url_link']); ?>" target="_blank"><?php echo htmlspecialchars($agencie['url_link']); ?></a></p>
+                <p class="card-text">Adresse : <?php echo htmlspecialchars($agencie['address']); ?></p>
+                <p class="card-text">Email : <?php echo htmlspecialchars($agencie['email']); ?></p>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12">
+          <p>Aucune agence disponible pour le moment.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
+
 
 <?php include_once("footer.php");?>
 

@@ -26,8 +26,9 @@ if ($message == 'success') {
 }
 ?>
 </div>
-
-
+<!-- <p>Id Agency :<?php echo htmlspecialchars($agency_id);?></p>
+<p>Id Owner :<?php echo htmlspecialchars($id_owner);?></p>
+ -->
 
 
 <div class="col-md-12 col-sm-12">
@@ -38,7 +39,7 @@ if ($message == 'success') {
                     <tr>
                         <th>#</th>
                         <th>Logo</th>
-                        <th>Nom</th>
+                        <th>Marque</th>
                         <th>Ajouté le</th>
                         <th>Action</th>
                     </tr>
@@ -48,7 +49,7 @@ if ($message == 'success') {
                         <?php foreach ($carBrands as $index => $brand): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($index + 1 + ($currentPage - 1) * $itemsPerPage); ?></td>
-                                <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="rounded-circle img-fluid" width="60" height="60" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;"></td>
+                                <td><img src="../upload/<?php echo htmlspecialchars($brand['image']); ?>" alt="<?php echo htmlspecialchars($brand['name']); ?>" class="rounded-circle img-fluid" width="40" height="40" style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;"></td>
                                 <td><?php echo htmlspecialchars($brand['name']); ?></td>
                                 <td><?php echo htmlspecialchars(date('d-m-Y H:i:s', strtotime($brand['created_at']))); ?></td>
                                 <td>
@@ -95,7 +96,10 @@ if ($message == 'success') {
             </nav>
         </div>
     </div>
+
+
 </div>
+
 
 
 <!-- Modale Bootstrap -->

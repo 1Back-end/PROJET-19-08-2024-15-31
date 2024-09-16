@@ -1,6 +1,7 @@
 <?php
 include_once("../database/database.php");
 include_once("../controllers/controllers.php");
+include_once("controllers_owners.php");
 
 $erreur_champ = "";
 $erreur = "";
@@ -11,6 +12,7 @@ $limite_voitures = 15;
 
 // ID du propriétaire (tiré de la session)
 $owner_id = $_SESSION['owner_id'] ?? null;
+$agency_id = get_agency_id_by_owner($pdo, $id_owner);
 
 // Vérifier si le propriétaire est connecté
 if ($owner_id === null) {
@@ -47,7 +49,7 @@ if (isset($_POST["submit"]) && empty($erreur)) {
 
     // Validation des champs requis
     if (empty($brand) || empty($carYear) || empty($transmissionType) || empty($color) || empty($price_per_day) || empty($modele) || empty($fuelType) || empty($availableSeats) || empty($mileage) || empty($insurance_expiration) || empty($notes)) {
-        $erreur_champ = "Tous les champs requis doivent être remplis.";
+        $erreur_champ = "Ce champ est requis !";
     }
 
 
@@ -127,7 +129,7 @@ if (isset($_POST["submit"]) && empty($erreur)) {
             $photoPathsStr = implode(',', $photoPaths);
 
             try {
-                $stmt = $pdo->prepare("INSERT INTO cars (id, registration_number, brand_id, model, year, fuel_type, transmission, color, seats, mileage, price_per_day, availability_status, insurance_expiration, documents, notes, created_at, added_by, is_deleted, image) VALUES (:id, :registration_number, :brand_id, :model, :year, :fuel_type, :transmission, :color, :seats, :mileage, :price_per_day, :availability_status, :insurance_expiration, :documents, :notes, :created_at, :added_by, :is_deleted, :image)");
+                $stmt = $pdo->prepare("INSERT INTO cars (id, registration_number, brand_id, model, year, fuel_type, transmission, color, seats, mileage, price_per_day, availability_status, insurance_expiration, documents, notes, created_at, added_by,agency_id, is_deleted, image) VALUES (:id, :registration_number, :brand_id, :model, :year, :fuel_type, :transmission, :color, :seats, :mileage, :price_per_day, :availability_status, :insurance_expiration, :documents, :notes, :created_at, :added_by,:agency_id, :is_deleted, :image)");
                 // Lier les valeurs avec bindValue
                 $stmt->bindValue(':id', $id);
                 $stmt->bindValue(':registration_number', $immatriculation);
@@ -146,9 +148,10 @@ if (isset($_POST["submit"]) && empty($erreur)) {
                 $stmt->bindValue(':notes', $notes);
                 $stmt->bindValue(':created_at', date('Y-m-d H:i:s'));
                 $stmt->bindValue(':added_by', $added_by);
+                $stmt->bindValue(':agency_id', $agency_id);
                 $stmt->bindValue(':is_deleted', 0, PDO::PARAM_INT);
                 $stmt->bindValue(':image', $photoPathsStr);
-
+               
                 if ($stmt->execute()) {
                     $success = "Enregistrement réussi.";
                     echo "<script>setTimeout(function() { window.location.href = 'liste_car.php'; }, 2000);</script>";

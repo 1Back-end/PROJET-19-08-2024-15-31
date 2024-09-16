@@ -221,7 +221,7 @@
                             value="<?php echo htmlspecialchars($mileage); ?>" 
                             <?= (isset($_POST['mileage']) && $_POST['mileage'] == $mileage) ? 'selected' : ''; ?>
                         >
-                            <?php echo number_format($mileage, 0, ',', ' '); ?> km
+                            <?php echo number_format($mileage, 0, ',', ' '); ?> km / h
                         </option>
                     <?php endforeach; ?>
                 </select>

@@ -50,9 +50,6 @@
                                     <input type="file" name="photo" class="form-control-file shadow-none" id="photoInput" accept="image/*">
                                 </div>
                             </div>
-                            <?php if(isset($erreur_champ) && empty($_POST['photo'])): ?>
-                            <small class="text-danger"><?=$erreur_champ?></small>
-                            <?php endif; ?>
                         </div>
 
                      <div class="mb-2">
@@ -95,12 +92,3 @@
         });
     </script>
 
-
-<script>
-    $(document).ready(function() {
-    // Cacher l'alerte après 2 secondes (2000 ms)
-    setTimeout(function() {
-    $(".alert").alert('close');
-    }, 2000);
-    });
-</script>

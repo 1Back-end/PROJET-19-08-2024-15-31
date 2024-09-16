@@ -146,7 +146,7 @@ $mileages = getAvailableMileages();
 function getActiveCarBrands($pdo) {
     try {
         // Préparer la requête SQL
-        $stmt = $pdo->prepare("SELECT * FROM carbrands WHERE is_deleted = 0 ORDER BY created_at DESC");
+        $stmt = $pdo->prepare("SELECT * FROM carbrands WHERE is_deleted = 0 ORDER BY name ASC");
         // Exécuter la requête
         $stmt->execute();
         // Récupérer les résultats
@@ -188,7 +188,7 @@ $abonnements = fetchAndDisplaySubscriptions($pdo);
 function get_all_agencies($pdo){
     try {
         // Préparer la requête SQL
-        $stmt = $pdo->prepare("SELECT * FROM agencies WHERE is_deleted = 0 ORDER BY name ASC");
+        $stmt = $pdo->prepare("SELECT * FROM agencies WHERE is_deleted = 0 ORDER BY created_at ASC");
         // Exécuter la requête
         $stmt->execute();
         // Récupérer les résultats
@@ -202,6 +202,8 @@ function get_all_agencies($pdo){
 }
 // Appeler la fonction pour récupérer toutes les agences
 $agencies = get_all_agencies($pdo);
+
+
 
 
 ?>

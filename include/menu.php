@@ -58,7 +58,7 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 					<span class="user-icon shadow-none">
-						<img src="../uploads/<?= htmlspecialchars($_SESSION['photo'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil">
+						<img src="../uploads/<?= htmlspecialchars($_SESSION['photo'] ?? '../vendors/images/profile.jpg') ?>" alt="Photo de profil" class="rounded-circle img-fluid"  style="border-radius: 50%; object-fit: cover; aspect-ratio: 1/1;">
 					</span>
 					<span class="user-name ml-3">
 						<?= htmlspecialchars($_SESSION['username']); ?>
@@ -152,12 +152,19 @@
 							<span class="micon dw dw-settings1"></span><span class="mtext">Paramètres</span>
 						</a>
 					</li>
+					
+					<li>
+						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-lock"></span><span class="mtext">Roles</span>
+						</a>
+					</li>
 
 					<li>
 						<a href="../admin/liste_users.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-user-13"></span><span class="mtext">Utilisateurs</span>
 						</a>
 					</li>
+					
                  
 				</ul>
 			</div>
